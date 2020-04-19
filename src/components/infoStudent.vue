@@ -2,7 +2,7 @@
   <v-card class="pt-3">
   <v-row justify="center">
     <!-- Picture -->
-
+    
     <v-col lg="3">
       <v-row justify="center" align="center">
         <div class="profile">
