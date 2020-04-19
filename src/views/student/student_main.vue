@@ -42,7 +42,7 @@
                 <v-row dense justify="center" class="mr-5">
 
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3" href="/#/student_info">
+                    <v-card height="100%" hover class="pa-3 pt-4" href="/#/student_info">
                       <v-card-text class="text-center">
                         <img src="../../assets/information.png">
                         <p class="mt-2">Student Information</p>
@@ -51,7 +51,7 @@
                   </v-col>
 
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3" href="/#/scholarship">
+                    <v-card height="100%" hover class="pa-3 pt-6" href="/#/scholarship">
                       <v-card-text class="text-center">
                         <img src="../../assets/scholarship.png">
                         <p class="mt-1">Scholarship</p>
@@ -63,7 +63,7 @@
                 <v-row dense justify="center" class="mr-5">
                   
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3" href="/#/enrollment_form">
+                    <v-card height="100%" hover class="pa-3 pt-4" href="/#/enrollment_form">
                       <v-card-text class="text-center">
                         <img src="../../assets/form.png" class="mt-2">
                         <p class="mt-1">Enrollment Form</p>
@@ -72,7 +72,7 @@
                   </v-col>
 
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3"  href="/#/enrollment_details">
+                    <v-card height="100%" hover class="pa-3 pt-4"  href="/#/enrollment_details">
                       <v-card-text class="text-center">
                         <img src="../../assets/detail.png" class="mt-3">
                         <p class="mt-2">Enrollment Detail</p>
@@ -176,4 +176,5 @@ export default {
 .new {
   color:red;
 }
+
 </style>
