@@ -3,9 +3,9 @@
     <v-app-bar color="#005691" dark>
       <v-app-bar-nav-icon @click="drawer = true" />
       <img src="../assets/mheenoiLogo.png" alt="mheenoiLogo" width="40" height="40" class="ml-1">
-      <v-toolbar-title class="ml-2">  MHEENOI UNISERSITY  </v-toolbar-title>
+      <v-toolbar-title class="ml-2" style="font-size: 19px">  MHEENOI UNISERSITY  </v-toolbar-title>
       <v-spacer />
-        <b class="mr-3 title"> {{first_Name}} </b> 
+        <b class="mr-3" style="font-size: 18px"> {{first_Name}} </b> 
       <v-btn outlined  color="white" @click = "logout()"> SIGN OUT </v-btn>
     </v-app-bar>
 

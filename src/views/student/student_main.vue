@@ -1,11 +1,11 @@
 <template>
  <div>
    <!-- primary row -->
-   <v-row>
-      <v-col>
+   <v-row justify="center" >
+      <v-col cols="12">
         <!-- row infromation -->
    
-        <v-row justify="center">
+        <v-row justify="center" dense>
           <v-col lg="9">
             <!-- Header -->
 
@@ -32,7 +32,7 @@
 
 
          <!-- row button and  announcements-->
-        <v-row justify="center" class="mr-1">
+        <v-row justify="center" class="mr-1 mt-3">
           <v-col lg="9">
             <v-row  justify="space-around">
               <!-- Buttons -->
@@ -42,7 +42,7 @@
                 <v-row dense justify="center" class="mr-5">
 
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3 pt-4" href="/#/student_info">
+                    <v-card height="100%" hover class="pt-4" href="/#/student_info">
                       <v-card-text class="text-center">
                         <img src="../../assets/information.png">
                         <p class="mt-2">Student Information</p>
@@ -51,7 +51,7 @@
                   </v-col>
 
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3 pt-6" href="/#/scholarship">
+                    <v-card height="100%" hover class="pt-4" href="/#/scholarship">
                       <v-card-text class="text-center">
                         <img src="../../assets/scholarship.png">
                         <p class="mt-1">Scholarship</p>
@@ -63,7 +63,7 @@
                 <v-row dense justify="center" class="mr-5">
                   
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3 pt-4" href="/#/enrollment_form">
+                    <v-card height="100%" hover class="pt-4" href="/#/enrollment_form">
                       <v-card-text class="text-center">
                         <img src="../../assets/form.png" class="mt-2">
                         <p class="mt-1">Enrollment Form</p>
@@ -72,7 +72,7 @@
                   </v-col>
 
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pa-3 pt-4"  href="/#/enrollment_details">
+                    <v-card height="100%" hover class="pt-4"  href="/#/enrollment_details">
                       <v-card-text class="text-center">
                         <img src="../../assets/detail.png" class="mt-3">
                         <p class="mt-2">Enrollment Detail</p>
@@ -87,14 +87,15 @@
               <!-- Announcements  -->
               <v-col lg="7">
             
-                  <v-card height="100%" class="pa-6">
-                    <h2 class="#112D4E--text mb-5">Announcements</h2>
+                  <v-card height="100%" class="px-6 pt-5">
+                    <h2 class="blue--text mb-5" style="font-size: 21px">Announcements</h2>
                     <p class="cursor">New Government guidelines announced to tackle COVID-19 <b class="new">NEW</b></p>
                     <p class="cursor">Industrial action update <b class="new">NEW</b></p>
                     <p class="cursor">Acts of kindness across campus</p>
                     <p class="cursor">Leading by innovation: Professor scoops award at LeicestershireLive 
                     <p class="cursor">Leading by innovation: Professor scoops award at LeicestershireLive 
                       Innovation Awards ceremony</p>
+                    <p class="cursor">Acts of kindness across campus</p>
                   </v-card>
               
               </v-col>
@@ -164,8 +165,12 @@ export default {
   border-radius: 50%;
 }
 
+p {
+  font-size: 17px;
+}
+
 .text {
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 25px;
 }
 

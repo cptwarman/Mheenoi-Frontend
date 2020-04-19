@@ -65,7 +65,5 @@ export default {
 </script>
 
 <style scope>
-p {
-    font-size: 20px;
-}
+
 </style>
