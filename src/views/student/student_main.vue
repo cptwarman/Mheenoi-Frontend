@@ -72,7 +72,7 @@
                   </v-col>
 
                   <v-col lg="6">
-                    <v-card height="100%" hover class="pt-4"  href="/#/enrollment_details">
+                    <v-card height="100%" hover class="pt-3"  href="/#/enrollment_details">
                       <v-card-text class="text-center">
                         <img src="../../assets/detail.png" class="mt-3">
                         <p class="mt-2">Enrollment Detail</p>
@@ -84,136 +84,54 @@
 
               </v-col>
               
-              <!-- Announcements  -->
-              <v-col lg="8">
-            
-                  <v-card height="100%" class="px-6 pt-5">
-                    <b class="blue--text mb-5" style="font-size: 21px">My Enrollment</b>
-                    <v-row>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <b>Subject ID</b>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <b>Subject Name</b>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <b>Section</b>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <b>Lecturer</b>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-
-                    <v-divider />
-
-                    <v-row>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>CPE231</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Database System</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>A</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Teacher พร</span>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-
-                    <v-divider />
-
-                    <v-row>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>CPE231</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Database System</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>A</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Teacher พร</span>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-
-                    <v-divider />
-
-                    <v-row>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>CPE231</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Database System</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>A</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Teacher พร</span>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-                    
-                    <v-divider />
-
-                    <v-row>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>CPE231</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Database System</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="2">
-                        <v-row justify="center">
-                          <span>A</span>
-                        </v-row>
-                      </v-col>
-                      <v-col lg="4">
-                        <v-row justify="center">
-                          <span>Teacher พร</span>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-              
-                      
-                  </v-card>
+              <!-- MY enrollment  -->
+              <v-col lg="8">      
+                <v-card height="100%" class="px-6 py-5">
+                  <b class="blue--text title">My Enrollment</b>
+                  <v-simple-table >  
+                    <thead>
+                      <tr>
+                        <th class="text-center">Subject ID</th>
+                        <th class="text-center">Subject Name</th>
+                        <th class="text-center">Section</th>
+                        <th class="text-center">Lecturer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>CPE231</td>
+                        <td>Database System</td>
+                        <td>A</td>
+                        <td>Chayasit Ingkawaranon</td>
+                      </tr>
+                      <tr>
+                        <td>CPE231</td>
+                        <td>Database System</td>
+                        <td>A</td>
+                        <td>Chayasit Ingkawaranon</td>
+                      </tr>
+                      <tr>
+                        <td>CPE231</td>
+                        <td>Database System</td>
+                        <td>A</td>
+                        <td>Chayasit Ingkawaranon</td>
+                      </tr>
+                      <tr>
+                        <td>CPE231</td>
+                        <td>Database System</td>
+                        <td>A</td>
+                        <td>Chayasit Ingkawaranon</td>
+                      </tr>
+                      <tr>
+                        <td>CPE231</td>
+                        <td>Database System</td>
+                        <td>A</td>
+                        <td>Chayasit Ingkawaranon</td>
+                      </tr>
+                    </tbody>
+                 
+                  </v-simple-table>
+                </v-card>
           
               </v-col>
             </v-row>
@@ -251,25 +169,26 @@ export default {
   },
 
   created () {
-    let jwtToken = sessionStorage.getItem('jwt')
-      axios({
-        method: 'get',
-        url: 'https://chai-test-backend.herokuapp.com/api/user',
-        headers: {
-        Authorization: `bearer ${jwtToken}`
-        }
-     })
-      .then(res => {
-        this.info.studentID = res.data.userId
-        this.info.firstName = res.data.firstName
-        this.info.lastName = res.data.lastName
-        this.info.email = res.data.email
-        // Pass data to Navbar
-        this.$emit('infoFirstName',res.data.firstName)
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    // let jwtToken = sessionStorage.getItem('jwt')
+    //   axios({
+    //     method: 'get',
+    //     url: 'https://chai-test-backend.herokuapp.com/api/user',
+    //     headers: {
+    //     Authorization: `bearer ${jwtToken}`
+    //     }
+    //  })
+    //   .then(res => {
+    //     this.info.studentID = res.data.userId
+    //     this.info.firstName = res.data.firstName
+    //     this.info.lastName = res.data.lastName
+    //     this.info.email = res.data.email
+    //     // Pass data to Navbar
+    //     this.$emit('infoFirstName',res.data.firstName)
+    this.$emit('infoFirstName',this.info.firstName)
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
   }
 }
 </script>
@@ -299,4 +218,8 @@ p {
   color:red;
 }
 
+td{ 
+  text-align: center;
+  font-size: 14px !important;
+}
 </style>

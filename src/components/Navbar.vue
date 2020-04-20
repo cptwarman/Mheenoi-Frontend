@@ -1,18 +1,19 @@
 <template>
   <nav>
-    <v-app-bar color="#005691" dark>
+    <v-app-bar color="#005691" dark height="50">
       <v-app-bar-nav-icon @click="drawer = true" />
-      <img src="../assets/mheenoiLogo.png" alt="mheenoiLogo" width="40" height="40" class="ml-1">
-      <v-toolbar-title class="ml-2" style="font-size: 19px">  MHEENOI UNISERSITY  </v-toolbar-title>
-      <v-spacer />
-        <b class="mr-3" style="font-size: 18px"> {{first_Name}} </b> 
-      <v-btn outlined  color="white" @click = "logout()"> SIGN OUT </v-btn>
+       <v-spacer class="d-sm-none"/>
+        <img src="../assets/mheenoiLogo.png" alt="mheenoiLogo" width="35" height="35">
+        <v-toolbar-title class="ml-2" style="font-size: 19px">  MHEENOI UNISERSITY  </v-toolbar-title>
+        <v-spacer />
+        <b class="mr-3 d-none d-sm-flex" style="font-size: 18px"> {{first_Name}} </b> 
+      <v-btn outlined  color="white" @click = "logout()" class="d-none d-sm-flex"> SIGN OUT </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer v-model="drawer" absolute temporary >
       <v-list nav flat>
         <v-list-item-group
-          color="blue darken-1" mandatory
+          color="blue darken-1" mandatory 
         >
           <v-list-item @click="main()">
             <v-list-item-icon>
@@ -49,6 +50,16 @@
             <v-list-item-title>Scholarship</v-list-item-title>
           </v-list-item>
 
+          <v-container class="mt-3 d-sm-none">
+            <v-divider/>
+            <v-row justify="center" class="mt-4">
+              <b class="title font-weight-bold blue--text" style="text-transform: uppercase;"> Thitiphon </b>
+            </v-row>
+            <v-row justify="center" class="mt-3">
+              <v-btn outlined  @click = "logout()">SIGN OUT</v-btn>
+            </v-row>
+          </v-container>
+
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -76,23 +87,23 @@ export default {
     },
 
     main() {
-      this.$router.replace("/student")
+      this.$router.push("/student").catch(err => {})
     },
 
     infoS() {
-      this.$router.replace("/student_info")
+      this.$router.push("/student_info").catch(err => {})
     },
 
     enrollform() {
-      this.$router.replace("/enrollment_from")
+      this.$router.push("/enrollment_from").catch(err => {})
     },
 
     enrollDetails() {
-      this.$router.replace("/enrollment_details")
+      this.$router.push("/enrollment_details").catch(err => {})
     },
 
     scholarship() {
-      this.$router.replace("/scholarship")
+      this.$router.push("/scholarship").catch(err => {})
     }
   }
 };

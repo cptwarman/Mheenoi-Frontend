@@ -70,37 +70,39 @@ export default {
   },
   methods: {
     SendData() {
-     axios({
-        method: 'post',
-        url: 'https://chai-test-backend.herokuapp.com/login',
-        data: { 
-          userId: this.user,
-          password: this.pass },
-        headers: {
-        'content-type': 'application/json'
-        }
-     })
-      .then(res => {
-        console.log(res)
-        if(res.status === 200) {
-          this.$emit('status',true)
-          sessionStorage.setItem('jwt',res.data.jwt)
-          sessionStorage.setItem('type',res.data.type)
+    //  axios({
+    //     method: 'post',
+    //     url: 'https://chai-test-backend.herokuapp.com/login',
+    //     data: { 
+    //       userId: this.user,
+    //       password: this.pass },
+    //     headers: {
+    //     'content-type': 'application/json'
+    //     }
+    //  })
+    //   .then(res => {
+    //     console.log(res)
+    //     if(res.status === 200) {
+    //       this.$emit('status',true)
+    //       sessionStorage.setItem('jwt',res.data.jwt)
+    //       sessionStorage.setItem('type',res.data.type)
 
-          if(res.data.type == 1)
-            this.$router.replace("/student")
-          else if(res.data.type == 2)
-            this.$router.replace("/lecturer")
-          else if(res.data.type == 3)
-            this.$router.replace("/staff")
-          else
-            this.$router.replace("/")
-        }
-      })
-      .catch(err => {
-        alert("Wrong ID or Password")
-        console.error(err);
-      });
+    //       if(res.data.type == 1)
+    //         this.$router.replace("/student")
+    //       else if(res.data.type == 2)
+    //         this.$router.replace("/lecturer")
+    //       else if(res.data.type == 3)
+    //         this.$router.replace("/staff")
+    //       else
+    //         this.$router.replace("/")
+    //     }
+    //   })
+    //   .catch(err => {
+    //     alert("Wrong ID or Password")
+    //     console.error(err);
+    //   });
+    this.$router.replace("/student")
+    this.$emit('status',true)
     }
   },
 
