@@ -3,19 +3,21 @@
     <v-row justify="center">
       <v-col lg="10">
          <v-row class="mb-3">
-              <v-col lg="12">
-                <v-row justify="center">
-                  <v-card class="py-3 px-5" shaped>
-                    <span
-                      class="blue--text 
-                      font-weight-bold
-                      text"
-                    > STUDENT INFORMATION</span>
-                  </v-card>
-                </v-row>
-              </v-col>
-            </v-row>
+            <v-col lg="12">
+              <v-row justify="center">
+                <v-card class="py-3 px-5" shaped>
+                  <span
+                    class="blue--text 
+                    font-weight-bold
+                    text"
+                  > STUDENT INFORMATION</span>
+                </v-card>
+              </v-row>
+            </v-col>
+          </v-row>
+        
         <infoStudent :info = "info" />
+        
 
         <v-card class="pa-7 card1">
           <v-row justify="center">

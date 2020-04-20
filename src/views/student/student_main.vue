@@ -37,9 +37,9 @@
             <v-row  justify="space-around">
               <!-- Buttons -->
 
-              <v-col lg="5">
+              <v-col lg="4">
 
-                <v-row dense justify="center" class="mr-5">
+                <v-row dense justify="center">
 
                   <v-col lg="6">
                     <v-card height="100%" hover class="pt-4" href="/#/student_info">
@@ -60,7 +60,7 @@
                   </v-col>
                 </v-row>
 
-                <v-row dense justify="center" class="mr-5">
+                <v-row dense justify="center">
                   
                   <v-col lg="6">
                     <v-card height="100%" hover class="pt-4" href="/#/enrollment_form">
@@ -85,19 +85,136 @@
               </v-col>
               
               <!-- Announcements  -->
-              <v-col lg="7">
+              <v-col lg="8">
             
                   <v-card height="100%" class="px-6 pt-5">
-                    <h2 class="blue--text mb-5" style="font-size: 21px">Announcements</h2>
-                    <p class="cursor">New Government guidelines announced to tackle COVID-19 <b class="new">NEW</b></p>
-                    <p class="cursor">Industrial action update <b class="new">NEW</b></p>
-                    <p class="cursor">Acts of kindness across campus</p>
-                    <p class="cursor">Leading by innovation: Professor scoops award at LeicestershireLive 
-                    <p class="cursor">Leading by innovation: Professor scoops award at LeicestershireLive 
-                      Innovation Awards ceremony</p>
-                    <p class="cursor">Acts of kindness across campus</p>
-                  </v-card>
+                    <b class="blue--text mb-5" style="font-size: 21px">My Enrollment</b>
+                    <v-row>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <b>Subject ID</b>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <b>Subject Name</b>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <b>Section</b>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <b>Lecturer</b>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+
+                    <v-divider />
+
+                    <v-row>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>CPE231</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Database System</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>A</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Teacher พร</span>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+
+                    <v-divider />
+
+                    <v-row>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>CPE231</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Database System</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>A</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Teacher พร</span>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+
+                    <v-divider />
+
+                    <v-row>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>CPE231</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Database System</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>A</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Teacher พร</span>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+                    
+                    <v-divider />
+
+                    <v-row>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>CPE231</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Database System</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="2">
+                        <v-row justify="center">
+                          <span>A</span>
+                        </v-row>
+                      </v-col>
+                      <v-col lg="4">
+                        <v-row justify="center">
+                          <span>Teacher พร</span>
+                        </v-row>
+                      </v-col>
+                    </v-row>
               
+                      
+                  </v-card>
+          
               </v-col>
             </v-row>
           </v-col>

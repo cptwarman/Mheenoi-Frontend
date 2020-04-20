@@ -93,10 +93,12 @@ export default {
             this.$router.replace("/lecturer")
           else if(res.data.type == 3)
             this.$router.replace("/staff")
+          else
+            this.$router.replace("/")
         }
       })
       .catch(err => {
-        alert("Wrong Password or ID")
+        alert("Wrong ID or Password")
         console.error(err);
       });
     }
@@ -104,8 +106,6 @@ export default {
 
   created() {
     this.$emit('status',false)
-    sessionStorage.removeItem('jwt')
-    sessionStorage.removeItem('type')
   }
 };
 </script>

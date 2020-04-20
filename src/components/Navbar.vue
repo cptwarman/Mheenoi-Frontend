@@ -70,6 +70,8 @@ export default {
 
   methods: {
     logout() {
+      sessionStorage.removeItem('jwt')
+      sessionStorage.removeItem('type')
       this.$router.replace("/")
     },
 
