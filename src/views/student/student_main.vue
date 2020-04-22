@@ -143,12 +143,12 @@
                       </v-col>
                       
                       <v-col cols="12" sm="5" lg="6">                          
-                        <v-card height="100%" hover class="pt-3"></v-card>
+                        <v-card height="100%" hover class="pt-3">
                           <v-card-text class="text-center">
                             <img src="../../assets/announcement.png" class="mt-3">
                             <p class="mt-2">Announcements</p>
                           </v-card-text>
-                        </v-card>                                             
+                        </v-card>                                       
                       </v-col>
 
                   </v-row>
