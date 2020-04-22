@@ -3,24 +3,25 @@
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <v-row class="mb-10" align="center" justify="center">
+            
+          <v-col cols="11" sm="7" md="4">
+            <div class="mb-4 d-flex justify-center" >
               <img
                 src="../assets/mheenoiLogoLogin.png"
                 alt="Mheenoi Logo"
                 width="115"
                 height="110"
               />
-              <div class="ml-3">
+            </div>
+              <div class="d-flex justify-center">
                 <span class="text-no-wrap font-weight-medium headline"
-                  >MHEENOI UNIVERSITY</span
-                >
-                <br />
-                <span class="text-no-wrap headline"
-                  >Student Information System</span
-                >
+                  >MHEENOI UNIVERSITY</span>
               </div>
-            </v-row>
+              <div class="mb-5 d-flex justify-center">
+                <span class="text-no-wrap headline"
+                  >Student Information System</span>
+              </div>
+            
             <v-form>
               <v-row>
                 <v-icon large class="mr-4">account_circle</v-icon>
@@ -29,6 +30,7 @@
                   name="login"
                   type="text"
                   v-model="user"
+                  v-on:keyup.enter="SendData()"
                 />
               </v-row>
               <v-row>
@@ -39,13 +41,11 @@
                   name="password"
                   type="password"
                   v-model="pass"
+                  v-on:keyup.enter="SendData()"
                 />
               </v-row>
             </v-form>
 
-            <v-alert v-if="showText" type="error" dense>
-              Wrong ID or Password
-            </v-alert>
             <v-alert v-if="showText" type="error" dense>
               Wrong ID or Password
             </v-alert>
@@ -54,12 +54,13 @@
               <v-btn
                 class="text-center"
                 color="primary"
-                x-large
+                large
                 @click.native="SendData()"
                 >Sign in
             </v-btn>
             </div>
           </v-col>
+           
         </v-row>
       </v-container>
     </v-content>
@@ -111,8 +112,9 @@ export default {
          this.showText = true;
          console.error(err);
        });
-    }
+    },
   },
+
 
   created() {
     this.$emit('status',false)

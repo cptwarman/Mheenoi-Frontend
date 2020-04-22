@@ -143,7 +143,7 @@
                       </v-col>
                       
                       <v-col cols="12" sm="5" lg="6">                          
-                        <v-card height="100%" hover class="pt-3"  href="/#/enrollment_details">
+                        <v-card height="100%" hover class="pt-3"></v-card>
                           <v-card-text class="text-center">
                             <img src="../../assets/announcement.png" class="mt-3">
                             <p class="mt-2">Announcements</p>
