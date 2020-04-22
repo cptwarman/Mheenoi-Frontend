@@ -18,11 +18,11 @@
         <v-col lg="4" md="4" sm="4" cols="12" >
           <v-row justify="center" class="px-3">
             <div>
-              <p><b>Student ID: </b>61070501001{{info.studentID}}</p>
-              <p><b>Full Name: </b>Chayasit Ingkawaranon{{info.firstName}} {{info.lastName}}</p>
-              <p><b>Gender: </b> Men</p>
-              <p><b>Degree: </b> Barchelor's</p>
-              <p><b>Year: </b> 2</p>
+              <p><b>Student ID: </b>{{info.studentId}}</p>
+              <p><b>Full Name: </b>{{info.title}} {{info.firstName}} {{info.lastName}}</p>
+              <p><b>Gender: </b>{{info.fullGender}}</p>
+              <p><b>Degree: </b>{{info.degree}}</p>
+              <p><b>Year: </b> {{info.year}}</p>
             </div>
           </v-row>
         </v-col>
@@ -33,11 +33,11 @@
         <v-col lg="4" md="4" sm="4" cols="12"> 
           <v-row justify="center" class="px-3"> 
             <div>
-              <p><b>Department: </b> Computer Engineering</p>
-              <p><b>Faculty: </b> Enginering</p>
-              <p><b>Program: </b> ปกติจ้า</p>
-              <p><b>E-mail: </b> {{info.email}}</p>
-              <p><b>Date of birth: </b> 01/09/1999</p>
+              <p><b>Department: </b>{{info.departmentName}}</p>
+              <p><b>Faculty: </b>{{info.faculty}}</p>
+              <p><b>Program: </b>{{info.program}}</p>
+              <p><b>E-mail: </b>{{info.email}}</p>
+              <p><b>Date of birth: </b> {{info.dob}}</p>
             </div>
           </v-row>
         </v-col>
@@ -52,7 +52,7 @@ export default {
   name: 'infoStudent',
   data() {
     return {
-
+      
     }
   },
   props: {
@@ -61,7 +61,8 @@ export default {
 
   methods: {
 
-  }
+  },
+
 }
 
   

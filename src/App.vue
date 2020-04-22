@@ -5,9 +5,7 @@
       :first_Name = "firstName"/>
 
       <v-content style="background: #fafafa">
-         <v-container fluid>
-            <router-view @status = "showNav" @infoFirstName = "infoFirstName"/>
-         </v-container>
+        <router-view @status = "showNav" @infoFirstName = "infoFirstName"/>
       </v-content>
   </v-app>
 </template>

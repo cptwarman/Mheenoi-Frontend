@@ -42,14 +42,22 @@
                 />
               </v-row>
             </v-form>
-            <div class="text-center mt-10">
+
+            <v-alert v-if="showText" type="error" dense>
+              Wrong ID or Password
+            </v-alert>
+            <v-alert v-if="showText" type="error" dense>
+              Wrong ID or Password
+            </v-alert>
+            
+            <div class="text-center mt-7">
               <v-btn
                 class="text-center"
                 color="primary"
                 x-large
                 @click.native="SendData()"
-                >Sign in</v-btn
-              >
+                >Sign in
+            </v-btn>
             </div>
           </v-col>
         </v-row>
@@ -65,7 +73,8 @@ export default {
   data() {
     return {
         user: "",
-        pass: ""
+        pass: "",
+        showText: false,
      }
   },
   methods: {
@@ -89,22 +98,19 @@ export default {
            sessionStorage.setItem('type',res.data.type)
 
            if(res.data.type == 1)
-             this.$router.replace("/student")
+             this.$router.push("/student")
            else if(res.data.type == 2)
-             this.$router.replace("/lecturer")
+             this.$router.push("/lecturer")
            else if(res.data.type == 3)
-             this.$router.replace("/staff")
+             this.$router.push("/staff")
            else
              this.$router.replace("/")
          }
        })
        .catch(err => {
-         alert("Wrong ID or Password")
+         this.showText = true;
          console.error(err);
        });
-
-    this.$router.replace("/student")
-    
     }
   },
 
@@ -113,3 +119,6 @@ export default {
   }
 };
 </script>
+
+
+

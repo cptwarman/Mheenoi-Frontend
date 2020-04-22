@@ -6,7 +6,7 @@
         <img src="../assets/mheenoiLogo.png" alt="mheenoiLogo" width="35" height="35">
         <v-toolbar-title class="ml-2" style="font-size: 19px">  MHEENOI UNISERSITY  </v-toolbar-title>
         <v-spacer />
-        <b class="mr-3 d-none d-sm-flex" style="font-size: 18px"> {{first_Name}} </b> 
+        <b class="mr-3 d-none d-sm-flex customtext"> {{first_Name}} </b> 
       <v-btn outlined  color="white" @click = "logout()" class="d-none d-sm-flex"> SIGN OUT </v-btn>
     </v-app-bar>
 
@@ -108,3 +108,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.customtext {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+</style>
+

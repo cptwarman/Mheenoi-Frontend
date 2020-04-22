@@ -1,14 +1,9 @@
 <template>
- <div>
+  <v-container fluid>
    <!-- primary row -->
    <v-row justify="center" >
       <v-col cols="12">
         <!-- row infromation -->
-   
-        <v-row justify="center" dense>
-          <v-col sm="10" lg="9">
-            <!-- Header -->
-
             <v-row class="mb-3">
               <v-col>
                 <v-row justify="center">
@@ -24,7 +19,9 @@
                 </v-row>
               </v-col>
             </v-row>
-            
+   
+        <v-row justify="center" dense>
+          <v-col sm="10" lg="9" cols="11">
             <!-- Details -->
             <infoStudent :info = "info" />
             
@@ -33,8 +30,8 @@
 
 
          <!-- row button and  announcements-->
-        <v-row justify="center" class=" mt-3">
-          <v-col lg="9">
+        <v-row justify="center" class=" mt-3" dense>
+          <v-col sm="12" lg="9" cols="11">
             <v-row  justify="space-around">
               
               <!-- MY enrollment  -->
@@ -165,7 +162,7 @@
     
      <!-- End of primary row -->
    </v-row>
- </div>
+  </v-container>
 </template>
 
 <script>
@@ -180,10 +177,19 @@ export default {
   data() {
     return {
       info: {
-        studentID: "",
+        degree: "",
+        dob: "",
+        email: "",
         firstName: "",
         lastName: "",
-        email: "",
+        fullGender: "",
+        picturePath: "",
+        program: "",
+        studentId: "",
+        title: "",
+        year: "",
+        departmentName: "",
+        faculty: "",
       },
     }
   },
@@ -213,12 +219,21 @@ export default {
          }
       })
        .then(res => {
-         this.info.studentID = res.data.userId
-         this.info.firstName = res.data.firstName
-         this.info.lastName = res.data.lastName
-         this.info.email = res.data.email
-         // Pass data to Navbar
-         this.$emit('infoFirstName',res.data.firstName)
+          console.log(res)
+          //store all data from api
+          this.info = res.data.payload[0]
+          //cut T from dob
+          let s = res.data.payload[0].dob,
+              rex = /\s*([^:]*?)\s*T/g,
+              match = rex.exec(s);
+          this.info.dob = match[1];
+          //Chage gender data
+          if (res.data.payload[0].gender === "M")
+            this.info.fullGender = "Men";
+          else if (res.data.payload[0].gender === "W")
+            this.info.fullGender = "Women";
+          // Pass data to Navbar
+          this.$emit('infoFirstName',res.data.payload[0].firstName);
        })
        .catch(err => {
          console.error(err);
