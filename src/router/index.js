@@ -64,10 +64,10 @@ const router = new VueRouter({
 export default router
 
 router.beforeEach((to,from,next) => {
-  // if(to.name !== "LogIn" && sessionStorage.getItem('jwt') === null)
-  //   next('/')
-   if(to.name == "LogIn" && sessionStorage.getItem('jwt') !== null)
-    next(false)
+  if(to.name !== "LogIn" && sessionStorage.getItem('jwt') === null)
+      next('/')
+  else if(to.name == "LogIn" && sessionStorage.getItem('jwt') !== null)
+      next(false)
   else
-    next()
+      next()
 })

@@ -19,35 +19,35 @@
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-bold">Home</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="infoS()">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Information</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Information</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="enrollDetails()">
             <v-list-item-icon>
               <v-icon>description</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Enrollment Details</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Enrollment Details</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="enrollform()">
             <v-list-item-icon>
               <v-icon>create</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Enrollment From</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Enrollment From</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="scholarship()">
             <v-list-item-icon>
               <v-icon>school</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Scholarship</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Scholarship</v-list-item-title>
           </v-list-item>
 
           <v-container class="mt-3 d-sm-none">

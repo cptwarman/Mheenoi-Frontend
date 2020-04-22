@@ -6,18 +6,19 @@
         <!-- row infromation -->
    
         <v-row justify="center" dense>
-          <v-col lg="9">
+          <v-col sm="10" lg="9">
             <!-- Header -->
 
             <v-row class="mb-3">
-              <v-col lg="12">
+              <v-col>
                 <v-row justify="center">
                   <v-card class="py-3 px-5" shaped>
                     <span
                       class="blue--text 
                       font-weight-bold
-                      text
+                      custom-text
                       "
+                      :style="fontSize"
                     > STUDENT INFORMATION SYSTEM </span>
                   </v-card>
                 </v-row>
@@ -32,62 +33,22 @@
 
 
          <!-- row button and  announcements-->
-        <v-row justify="center" class="mr-1 mt-3">
+        <v-row justify="center" class=" mt-3">
           <v-col lg="9">
             <v-row  justify="space-around">
-              <!-- Buttons -->
-
-              <v-col lg="4">
-
-                <v-row dense justify="center">
-
-                  <v-col lg="6">
-                    <v-card height="100%" hover class="pt-4" href="/#/student_info">
-                      <v-card-text class="text-center">
-                        <img src="../../assets/information.png">
-                        <p class="mt-2">Student Information</p>
-                      </v-card-text>
-                    </v-card>
-                  </v-col>
-
-                  <v-col lg="6">
-                    <v-card height="100%" hover class="pt-4" href="/#/scholarship">
-                      <v-card-text class="text-center">
-                        <img src="../../assets/scholarship.png">
-                        <p class="mt-1">Scholarship</p>
-                      </v-card-text>
-                    </v-card>
-                  </v-col>
-                </v-row>
-
-                <v-row dense justify="center">
-                  
-                  <v-col lg="6">
-                    <v-card height="100%" hover class="pt-4" href="/#/enrollment_form">
-                      <v-card-text class="text-center">
-                        <img src="../../assets/form.png" class="mt-2">
-                        <p class="mt-1">Enrollment Form</p>
-                      </v-card-text>
-                    </v-card>
-                  </v-col>
-
-                  <v-col lg="6">
-                    <v-card height="100%" hover class="pt-3"  href="/#/enrollment_details">
-                      <v-card-text class="text-center">
-                        <img src="../../assets/detail.png" class="mt-3">
-                        <p class="mt-2">Enrollment Detail</p>
-                      </v-card-text>
-                    </v-card>
-                  </v-col>
-
-                </v-row>
-
-              </v-col>
               
               <!-- MY enrollment  -->
-              <v-col lg="8">      
+              <v-col sm="10" lg="8" order-lg="2">      
+
                 <v-card height="100%" class="px-6 py-5">
-                  <b class="blue--text title">My Enrollment</b>
+                  <v-row justify="space-between" align="center" class="px-5">
+                    <!-- header in card enroll -->
+                    <b class="blue--text title">My Enrollment</b>
+                      <v-btn color="primary" depressed small  @click = "gotoEnroll()">
+                        see more
+                      </v-btn>
+                  </v-row>
+                 
                   <v-simple-table >  
                     <thead>
                       <tr>
@@ -134,6 +95,69 @@
                 </v-card>
           
               </v-col>
+
+              <!-- Buttons -->
+              <v-col lg="4" sm="12" cols="12" order-lg="1">
+                
+               
+                  <v-row justify="center" dense>
+
+                    <v-col cols="12" sm="10" lg="12">
+                      <v-card height="100%">
+                        <div class="d-flex">
+                          <v-card-text class="text-center mt-3">
+                            <b class="font-weight-bold blue--text" style="font-size: 1.1rem;">GPA</b>
+                            <p class="mt-1">3.62</p>
+                          </v-card-text>    
+                                            
+                          <v-divider vertical inset /> 
+
+                          <v-card-text class="text-center mt-3">
+                              <b class="font-weight-bold blue--text" style="font-size: 1.1rem;">CGPA</b>
+                              <p class="mt-1">3.62</p>
+                          </v-card-text>
+                        </div>   
+                        <div style="background: #E8F1F5;">
+                          <v-card-actions class="d-flex, justify-end">
+                              <v-btn color="primary" depressed small right @click = "gotoEnroll()">
+                                see more
+                              </v-btn>
+                          </v-card-actions>
+                        </div> 
+                      </v-card>    
+                    </v-col>
+                    
+                  </v-row>
+
+                  <v-row justify="center">
+                    
+                      <v-col cols="12" sm="5" lg="6">
+                        <v-card height="100%" class="d-flex flex-column">
+                            <div class="d-flex justify-center pa-2" style="background: #005691;">
+                              <b class="white--text">My Scholarship</b>
+                            </div>
+                          <v-card-text class="text-center">
+                           <v-flex class="mt-2">
+                              <v-icon large>school</v-icon>
+                              <p class="mt-1">ทุนป้าสี่หมี่เกี๊ยว</p>
+                           </v-flex>
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                      
+                      <v-col cols="12" sm="5" lg="6">                          
+                        <v-card height="100%" hover class="pt-3"  href="/#/enrollment_details">
+                          <v-card-text class="text-center">
+                            <img src="../../assets/announcement.png" class="mt-3">
+                            <p class="mt-2">Announcements</p>
+                          </v-card-text>
+                        </v-card>                                             
+                      </v-col>
+
+                  </v-row>
+                
+              </v-col>
+
             </v-row>
           </v-col>
         </v-row>
@@ -160,35 +184,45 @@ export default {
         firstName: "",
         lastName: "",
         email: "",
-      }
+      },
     }
   },
 
   methods: {
-   
+   gotoEnroll() {
+     this.$router.push("/enrollment_details");
+   },
   },
 
+  computed: {
+    fontSize() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return {"font-size": "18px"};
+        default: return {"font-size": "24px"};
+      }
+    }
+  },
+  
   created () {
-    // let jwtToken = sessionStorage.getItem('jwt')
-    //   axios({
-    //     method: 'get',
-    //     url: 'https://chai-test-backend.herokuapp.com/api/user',
-    //     headers: {
-    //     Authorization: `bearer ${jwtToken}`
-    //     }
-    //  })
-    //   .then(res => {
-    //     this.info.studentID = res.data.userId
-    //     this.info.firstName = res.data.firstName
-    //     this.info.lastName = res.data.lastName
-    //     this.info.email = res.data.email
-    //     // Pass data to Navbar
-    //     this.$emit('infoFirstName',res.data.firstName)
-    this.$emit('infoFirstName',this.info.firstName)
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
+     let jwtToken = sessionStorage.getItem('jwt')
+       axios({
+         method: 'get',
+         url: 'https://chai-test-backend.herokuapp.com/api/user',
+         headers: {
+         Authorization: `bearer ${jwtToken}`
+         }
+      })
+       .then(res => {
+         this.info.studentID = res.data.userId
+         this.info.firstName = res.data.firstName
+         this.info.lastName = res.data.lastName
+         this.info.email = res.data.email
+         // Pass data to Navbar
+         this.$emit('infoFirstName',res.data.firstName)
+       })
+       .catch(err => {
+         console.error(err);
+       });
   }
 }
 </script>
@@ -205,17 +239,13 @@ p {
   font-size: 17px;
 }
 
-.text {
-  font-size: 25px;
+.custom-text {
+  font-size: 24px;
   margin-bottom: 25px;
 }
 
 .cursor {
   cursor: pointer;
-}
-
-.new {
-  color:red;
 }
 
 td{ 

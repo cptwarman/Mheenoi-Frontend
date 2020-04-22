@@ -40,7 +40,7 @@ export default {
       this.firstName = pass
     }
 
-  }
+  },
 };
 </script> 
 
