@@ -42,7 +42,7 @@
                     <!-- header in card enroll -->
                     <b class="blue--text title">My Enrollment</b>
                       <v-btn color="primary" depressed small  @click = "gotoEnroll()">
-                        see more
+                        more
                       </v-btn>
                   </v-row>
                  
@@ -143,12 +143,36 @@
                       </v-col>
                       
                       <v-col cols="12" sm="5" lg="6">                          
-                        <v-card height="100%" hover class="pt-3">
+                        <v-card height="100%" hover class="pt-3" @click.stop="dialog = true">
                           <v-card-text class="text-center">
                             <img src="../../assets/announcement.png" class="mt-3">
                             <p class="mt-2">Announcements</p>
                           </v-card-text>
-                        </v-card>                                       
+                        </v-card> 
+
+                        <v-dialog v-model="dialog" max-width="800">
+                          <v-card>
+                            <v-card-title class="blue--text mb-2">
+                              Announcements 
+                              <v-spacer/>
+                              <v-btn 
+                                color="red darken-1" 
+                                small
+                                text 
+                                @click="dialog = false"
+                              > close </v-btn>
+                            </v-card-title>
+                            <v-card-text>
+                              <p class="cursor">New Government guidelines announced to tackle COVID-19 <b class="new">NEW</b></p>
+                              <p class="cursor">Industrial action update <b class="new">NEW</b></p>
+                              <p class="cursor">Acts of kindness across campus</p>
+                              <p class="cursor">Leading by innovation: Professor scoops award at LeicestershireLive 
+                              <p class="cursor">Leading by innovation: Professor scoops award at LeicestershireLive 
+                                Innovation Awards ceremony</p>
+                              <p class="cursor" style="margin: 0;">Acts of kindness across campus</p>
+                            </v-card-text>
+                          </v-card>  
+                        </v-dialog>                                     
                       </v-col>
 
                   </v-row>
@@ -191,6 +215,7 @@ export default {
         departmentName: "",
         faculty: "",
       },
+      dialog: false,
     }
   },
 
@@ -257,6 +282,10 @@ p {
 .custom-text {
   font-size: 24px;
   margin-bottom: 25px;
+}
+
+.new {
+  color: red;
 }
 
 .cursor {
