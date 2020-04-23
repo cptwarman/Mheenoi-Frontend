@@ -244,7 +244,6 @@ export default {
          }
       })
        .then(res => {
-          console.log(res)
           //store all data from api
           this.info = res.data.payload[0]
           //cut T from dob
@@ -260,12 +259,7 @@ export default {
           // Pass data to Navbar
           this.$emit('infoFirstName',res.data.payload[0].firstName);
 
-          this.$router.push({
-            name: 'student_info',
-            params: {
-              studentID : res.data.payload[0].studentId
-            }
-          });
+          this.$store.dispatch("syncStudentId",res.data.payload[0].studentId)
 
        })
        .catch(err => {

@@ -21,10 +21,10 @@
             <v-col lg="3" sm="4" cols="7">
               <v-row justify="center">
                 <div>
-                  <p><b>ID Card Number</b>: {{studentID}}</p>
-                  <p><b>Blood type</b>: O</p>
-                  <p><b>Phone</b>: 086-564-9757</p>
-                  <p><b>Address</b>: No.9 Road Ban Huameuang N, Kaysone Phomvihane City, Savannakhet Province, Lao PD</p>           
+                  <p><b>ID Card Number</b>: {{info.idCardNumber}}</p>
+                  <p><b>Blood type</b>: {{info.bloodType}}</p>
+                  <p><b>Phone</b>: {{info.phoneNo}}</p>
+                  <p><b>Address</b>: {{info.address}}</p>           
                 </div>
               </v-row>
             </v-col>
@@ -32,25 +32,25 @@
             <v-col lg="4" sm="4" cols="8">
               <v-row justify="center">
                 <div>
-                  <p><b>Parent1 Full Name</b>: 1102002998725</p>
-                  <p><b>Parent1 Career</b>: Programmer</p>
-                  <p><b>Parent1 Income</b>: 20000$</p>
-                  <p><b>Parent1 Phone</b>: 086xxxxxxx</p>
+                  <p><b>Parent1 Full Name</b>: {{info.parent1FirstName}}  {{info.parent1LastName}}</p>
+                  <p><b>Parent1 Career</b>: {{info.parent1Career}}</p>
+                  <p><b>Parent1 Income</b>: {{info.parent1Income}} Bath</p>
+                  <p><b>Parent1 Phone</b>: {{info.parent1Tel}}</p>
                   <p><b>Parent1 Relation<br> 
-                  with student</b>: Father</p>
+                  with student</b>: {{info.parent1Relation}}</p>
                 </div>
               </v-row>
             </v-col>
           
             <v-col lg="4" sm="4" cols="8">
               <v-row justify="center">
-                <div>
-                  <p><b>Parent2 Full Name</b>: 1102002998725</p>
-                  <p><b>Parent2 Career</b>: Programmer</p>
-                  <p><b>Parent2 Income</b>: 20000$</p>
-                  <p><b>Parent2 Phone</b>: 086xxxxxxx</p>
+                <div></div>
+                  <p><b>Parent2 Full Name</b>: {{info.parent2FirstName}}  {{info.parent2LastName}}</p>
+                  <p><b>Parent2 Career</b>: {{info.parent2Career}}</p>
+                  <p><b>Parent2 Income</b>: {{info.parent2Income}} Bath</p>
+                  <p><b>Parent2 Phone</b>: {{info.parent2Tel}}</p>
                   <p><b>Parent2 Relation<br> 
-                  with student</b>: Father</p>
+                  with student</b>: {{info.parent2Relation}}</p>
                 </div>
               </v-row>
             </v-col>
@@ -115,6 +115,7 @@ export default {
  components: {
    infoStudent
  },
+
  data() {
    return {
      dialog: false,
@@ -184,11 +185,35 @@ export default {
    }
  },
 
- props: {
-   studentID : String
-},
-
  methods: {
+
+ },
+
+ created() {
+   let jwtToken = sessionStorage.getItem('jwt');
+       axios({
+         method: 'get',
+         url: `https://chai-test-backend.herokuapp.com/api/students/${this.$store.getters.getStudentId}/info`,
+         headers: {
+         Authorization: `bearer ${jwtToken}`
+         }
+      })
+       .then(res => {
+        console.log(res)
+        this.info = res.data.payload[0]
+          //cut T from dob
+        let s = res.data.payload[0].dob,
+            rex = /\s*([^:]*?)\s*T/g,
+            match = rex.exec(s);
+        this.info.dob = match[1];
+        //Chage gender data
+        if (res.data.payload[0].gender === "M")
+          this.info.fullGender = "Men";
+        else if (res.data.payload[0].gender === "W")
+          this.info.fullGender = "Women";
+       }).catch(err => {
+         console.error(err);
+       });
 
  }
 }
