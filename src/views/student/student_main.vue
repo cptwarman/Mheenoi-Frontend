@@ -238,7 +238,7 @@ export default {
      let jwtToken = sessionStorage.getItem('jwt')
        axios({
          method: 'get',
-         url: 'https://chai-test-backend.herokuapp.com/api/user',
+         url: 'https://chai-test-backend.herokuapp.com/api/students/dashboard',
          headers: {
          Authorization: `bearer ${jwtToken}`
          }
@@ -259,6 +259,14 @@ export default {
             this.info.fullGender = "Women";
           // Pass data to Navbar
           this.$emit('infoFirstName',res.data.payload[0].firstName);
+
+          this.$router.push({
+            name: 'student_info',
+            params: {
+              studentID : res.data.payload[0].studentId
+            }
+          });
+
        })
        .catch(err => {
          console.error(err);

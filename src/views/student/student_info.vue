@@ -21,7 +21,7 @@
             <v-col lg="3" sm="4" cols="7">
               <v-row justify="center">
                 <div>
-                  <p><b>ID Card Number</b>: 1102002998725</p>
+                  <p><b>ID Card Number</b>: {{studentID}}</p>
                   <p><b>Blood type</b>: O</p>
                   <p><b>Phone</b>: 086-564-9757</p>
                   <p><b>Address</b>: No.9 Road Ban Huameuang N, Kaysone Phomvihane City, Savannakhet Province, Lao PD</p>           
@@ -75,7 +75,7 @@
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    v-model="info.firstName"
+                    v-model.trim="info.firstName"
                     :rules="nameRules"
                     :counter="20"
                     label="First name"
@@ -118,6 +118,10 @@ export default {
  data() {
    return {
      dialog: false,
+     nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 20 || 'Name must be less than 10 characters',
+      ],
      info: {
         degree: "",
         dob: "",
@@ -149,8 +153,40 @@ export default {
         parent2Relation: "",
         parent2Tel: "",
       },
+
+     infoBuff: {
+        dob: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        fullGender: "",
+        picturePath: "",
+        studentId: "",
+        title: "",
+        year: "",
+        phoneNo: "",
+        bloodType: "",
+        address: "",
+        idCardNumber: "",
+        parent1Career: "",
+        parent1FirstName: "",
+        parent1Income: "",
+        parent1LastName: "",
+        parent1Relation: "",
+        parent1Tel: "",
+        parent2Career: "",
+        parent2FirstName: "",
+        parent2Income: "",
+        parent2LastName: "",
+        parent2Relation: "",
+        parent2Tel: "",
+      },
    }
  },
+
+ props: {
+   studentID : String
+},
 
  methods: {
 

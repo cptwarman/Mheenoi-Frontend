@@ -23,12 +23,14 @@ Vue.use(VueRouter)
   {
     path: '/student',
     name: 'student',
-    component: student_main
+    component: student_main,
+    props: true,
   },
   {
     path: '/student_info',
     name: 'student_info',
-    component: student_info
+    component: student_info,
+    props: true,
   },
   {
     path: '/enrollment_from',
