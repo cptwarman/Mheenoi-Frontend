@@ -44,7 +44,7 @@
           
             <v-col lg="4" sm="4" cols="8">
               <v-row justify="center">
-                <div></div>
+                <div>
                   <p><b>Parent2 Full Name</b>: {{info.parent2FirstName}}  {{info.parent2LastName}}</p>
                   <p><b>Parent2 Career</b>: {{info.parent2Career}}</p>
                   <p><b>Parent2 Income</b>: {{info.parent2Income}} Bath</p>
