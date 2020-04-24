@@ -71,7 +71,7 @@
             <v-card>
               <!-- Input fields -->
               <v-card-text class="pb-0">
-                <v-form>
+                <v-form @submit.prevent="handleSubmit">
                   <v-container fluid>
                     <v-col>
                       <v-row no-gutters>
@@ -225,7 +225,7 @@
                             :counter="20"
                             label="Guardian1 Career"
                             required
-                            hint="If your guardian don't have a career, you can add - "
+                            hint="If your guardian doesn' have a career, you can enter - "
                             class="mt-5"
                           ></v-text-field>
                           
@@ -234,6 +234,7 @@
                             :rules="Rules.incomeRules"
                             label="Guardian1 Income"
                             required
+                            hint="if your guardian doesn't have income, you can enter 0"
                             class="mt-5"
                           ></v-text-field>
                                         
@@ -286,7 +287,7 @@
                             :rules="Rules.careerRules"
                             :counter="20"
                             label="Guardian2 Career"
-                            hint="If your guardian don't have a career, you can add - "
+                            hint="If your guardian doesn't have a career, you can enter - "
                             required
                           ></v-text-field>
 
@@ -295,6 +296,7 @@
                             :rules="Rules.incomeRules"
                             label="Guardian2 Income"
                             required
+                            hint="if your guardian doesn't have income, you can enter 0"
                             class="mt-5"
                           ></v-text-field>
                           
@@ -345,11 +347,28 @@
                       </v-card>
                     </v-dialog>
                   <!-- end of pop up cancel -->
+
                   <!-- submit button -->
-                  <v-btn dark @click="infoSubmit()" color="success" class="ml-6">
+                  <v-btn @click="dialogSubmit = true" :disabled="$v.infoBuff.$invalid" color="success" class="ml-6">
                     <v-icon left>check</v-icon> submit
                   </v-btn>
 
+                <!-- pop up submit -->
+                  <v-dialog v-model="dialogSubmit" max-width="450">
+                    <v-card class="pa-5">
+                      <v-card-text class="text-center">
+                        <img src="../../assets/alertSoft.png" alt="alertSoft" width="180">
+                        <h2 class="mt-4">Are you sure you want to <span class="success--text">submit</span> ?</h2>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer/>
+                          <v-btn @click.stop="dialogSubmit = false" color="success" outlined> no </v-btn>
+                          <v-btn @click="infoSubmit()" color="success" class="ml-6" outlined> yes </v-btn>
+                        <v-spacer/>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                <!-- end of pop up submit -->
 
                 <v-spacer/>
 
@@ -367,6 +386,8 @@
 <script>
 import infoStudent from '../../components/infoStudent'
 import axios from 'axios'
+import { required, email, minLength, maxLength , between, decimal, numeric} from "vuelidate/lib/validators";
+
 export default {
  name: 'student_info',
  components: {
@@ -385,7 +406,8 @@ export default {
      Rules: {
         nameRules: [
             v => !!v || 'Name is required',
-            v => v.length <= 32 || 'Name must be less than 32 characters',
+            v => (v.length > 2) || 'Name must be more than 2 characters',
+            v => (v.length <= 32) || 'Name must be less than 32 characters',
           ],
         idCardRules: [
             v => !!v || 'ID card number is required',
@@ -394,16 +416,17 @@ export default {
           ],
         emailRules: [
             v => !!v || 'E-mail is required',
-            v => /.+@.+/.test(v) || 'E-mail must be valid',
+            v => /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(v) || 'E-mail must be valid',
             v => v.length <= 32 || 'E-mail must be less than 32 characters',
           ],
         phoneRules: [
             v => !!v || 'Phone number is required',
-            v => !isNaN(v) || 'Phone must be a number',
             v => (v.length == 10 || v.length == 9) || 'Phone must be 10 digits or 9 digits (home number)',
+            v => !isNaN(v) || 'Phone must be a number',
           ],
         addressRules: [
             v => !!v || 'Address is required',
+            v => (v.length > 4) || 'Address must be more than 4 characters',
             v => (v.length <= 128) || 'Address must be less than 128 characters',
           ],
         careerRules: [
@@ -451,13 +474,111 @@ export default {
    }
  },
 
+  validations: {
+    infoBuff: {
+        email: {
+          required,
+          email
+        },
+
+        firstName: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(32)
+        },
+
+        lastName: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(32)
+        },
+
+        phoneNo: {
+          numeric,
+          required,
+          minLength: minLength(9),
+          maxLength: maxLength(10)
+        },
+
+        address: {
+          required,
+          minLength: minLength(5),
+          maxLength: maxLength(128)
+        },
+
+        idCardNumber: {
+          required,
+          numeric,
+          minLength: minLength(13),
+          maxLength: maxLength(13)
+        },
+
+        parent1Career: {
+          required,
+          minLength: minLength(1),
+          maxLength: maxLength(20)
+        },
+
+        parent1FirstName: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(32)
+        },
+
+        parent1Income: {
+          required,
+          decimal
+        },
+        parent1LastName: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(32)
+        },
+
+        parent1Tel: {
+          numeric,
+          required,
+          minLength: minLength(9),
+          maxLength: maxLength(10)
+        },
+
+        parent2Career: {
+          required,
+          minLength: minLength(1),
+          maxLength: maxLength(20)
+        },
+
+        parent2FirstName: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(32)
+        },
+
+        parent2Income: {
+          required,
+          decimal
+        },
+        parent2LastName: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(32)
+        },
+
+        parent2Tel: {
+          numeric,
+          required,
+          minLength: minLength(9),
+          maxLength: maxLength(10)
+        },
+    },
+  },
+
  methods: {
    editInfo() {
      this.infoBuff = {...this.info}
    },
 
    infoSubmit() {
-     console.log(this.$refs.form.validate())
      this.info = this.infoBuff
      if(this.infoBuff.fullGender === "Men")
         this.info.title = "Mr."
@@ -469,9 +590,6 @@ export default {
 
    },
 
-  validate () {
-     this.$refs.form.validate()
-  },
 
  },
 
