@@ -32,11 +32,11 @@
             <v-col lg="4" sm="4" cols="8">
               <v-row justify="center">
                 <div>
-                  <p><b>Parent1 Full Name</b>: {{info.parent1FirstName}}  {{info.parent1LastName}}</p>
-                  <p><b>Parent1 Career</b>: {{info.parent1Career}}</p>
-                  <p><b>Parent1 Income</b>: {{info.parent1Income}} Bath</p>
-                  <p><b>Parent1 Phone</b>: {{info.parent1Tel}}</p>
-                  <p><b>Parent1 Relation<br> 
+                  <p><b>Guardian1 Full Name</b>: {{info.parent1FirstName}}  {{info.parent1LastName}}</p>
+                  <p><b>Guardian1 Career</b>: {{info.parent1Career}}</p>
+                  <p><b>Guardian1 Income</b>: {{info.parent1Income}} Bath</p>
+                  <p><b>Guardian1 Phone</b>: {{info.parent1Tel}}</p>
+                  <p><b>Guardian1 Relation<br> 
                   with student</b>: {{info.parent1Relation}}</p>
                 </div>
               </v-row>
@@ -45,11 +45,11 @@
             <v-col lg="4" sm="4" cols="8">
               <v-row justify="center">
                 <div>
-                  <p><b>Parent2 Full Name</b>: {{info.parent2FirstName}}  {{info.parent2LastName}}</p>
-                  <p><b>Parent2 Career</b>: {{info.parent2Career}}</p>
-                  <p><b>Parent2 Income</b>: {{info.parent2Income}} Bath</p>
-                  <p><b>Parent2 Phone</b>: {{info.parent2Tel}}</p>
-                  <p><b>Parent2 Relation<br> 
+                  <p><b>Guardian2 Full Name</b>: {{info.parent2FirstName}}  {{info.parent2LastName}}</p>
+                  <p><b>Guardian2 Career</b>: {{info.parent2Career}}</p>
+                  <p><b>Guardian2 Income</b>: {{info.parent2Income}} Bath</p>
+                  <p><b>Guardian2 Phone</b>: {{info.parent2Tel}}</p>
+                  <p><b>Guardian2 Relation<br> 
                   with student</b>: {{info.parent2Relation}}</p>
                 </div>
               </v-row>
@@ -127,14 +127,13 @@
                             :counter="10"
                             label="Phone"
                             hint="You can use the home number instead phone number"
-                            persistent-hint
                             required
                             class="mt-5"
                           ></v-text-field>
 
                           <v-text-field
                             v-model="infoBuff.address"
-                            :rules="Rules.nameRules"
+                            :rules="Rules.addressRules"
                             :counter="128"
                             label="Address"
                             required
@@ -200,13 +199,14 @@
                       </v-row>
                       <!-- Input -->
                       <v-row justify="center" :no-gutters="$vuetify.breakpoint.smAndDown">
+
                        <!-- 1st col -->
                         <v-col cols="12" md="4">
                           <v-text-field
                             v-model="infoBuff.parent1FirstName"
                             :rules="Rules.nameRules"
                             :counter="32"
-                            label="Parent1 First name"
+                            label="Guardian1 First name"
                             required
                           ></v-text-field>
 
@@ -214,90 +214,96 @@
                             v-model="infoBuff.parent1LastName"
                             :rules="Rules.nameRules"
                             :counter="32"
-                            label="Parent1 Last name"
+                            label="Guardian1 Last name"
                             required
                             class="mt-5"
                           ></v-text-field>
 
                           <v-text-field
                             v-model="infoBuff.parent1Career"
-                            :rules="Rules.emailRules"
-                            :counter="32"
-                            label="Parent1 Career"
+                            :rules="Rules.careerRules"
+                            :counter="20"
+                            label="Guardian1 Career"
                             required
+                            hint="If your guardian don't have a career, you can add - "
                             class="mt-5"
                           ></v-text-field>
                           
                           <v-text-field
                             v-model="infoBuff.parent1Income"
-                            :rules="Rules.emailRules"
-                            :counter="32"
-                            label="Parent1 Income"
+                            :rules="Rules.incomeRules"
+                            label="Guardian1 Income"
                             required
                             class="mt-5"
                           ></v-text-field>
                                         
                         </v-col>
 
+                        <!-- 2nd col -->
+
                         <v-col cols="12" md="4">
                           <v-text-field
                             v-model="infoBuff.parent1Tel"
-                            :rules="Rules.nameRules"
-                            :counter="32"
-                            label="Parent1 Phone"
+                            :rules="Rules.phoneRules"
+                            :counter="10"
+                            label="Guardian1 Phone"
+                            hint="You can use the home number instead phone number"
                             required
                           ></v-text-field>
 
                           <v-select
                             v-model="infoBuff.parent1Relation"
                             :items = "RelationSelect"
-                            label="Parent1 Relation with Student"
+                            label="Guardian1 Relation with Student"
                             required
                             class="mt-5"
                           ></v-select>
 
                           <v-text-field
                             v-model="infoBuff.parent2FirstName"
-                            :rules="Rules.emailRules"
+                            :rules="Rules.nameRules"
                             :counter="32"
-                            label="Parent2 First name"
+                            label="Guardian2 First name"
                             required
                             class="mt-5"
                           ></v-text-field>
                           
                           <v-text-field
                             v-model="infoBuff.parent2LastName"
-                            :rules="Rules.emailRules"
+                            :rules="Rules.nameRules"
                             :counter="32"
-                            label="Parent2 Last name"
+                            label="Guardian2 Last name"
                             required
                             class="mt-5"
                           ></v-text-field>         
                         </v-col>
 
+                        <!-- 3rd col -->
+
                         <v-col cols="12" md="4">
                           <v-text-field
                             v-model="infoBuff.parent2Career"
-                            :rules="Rules.nameRules"
-                            :counter="32"
-                            label="Parent2 Career"
+                            :rules="Rules.careerRules"
+                            :counter="20"
+                            label="Guardian2 Career"
+                            hint="If your guardian don't have a career, you can add - "
                             required
                           ></v-text-field>
 
                           <v-text-field
                             v-model="infoBuff.parent2Income"
-                            :rules="Rules.emailRules"
-                            :counter="32"
-                            label="Parent2 Income"
+                            :rules="Rules.incomeRules"
+                            label="Guardian2 Income"
                             required
                             class="mt-5"
                           ></v-text-field>
                           
                           <v-text-field
                             v-model="infoBuff.parent2Tel"
-                            :rules="Rules.emailRules"
-                            :counter="32"
-                            label="Parent2 Phone"
+                            :rules="Rules.phoneRules"
+                            :counter="10"
+                            hint="You can use the home number instead phone number"
+                            label="Guardian2 Phone"
                             required
                             class="mt-5"
                           ></v-text-field>  
@@ -305,7 +311,7 @@
                           <v-select
                             v-model="infoBuff.parent2Relation"
                             :items = "RelationSelect"
-                            label="Parent2 Relation with Student"
+                            label="Guardian2 Relation with Student"
                             class="mt-5"
                           ></v-select>
                         </v-col>
@@ -320,13 +326,31 @@
               <v-card-actions class="pb-5">
                 <!-- Buttons -->
                 <v-spacer/>
-                  <v-btn outlined color="red" class="mr-2" @click.stop="dialog = false">
+                  <v-btn outlined color="error" class="mr-2" @click="dialogCancel = true">
                     <v-icon left>close</v-icon> cancel
                   </v-btn>
-                  
-                  <v-btn  color="green" dark @click="infoSunmit()">
-                    <v-icon left>check</v-icon> confirm
+                   <!-- pop up cancel -->
+                    <v-dialog v-model="dialogCancel" max-width="450">
+                      <v-card class="pa-5">
+                        <v-card-text class="text-center">
+                          <img src="../../assets/alert.png" alt="alert" width="180">
+                          <h2 class="mt-4">Are you sure you want to <span class="red--text">cancel</span> ?</h2>
+                        </v-card-text>
+                        <v-card-actions>
+                          <v-spacer/>
+                            <v-btn @click.stop="dialogCancel = false" color="error" outlined> no </v-btn>
+                            <v-btn @click.stop="dialog = false" color="error" class="ml-6" outlined> yes </v-btn>
+                          <v-spacer/>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
+                  <!-- end of pop up cancel -->
+                  <!-- submit button -->
+                  <v-btn dark @click="infoSubmit()" color="success" class="ml-6">
+                    <v-icon left>check</v-icon> submit
                   </v-btn>
+
+
                 <v-spacer/>
 
               </v-card-actions>
@@ -353,6 +377,8 @@ export default {
    return {
      menu: false,
      dialog: false,
+     dialogSubmit: false,
+     dialogCancel: false,
      bloodTypeSelect: ["A","B","O","AB"],
      genderSelect: ["Men", "Women"],
      RelationSelect: ["Brother","Father","Uncle", "Grandfather", "Sister", "Mother", "Aunt", "Grandmother"],
@@ -374,7 +400,19 @@ export default {
         phoneRules: [
             v => !!v || 'Phone number is required',
             v => !isNaN(v) || 'Phone must be a number',
-            v => (v.length == 10 || v.length == 9) || 'Phone must be 10 digits',
+            v => (v.length == 10 || v.length == 9) || 'Phone must be 10 digits or 9 digits (home number)',
+          ],
+        addressRules: [
+            v => !!v || 'Address is required',
+            v => (v.length <= 128) || 'Address must be less than 128 characters',
+          ],
+        careerRules: [
+            v => !!v || 'Career is required',
+            v => (v.length <= 20) || 'Career be less than 20 characters',
+          ],
+        incomeRules: [
+            v => !!v || 'Income is required',
+            v => !isNaN(v) || 'income must be a number',
           ],
      },
      info: {
@@ -417,18 +455,24 @@ export default {
    editInfo() {
      this.infoBuff = {...this.info}
    },
-   infoSunmit() {
+
+   infoSubmit() {
+     console.log(this.$refs.form.validate())
      this.info = this.infoBuff
      if(this.infoBuff.fullGender === "Men")
         this.info.title = "Mr."
      else
         this.info.title = "Ms."
-
      this.dialog = false;
 
     //! อย่าลืมเปลี่ยน data type ให้ตรงกับ database เช่น gender เป็น M กับ W
 
    },
+
+  validate () {
+     this.$refs.form.validate()
+  },
+
  },
 
  created() {
