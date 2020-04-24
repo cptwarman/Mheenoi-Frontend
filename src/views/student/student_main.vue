@@ -212,7 +212,7 @@ export default {
         studentId: "",
         title: "",
         year: "",
-        departmentName: "",
+        depName: "",
         faculty: "",
       },
       dialog: false,
@@ -244,13 +244,10 @@ export default {
          }
       })
        .then(res => {
+         console.log(res)
           //store all data from api
           this.info = res.data.payload[0]
-          //cut T from dob
-          let s = res.data.payload[0].dob,
-              rex = /\s*([^:]*?)\s*T/g,
-              match = rex.exec(s);
-          this.info.dob = match[1];
+          this.info.dob = res.data.payload[0].dob.substr(0, 10);
           //Chage gender data
           if (res.data.payload[0].gender === "M")
             this.info.fullGender = "Men";

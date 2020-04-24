@@ -33,7 +33,7 @@
         <v-col lg="4" md="4" sm="4" cols="12"> 
           <v-row justify="center" class="px-3"> 
             <div>
-              <p><b>Department: </b>{{info.departmentName}}</p>
+              <p><b>Department: </b>{{info.depName}}</p>
               <p><b>Faculty: </b>{{info.faculty}}</p>
               <p><b>Program: </b>{{info.program}}</p>
               <p><b>E-mail: </b>{{info.email}}</p>

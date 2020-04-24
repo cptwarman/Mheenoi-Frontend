@@ -33,7 +33,7 @@
             <v-list-item-icon>
               <v-icon>description</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="subtitle-2 font-weight-medium">Enrollment Details</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">My Enrollment</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="enrollform()">
