@@ -3,21 +3,25 @@
     <Navbar v-if = "showNavbar" 
       @status = "showNav"  
       :first_Name = "firstName"/>
+    
+    <timer v-if = "showNavbar"/>
 
       <v-content style="background: #fafafa">
         <router-view @status = "showNav" @infoFirstName = "infoFirstName"/>
       </v-content>
+
   </v-app>
 </template>
 
 <script> 
 import Navbar from './components/Navbar'
-
+import timer from './components/timer'
 export default {
   
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    timer
   },
 
   data() {
@@ -25,6 +29,10 @@ export default {
       showNavbar: true,
       firstName: ""
     }
+  },
+
+  computed: {
+    
   },
 
   methods: {
@@ -37,9 +45,8 @@ export default {
 
     infoFirstName(pass) {
       this.firstName = pass
-    }
-
-  },
+    },
+  }
 };
 </script> 
 

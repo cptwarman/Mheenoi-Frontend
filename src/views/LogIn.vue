@@ -97,6 +97,7 @@ export default {
            
            sessionStorage.setItem('jwt',res.data.jwt)
            sessionStorage.setItem('type',res.data.type)
+           sessionStorage.setItem('timer',1800)
 
            if(res.data.type == 1)
              this.$router.push("/student")
@@ -106,6 +107,7 @@ export default {
              this.$router.push("/staff")
            else
              this.$router.replace("/")
+            
          }
        })
        .catch(err => {

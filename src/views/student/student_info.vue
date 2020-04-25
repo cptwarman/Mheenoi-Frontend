@@ -14,17 +14,17 @@
           </v-row>
         </v-col>
           
-        <infoStudent :info = "info" />
+        <infoStudent :info = "payload" />
         
         <v-card class="pa-5 card1 mt-5">
           <v-row justify="center">
             <v-col lg="3" sm="4" cols="7">
               <v-row justify="center">
                 <div>
-                  <p><b>ID Card Number</b>: {{info.idCardNumber}}</p>
-                  <p><b>Blood type</b>: {{info.bloodType}}</p>
-                  <p><b>Phone</b>: {{info.phoneNo}}</p>
-                  <p><b>Address</b>: {{info.address}}</p>           
+                  <p><b>ID Card Number</b>: {{payload.idCardNumber}}</p>
+                  <p><b>Blood type</b>: {{payload.bloodType}}</p>
+                  <p><b>Phone</b>: {{payload.phoneNo}}</p>
+                  <p><b>Address</b>: {{payload.address}}</p>           
                 </div>
               </v-row>
             </v-col>
@@ -32,12 +32,12 @@
             <v-col lg="4" sm="4" cols="8">
               <v-row justify="center">
                 <div>
-                  <p><b>Guardian1 Full Name</b>: {{info.parent1FirstName}}  {{info.parent1LastName}}</p>
-                  <p><b>Guardian1 Career</b>: {{info.parent1Career}}</p>
-                  <p><b>Guardian1 Income</b>: {{info.parent1Income}} Bath</p>
-                  <p><b>Guardian1 Phone</b>: {{info.parent1Tel}}</p>
+                  <p><b>Guardian1 Full Name</b>: {{payload.parent1FirstName}}  {{payload.parent1LastName}}</p>
+                  <p><b>Guardian1 Career</b>: {{payload.parent1Career}}</p>
+                  <p><b>Guardian1 Income</b>: {{payload.parent1Income}} Bath</p>
+                  <p><b>Guardian1 Phone</b>: {{payload.parent1Tel}}</p>
                   <p><b>Guardian1 Relation<br> 
-                  with student</b>: {{info.parent1Relation}}</p>
+                  with student</b>: {{payload.parent1Relation}}</p>
                 </div>
               </v-row>
             </v-col>
@@ -45,12 +45,12 @@
             <v-col lg="4" sm="4" cols="8">
               <v-row justify="center">
                 <div>
-                  <p><b>Guardian2 Full Name</b>: {{info.parent2FirstName}}  {{info.parent2LastName}}</p>
-                  <p><b>Guardian2 Career</b>: {{info.parent2Career}}</p>
-                  <p><b>Guardian2 Income</b>: {{info.parent2Income}} Bath</p>
-                  <p><b>Guardian2 Phone</b>: {{info.parent2Tel}}</p>
+                  <p><b>Guardian2 Full Name</b>: {{payload.parent2FirstName}}  {{payload.parent2LastName}}</p>
+                  <p><b>Guardian2 Career</b>: {{payload.parent2Career}}</p>
+                  <p><b>Guardian2 Income</b>: {{payload.parent2Income}} Bath</p>
+                  <p><b>Guardian2 Phone</b>: {{payload.parent2Tel}}</p>
                   <p><b>Guardian2 Relation<br> 
-                  with student</b>: {{info.parent2Relation}}</p>
+                  with student</b>: {{payload.parent2Relation}}</p>
                 </div>
               </v-row>
             </v-col>
@@ -402,7 +402,7 @@ export default {
      dialogCancel: false,
      bloodTypeSelect: ["A","B","O","AB"],
      genderSelect: ["Men", "Women"],
-     RelationSelect: ["Brother","Father","Uncle", "Grandfather", "Sister", "Mother", "Aunt", "Grandmother"],
+     RelationSelect: ["Brother", "Father", "Uncle", "Grandfather", "Sister", "Mother", "Aunt", "Grandmother"],
      Rules: {
         nameRules: [
             v => !!v || 'Name is required',
@@ -438,12 +438,14 @@ export default {
             v => !isNaN(v) || 'income must be a number',
           ],
      },
-     info: {
+
+     payload: {
         degree: "",
         dob: "",
         email: "",
         firstName: "",
         lastName: "",
+        gender: "",
         fullGender: "",
         picturePath: "",
         program: "",
@@ -471,6 +473,7 @@ export default {
       },
 
      infoBuff: {},
+     passPayload: {},
    }
  },
 
@@ -575,19 +578,38 @@ export default {
 
  methods: {
    editInfo() {
-     this.infoBuff = {...this.info}
+     this.infoBuff = {...this.payload}
    },
 
    infoSubmit() {
-     this.info = this.infoBuff
-     if(this.infoBuff.fullGender === "Men")
-        this.info.title = "Mr."
-     else
-        this.info.title = "Ms."
+     this.passPayload = this.infoBuff
+     if(this.infoBuff.fullGender === "Men") {
+       this.passPayload.title = "Mr."
+       this.passPayload.gender = "M"
+     }
+     else {
+       this.passPayload.title = "Ms."
+       this.passPayload.gender = "W"
+     }   
      this.dialog = false;
+     
+    delete this.passPayload.fullGender
 
-    //! อย่าลืมเปลี่ยน data type ให้ตรงกับ database เช่น gender เป็น M กับ W
-
+     let jwtToken = sessionStorage.getItem('jwt')
+     axios({
+          method: 'put',
+          url: `https://chai-test-backend.herokuapp.com/api/students/${this.$store.getters.getStudentId}/info`,
+          data: { 
+           payload: this.passPayload },
+         headers: {
+           Authorization: `bearer ${jwtToken}`
+          }
+       })
+       .then(res => {
+          location.reload();
+       }).catch(err => {
+          console.error(err);
+       });
    },
 
 
@@ -599,18 +621,18 @@ export default {
          method: 'get',
          url: `https://chai-test-backend.herokuapp.com/api/students/${this.$store.getters.getStudentId}/info`,
          headers: {
-         Authorization: `bearer ${jwtToken}`
+          Authorization: `bearer ${jwtToken}`
          }
       })
        .then(res => {
-        console.log(res)
-        this.info = res.data.payload[0]
-        this.info.dob = res.data.payload[0].dob.substr(0, 10);
+        //console.log(res)
+        this.payload = res.data.payload[0]
+        this.payload.dob = res.data.payload[0].dob.substr(0, 10);
         //Chage gender data
         if (res.data.payload[0].gender === "M")
-          this.info.fullGender = "Men";
+          this.payload.fullGender = "Men";
         else if (res.data.payload[0].gender === "W")
-          this.info.fullGender = "Women";
+          this.payload.fullGender = "Women";
        }).catch(err => {
          console.error(err);
        });
