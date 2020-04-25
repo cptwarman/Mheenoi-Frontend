@@ -82,9 +82,7 @@ beforeDestroy() {
 computed: {
     formattedTimeLeft() {
         if(this.timer.count == 0) {
-            sessionStorage.removeItem('jwt')
-            sessionStorage.removeItem('type')
-            sessionStorage.removeItem('timer')
+            sessionStorage.clear();
            this.$router.replace("/")
         }
 

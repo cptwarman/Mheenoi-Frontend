@@ -10,42 +10,40 @@
       <v-btn outlined color="white" @click = "logout()" class="d-none d-sm-flex"> SIGN OUT </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary >
+    <v-navigation-drawer v-model="drawer" temporary app>
       <v-list nav flat>
-        <v-list-item-group
-          color="blue darken-1" mandatory active-class 
-        >
+      
           <v-list-item @click="main()">
             <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
+              <v-icon color="primary">mdi-home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="subtitle-2 font-weight-bold">Home</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Home</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="infoS()">
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon color="primary">mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-title class="subtitle-2 font-weight-medium">Information</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="enrollDetails()">
             <v-list-item-icon>
-              <v-icon>description</v-icon>
+              <v-icon color="primary">description</v-icon>
             </v-list-item-icon>
             <v-list-item-title class="subtitle-2 font-weight-medium">My Enrollment</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="enrollform()">
             <v-list-item-icon>
-              <v-icon>create</v-icon>
+              <v-icon color="primary">create</v-icon>
             </v-list-item-icon>
             <v-list-item-title class="subtitle-2 font-weight-medium">Enrollment From</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="scholarship()">
             <v-list-item-icon>
-              <v-icon>school</v-icon>
+              <v-icon color="primary">school</v-icon>
             </v-list-item-icon>
             <v-list-item-title class="subtitle-2 font-weight-medium">Scholarship</v-list-item-title>
           </v-list-item>
@@ -60,7 +58,7 @@
             </v-row>
           </v-container>
 
-        </v-list-item-group>
+        
       </v-list>
     </v-navigation-drawer>
   </nav>
@@ -72,7 +70,7 @@ export default {
   data() {
     return {
       drawer: false,
-      test: null,
+      select: null,
     };
   },
 

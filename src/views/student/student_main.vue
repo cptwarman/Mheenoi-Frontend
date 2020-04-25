@@ -46,7 +46,7 @@
                       </v-btn>
                   </v-row>
                  
-                  <v-simple-table >  
+                  <v-simple-table height="250">  
                     <thead>
                       <tr>
                         <th class="text-center">Subject ID</th>
@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                       <tr v-for="value in enrollment" v-bind:key="value.subjectId">
-                        <td v-for="data in concatName(value)" v-bind:key="data.subjectId">
+                        <td v-for="data in value" v-bind:key="data.subjectId">
                           {{data}}
                         </td>
                       </tr>
@@ -225,13 +225,6 @@ export default {
    gotoEnroll() {
      this.$router.push("/enrollment_details");
    },
-
-    concatName(value) {
-      value.fullname =  value.firstName + " " +  value.lastName
-      delete value.firstName
-      delete value.lastName
-      return value
-    }
   },
 
   computed: {
@@ -282,6 +275,11 @@ export default {
           this.info = res.data.payload.info[0]
           this.gpa = res.data.payload.gpa[0].gpa
           this.enrollment = res.data.payload.enrollment
+          this.enrollment.forEach(el => {
+            el.fullname = el.firstName + " " + el.lastName
+            delete el.firstName
+            delete el.lastName
+          })
 
           console.log(this.enrollment)
           //get only date
