@@ -13,7 +13,7 @@
     <v-navigation-drawer v-model="drawer" absolute temporary >
       <v-list nav flat>
         <v-list-item-group
-          color="blue darken-1" mandatory 
+          color="blue darken-1" mandatory active-class 
         >
           <v-list-item @click="main()">
             <v-list-item-icon>
@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       drawer: false,
+      test: null,
     };
   },
 

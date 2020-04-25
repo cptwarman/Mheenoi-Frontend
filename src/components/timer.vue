@@ -91,9 +91,9 @@ computed: {
         let count = this.timer.count / 60
         let min = parseInt(count)
         let sec = Math.round((count - min) * 60) 
-         if (min == 1 && sec == 59)
+         if (min == 0 && sec == 59)
             this.snackbar1Min = true
-         if (min == 5 && sec == 40)
+         if (min == 4 && sec == 59)
             this.snackbar5Min = true
          if (min < 10) 
             min = "0"+ min
