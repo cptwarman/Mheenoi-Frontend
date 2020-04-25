@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                       <tr v-for="value in enrollment" v-bind:key="value.subjectId">
-                        <td v-for="data in value" v-bind:key="data.subjectId">
+                        <td v-for="data in concatName(value)" v-bind:key="data.subjectId">
                           {{data}}
                         </td>
                       </tr>
@@ -225,6 +225,13 @@ export default {
    gotoEnroll() {
      this.$router.push("/enrollment_details");
    },
+
+    concatName(value) {
+      value.fullname =  value.firstName + " " +  value.lastName
+      delete value.firstName
+      delete value.lastName
+      return value
+    }
   },
 
   computed: {
@@ -258,11 +265,6 @@ export default {
       else
         return false
     },
-
-    test(){
-      return true
-    }
-
   },
   
   created () {
@@ -275,7 +277,7 @@ export default {
          }
       })
        .then(res => {
-          // console.log(res)
+           console.log(res)
           //store all data from api
           this.info = res.data.payload.info[0]
           this.gpa = res.data.payload.gpa[0].gpa

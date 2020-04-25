@@ -62,7 +62,7 @@ data() {
     }
 },
 
-created() {
+mounted() {
       this.timer.count = sessionStorage.getItem('timer')
       if(sessionStorage.getItem('jwt') != null) {
         this.timer.timer2 = setInterval(() => {
