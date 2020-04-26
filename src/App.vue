@@ -6,7 +6,7 @@
     
     <timer v-if = "showNavbar"/>
 
-      <v-content style="background: #fafafa">
+      <v-content class="img">
         <router-view @status = "showNav" @infoFirstName = "infoFirstName"/>
       </v-content>
 
@@ -50,3 +50,9 @@ export default {
 };
 </script> 
 
+<style scoped>
+.img {
+  background-image: url("./assets/bg.jpg");
+  background-size: cover;
+}
+</style>

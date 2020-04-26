@@ -51,7 +51,7 @@
           <v-container class="mt-3 d-sm-none">
             <v-divider/>
             <v-row justify="center" class="mt-4">
-              <b class="title font-weight-bold blue--text" style="text-transform: uppercase;"> Thitiphon </b>
+              <b class="title font-weight-bold blue--text" style="text-transform: uppercase;"> {{first_Name}} </b>
             </v-row>
             <v-row justify="center" class="mt-3">
               <v-btn outlined  @click = "logout()">SIGN OUT</v-btn>
@@ -69,13 +69,10 @@ export default {
   name: 'Navbar',
   data() {
     return {
+      first_Name: this.$store.getters.getFirtName,
       drawer: false,
       select: null,
     };
-  },
-
-  props: {
-    first_Name: String
   },
 
   methods: {

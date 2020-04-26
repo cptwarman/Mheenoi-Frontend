@@ -67,7 +67,7 @@
             <v-spacer/>
           </v-card-actions>
 
-          <v-dialog v-model="dialog" persistent max-width="1200">
+          <v-dialog v-model="dialog" persistent max-width="1200" scrollable>
             <v-card>
               <!-- Input fields -->
               <v-card-text class="pb-0">
@@ -84,7 +84,7 @@
                         <!-- Column 1 -->
                         <v-col cols="12" md="4">
                           <v-text-field
-                            v-model="infoBuff.firstName"
+                            v-model="passPayload.firstName"
                             :rules="Rules.nameRules"
                             :counter="32"
                             label="First name"
@@ -92,7 +92,7 @@
                           ></v-text-field>
 
                           <v-text-field
-                            v-model="infoBuff.lastName"
+                            v-model="passPayload.lastName"
                             :rules="Rules.nameRules"
                             :counter="32"
                             label="Last name"
@@ -101,7 +101,7 @@
                           ></v-text-field>
 
                           <v-text-field
-                            v-model="infoBuff.email"
+                            v-model="passPayload.email"
                             :rules="Rules.emailRules"
                             :counter="32"
                             label="Email"
@@ -113,7 +113,7 @@
                         <!-- column 2 -->
                         <v-col cols="12" md="4">
                           <v-text-field
-                            v-model="infoBuff.idCardNumber"
+                            v-model="passPayload.idCardNumber"
                             :rules="Rules.idCardRules"
                             :counter="13"
                             label="ID Card Number"
@@ -122,7 +122,7 @@
                           ></v-text-field>
 
                           <v-text-field
-                            v-model="infoBuff.phoneNo"
+                            v-model="passPayload.phoneNo"
                             :rules="Rules.phoneRules"
                             :counter="10"
                             label="Phone"
@@ -132,7 +132,7 @@
                           ></v-text-field>
 
                           <v-text-field
-                            v-model="infoBuff.address"
+                            v-model="passPayload.address"
                             :rules="Rules.addressRules"
                             :counter="128"
                             label="Address"
@@ -145,14 +145,14 @@
                         <!-- column 3 -->
                         <v-col cols="12" md="4">
                           <v-select
-                            v-model="infoBuff.fullGender"
+                            v-model="passPayload.fullGender"
                             :items = "genderSelect"
                             label="Gender"
                             required
                           ></v-select>
 
                           <v-select
-                            v-model="infoBuff.bloodType"
+                            v-model="passPayload.bloodType"
                             :items = "bloodTypeSelect"
                             label="blood Type"
                             required
@@ -163,7 +163,7 @@
                             ref="menu"
                             v-model="menu"
                             :close-on-content-click="false"
-                            :return-value.sync="infoBuff.dob"
+                            :return-value.sync="passPayload.dob"
                             transition="scale-transition"
                             offset-y
                             offset-overflow
@@ -171,17 +171,17 @@
                           >
                               <template v-slot:activator="{ on }">
                                 <v-text-field
-                                  v-model="infoBuff.dob"
+                                  v-model="passPayload.dob"
                                   label="Date of Birth"
                                   class="mt-5"
                                   readonly
                                   v-on="on"
                                 ></v-text-field>
                               </template>
-                              <v-date-picker v-model="infoBuff.dob" no-title scrollable>
+                              <v-date-picker v-model="passPayload.dob" no-title scrollable>
                                   <v-spacer></v-spacer>
                                   <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                                  <v-btn text color="primary" @click="$refs.menu.save(infoBuff.dob)">OK</v-btn>
+                                  <v-btn text color="primary" @click="$refs.menu.save(passPayload.dob)">OK</v-btn>
                               </v-date-picker>
                           </v-menu>
 
@@ -203,7 +203,7 @@
                        <!-- 1st col -->
                         <v-col cols="12" md="4">
                           <v-text-field
-                            v-model="infoBuff.parent1FirstName"
+                            v-model="passPayload.parent1FirstName"
                             :rules="Rules.nameRules"
                             :counter="32"
                             label="Guardian1 First name"
@@ -211,7 +211,7 @@
                           ></v-text-field>
 
                           <v-text-field
-                            v-model="infoBuff.parent1LastName"
+                            v-model="passPayload.parent1LastName"
                             :rules="Rules.nameRules"
                             :counter="32"
                             label="Guardian1 Last name"
@@ -220,7 +220,7 @@
                           ></v-text-field>
 
                           <v-text-field
-                            v-model="infoBuff.parent1Career"
+                            v-model="passPayload.parent1Career"
                             :rules="Rules.careerRules"
                             :counter="20"
                             label="Guardian1 Career"
@@ -230,7 +230,7 @@
                           ></v-text-field>
                           
                           <v-text-field
-                            v-model="infoBuff.parent1Income"
+                            v-model="passPayload.parent1Income"
                             :rules="Rules.incomeRules"
                             label="Guardian1 Income"
                             required
@@ -244,7 +244,7 @@
 
                         <v-col cols="12" md="4">
                           <v-text-field
-                            v-model="infoBuff.parent1Tel"
+                            v-model="passPayload.parent1Tel"
                             :rules="Rules.phoneRules"
                             :counter="10"
                             label="Guardian1 Phone"
@@ -253,7 +253,7 @@
                           ></v-text-field>
 
                           <v-select
-                            v-model="infoBuff.parent1Relation"
+                            v-model="passPayload.parent1Relation"
                             :items = "RelationSelect"
                             label="Guardian1 Relation with Student"
                             required
@@ -261,7 +261,7 @@
                           ></v-select>
 
                           <v-text-field
-                            v-model="infoBuff.parent2FirstName"
+                            v-model="passPayload.parent2FirstName"
                             :rules="Rules.nameRules"
                             :counter="32"
                             label="Guardian2 First name"
@@ -270,7 +270,7 @@
                           ></v-text-field>
                           
                           <v-text-field
-                            v-model="infoBuff.parent2LastName"
+                            v-model="passPayload.parent2LastName"
                             :rules="Rules.nameRules"
                             :counter="32"
                             label="Guardian2 Last name"
@@ -283,7 +283,7 @@
 
                         <v-col cols="12" md="4">
                           <v-text-field
-                            v-model="infoBuff.parent2Career"
+                            v-model="passPayload.parent2Career"
                             :rules="Rules.careerRules"
                             :counter="20"
                             label="Guardian2 Career"
@@ -292,7 +292,7 @@
                           ></v-text-field>
 
                           <v-text-field
-                            v-model="infoBuff.parent2Income"
+                            v-model="passPayload.parent2Income"
                             :rules="Rules.incomeRules"
                             label="Guardian2 Income"
                             required
@@ -301,7 +301,7 @@
                           ></v-text-field>
                           
                           <v-text-field
-                            v-model="infoBuff.parent2Tel"
+                            v-model="passPayload.parent2Tel"
                             :rules="Rules.phoneRules"
                             :counter="10"
                             hint="You can use the home number instead phone number"
@@ -311,7 +311,7 @@
                           ></v-text-field>  
 
                           <v-select
-                            v-model="infoBuff.parent2Relation"
+                            v-model="passPayload.parent2Relation"
                             :items = "RelationSelect"
                             label="Guardian2 Relation with Student"
                             class="mt-5"
@@ -349,7 +349,7 @@
                   <!-- end of pop up cancel -->
 
                   <!-- submit button -->
-                  <v-btn @click="dialogSubmit = true" :disabled="$v.infoBuff.$invalid" color="success" class="ml-6">
+                  <v-btn @click="dialogSubmit = true" :disabled="$v.passPayload.$invalid" color="success" class="ml-6">
                     <v-icon left>check</v-icon> submit
                   </v-btn>
 
@@ -471,14 +471,12 @@ export default {
         parent2Relation: "",
         parent2Tel: "",
       },
-
-     infoBuff: {},
      passPayload: {},
    }
  },
 
   validations: {
-    infoBuff: {
+    passPayload: {
         email: {
           required,
           email
@@ -578,12 +576,12 @@ export default {
 
  methods: {
    editInfo() {
-     this.infoBuff = {...this.payload}
+     this.passPayload = {...this.payload}
    },
 
    infoSubmit() {
-     this.passPayload = this.infoBuff
-     if(this.infoBuff.fullGender === "Men") {
+     this.$store.dispatch("syncfirstName",this.passPayload.firstName)
+     if(this.passPayload.fullGender === "Men") {
        this.passPayload.title = "Mr."
        this.passPayload.gender = "M"
      }

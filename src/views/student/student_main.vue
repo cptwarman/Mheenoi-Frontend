@@ -289,10 +289,10 @@ export default {
             this.info.fullGender = "Men";
           else if (res.data.payload.info[0].gender === "W")
             this.info.fullGender = "Women";
-          // Pass data to Navbar
-          this.$emit('infoFirstName',res.data.payload.info[0].firstName);
           // Pass studentId to info page
           this.$store.dispatch("syncStudentId",res.data.payload.info[0].studentId)
+          // Pass data to Navbar
+          this.$store.dispatch("syncfirstName",res.data.payload.info[0].firstName)
           //Check scholarship
           if(res.data.payload.scholarship.length == 1)
             this.scholarship = res.data.payload.scholarship[0].scholarshipName

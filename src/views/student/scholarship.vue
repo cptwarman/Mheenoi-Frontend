@@ -15,11 +15,23 @@
                 hide-details
               ></v-text-field>
             </v-card-title>
+
+            <v-dialog max-width="800" v-model="dialogDetails" >
+              <v-card>
+                dsadsa
+              </v-card>
+            </v-dialog>
+
             <v-data-table
               :headers="headers"
               :items="scholar"
               :search="search"
-            ></v-data-table>
+            >
+              <template v-slot:item.actions="{ item }">
+                <v-btn small color="primary" rounded @click="showDetails(item)"> apply</v-btn>
+               
+              </template>
+            </v-data-table>
         </v-card>
         
       </v-col>
@@ -35,22 +47,62 @@ export default {
 
   data() {
     return{
-      scholar: [],
-      details: [],
+      dialogDetails: false,
       search: "",
+      payload: {},
+      scholar: [],
       headers: [{
           text: "Scholarship ID",
-          value: "scholarshipId"
+          value: "scholarshipId",
+          align: "center"
           },
         {
           text: "Donator",
-          value: "donator"
+          value: "donator",
+         
         },
         {
           text: "Name of Scholarship",
-          value: "scholarshipName"
+          value: "scholarshipName",
+       
+        },
+        {
+          text: "Details",
+          value: "details",
+          
+        },
+        {
+          value: 'actions',
+          align: "center",
+          sortable: false 
         }],
-      data: "",
+    }
+  },
+
+  methods: {
+    showDetails(item) {
+      let jwtToken = sessionStorage.getItem('jwt');
+       axios({
+         method: 'get',
+         url: `https://chai-test-backend.herokuapp.com/api/students/${this.$store.getters.getStudentId}/info`,
+         headers: {
+          Authorization: `bearer ${jwtToken}`
+         }
+      })
+       .then(res => {
+        console.log(res)
+        this.payload = res.data.payload[0]
+        this.payload.dob = res.data.payload[0].dob.substr(0, 10);
+        //Chage gender data
+        if (res.data.payload[0].gender === "M")
+          this.payload.fullGender = "Men";
+        else if (res.data.payload[0].gender === "W")
+          this.payload.fullGender = "Women";
+        this.dialogDetails = true
+       }).catch(err => {
+         console.error(err);
+       });
+      
     }
   },
 
@@ -65,11 +117,7 @@ export default {
       })
        .then(res => {
         // console.log(res)
-        res.data.payload.forEach(el => {
-            this.details = el.details
-            delete el.details
-          })
-        //console.log(this.details)
+        console.log(res.data.payload)
         this.scholar = res.data.payload
         
         console.log(res.data.payload)
