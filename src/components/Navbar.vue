@@ -6,7 +6,7 @@
         <img src="../assets/mheenoiLogo.png" alt="mheenoiLogo" width="35" height="35">
         <v-toolbar-title class="ml-2" style="font-size: 19px">  MHEENOI UNISERSITY  </v-toolbar-title>
         <v-spacer />
-        <b class="mr-3 d-none d-sm-flex customtext"> {{first_Name}} </b> 
+        <b class="mr-3 d-none d-sm-flex customtext"> {{this.$store.getters.getFirtName}} </b> 
       <v-btn outlined color="white" @click = "logout()" class="d-none d-sm-flex"> SIGN OUT </v-btn>
     </v-app-bar>
 
@@ -51,7 +51,7 @@
           <v-container class="mt-3 d-sm-none">
             <v-divider/>
             <v-row justify="center" class="mt-4">
-              <b class="title font-weight-bold blue--text" style="text-transform: uppercase;"> {{first_Name}} </b>
+              <b class="title font-weight-bold blue--text" style="text-transform: uppercase;"> {{this.$store.getters.getFirtName}} </b>
             </v-row>
             <v-row justify="center" class="mt-3">
               <v-btn outlined  @click = "logout()">SIGN OUT</v-btn>
@@ -69,7 +69,6 @@ export default {
   name: 'Navbar',
   data() {
     return {
-      first_Name: this.$store.getters.getFirtName,
       drawer: false,
       select: null,
     };
@@ -77,7 +76,8 @@ export default {
 
   methods: {
     logout() {
-      sessionStorage.clear();
+      sessionStorage.clear()
+      this.$store.state.first_name = ""
       this.$router.replace("/")
     },
 
@@ -100,7 +100,7 @@ export default {
     scholarship() {
       this.$router.push("/scholarship").catch(err => {})
     }
-  }
+  },
 };
 </script>
 

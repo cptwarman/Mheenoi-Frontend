@@ -117,7 +117,6 @@ export default {
     },
   },
 
-
   created() {
     this.$emit('status',false)
   }

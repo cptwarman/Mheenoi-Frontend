@@ -76,7 +76,8 @@ mounted() {
 
 beforeDestroy() {
     clearInterval(this.timer.timer2)
-    sessionStorage.removeItem('timer')
+    this.$store.state.first_name = ""
+    sessionStorage.clear()
 },
 
 computed: {
