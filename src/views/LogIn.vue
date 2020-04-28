@@ -70,7 +70,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: "App",
+  name: "LogIn",
   data() {
     return {
         user: "",

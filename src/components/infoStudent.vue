@@ -28,8 +28,7 @@
         </v-col>
         
       <!-- info 2nd col -->
-
-            
+           
         <v-col lg="4" md="4" sm="4" cols="12"> 
           <v-row justify="center" class="px-3"> 
             <div>

@@ -333,7 +333,7 @@
                   </v-btn>
                    <!-- pop up cancel -->
                     <v-dialog v-model="dialogCancel" max-width="450">
-                      <v-card class="pa-5">
+                      <v-card class="pa-5">   
                         <v-card-text class="text-center">
                           <img src="../../assets/alert.png" alt="alert" width="180">
                           <h2 class="mt-4">Are you sure you want to <span class="red--text">cancel</span> ?</h2>
@@ -385,8 +385,8 @@
 
 <script>
 import infoStudent from '../../components/infoStudent'
-import axios from 'axios'
 import { required, email, minLength, maxLength , between, decimal, numeric} from "vuelidate/lib/validators";
+import axios from 'axios'
 
 export default {
  name: 'student_info',
