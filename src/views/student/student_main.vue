@@ -41,9 +41,6 @@
                   <v-row justify="space-between" align="center" class="px-5" >
                     <!-- header in card enroll -->
                     <b class="blue--text title">My Enrollment</b>
-                      <v-btn color="primary" depressed small  @click = "gotoEnroll()">
-                        more
-                      </v-btn>
                   </v-row>
                  
                   <v-simple-table height="250">  
@@ -90,13 +87,10 @@
 
                     <v-col cols="12" sm="5" :lg="changeColGpa" >
                       <v-card height="100%">
-                          <v-card-actions>
-                            <v-spacer/>
-                            <v-btn color="primary" depressed small right @click = "gotoEnroll()">
-                                more
-                            </v-btn>
-                          </v-card-actions>
-                          <v-card-text class="text-center mb-5">
+                         <div class="d-flex justify-center pa-2" style="background: #1565C0;">
+                              <b class="white--text">Grade Point Average</b>
+                          </div>
+                          <v-card-text class="text-center mt-3">
                             <b class="font-weight-bold blue--text" style="font-size: 1.2rem;">GPA</b>
                             <p class="mt-1" style="font-size: 1.2rem;">{{gpa}}</p>
                           </v-card-text>      

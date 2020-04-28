@@ -5,7 +5,7 @@ import LogIn from '../views/LogIn.vue'
 import student_main from '../views/student/student_main.vue'
 import student_info from '../views/student/student_info.vue'
 import enrollment_from from '../views/student/enrollment_from.vue'
-import enrollment_details from '../views/student/enrollment_details.vue'
+import activities from '../views/student/activities.vue'
 import scholarship from '../views/student/scholarship.vue'
 // lectuere
 import lecturer_main from '../views/lecturer/lecturer_main.vue'
@@ -38,9 +38,9 @@ Vue.use(VueRouter)
     component: enrollment_from
   },
   {
-    path: '/enrollment_details',
-    name: 'enrollment_details',
-    component: enrollment_details
+    path: '/activities',
+    name: 'activities',
+    component: activities
   },
   {
     path: '/scholarship',

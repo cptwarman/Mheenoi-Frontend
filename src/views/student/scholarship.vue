@@ -97,7 +97,7 @@
                             dense
                             counter="128"
                             :rules="rules.activity"
-                            v-model="act.detail"
+                            v-model="act.name"
                           ></v-text-field>
                         </v-col>
                         
@@ -126,8 +126,9 @@
                           v-for="(item,index) in activitieShow"
                           :key="index"
                         > 
-                 
+
                           {{index+1}}: {{item.detail}} - {{item.type}} 
+
                           <v-spacer/> 
                           <v-icon @click="deleteItem(index)">delete</v-icon>
                         </v-list-item>
@@ -187,9 +188,19 @@
             >
               <template v-slot:item.actions="{ item }">
                 <v-btn small color="primary" rounded @click="showDetails(item)"> apply</v-btn>
-               
               </template>
             </v-data-table>
+
+            <v-snackbar v-model="snackbar.snackbarPass" color="success">
+                Request Successful
+               <v-btn color="white" text @click="snackbar.snackbarPass = false"> Close </v-btn>
+            </v-snackbar>
+
+            <v-snackbar v-model="snackbar.snackbarFail" color="error">
+                Request Fail
+               <v-btn color="white" text @click="snackbar.snackbarFail = false"> Close </v-btn>
+            </v-snackbar>
+
         </v-card>
         
       </v-col>
@@ -244,28 +255,33 @@ export default {
 
           activity: [
             v =>  v.length <= 128 || 'Max 128 characters',
-            v => !!v  || "This field is required"
+            v => !!v || "This field is required"
           ],
 
           type: [
             v =>  v.length <= 32 || 'Max 32 characters',
-            v => !!v  || "This field is required"
+            v => !!v || "This field is required"
           ],
         },
         reason: "",
         indexOfScholarship: "",
         nameOfScholarship: "",
         act: {
-          detail: "",
+          name: "",
           type: "",
         },
         activitieShow: [],
+        passPayload: {},
+        snackbar: {
+          snackbarFail: false,
+          snackbarPass: false,
+        },
     }
   },
 
   validations: {
     act: {
-      detail: {
+      name: {
         required,
         minLength: minLength(1),
         maxLength: maxLength(128)
@@ -314,12 +330,41 @@ export default {
     },
 
     submit() {
-        //!
-    },
+        this.passPayload.studentId = this.$store.getters.getStudentId
+        this.passPayload.scholarshipId = this.scholar[this.indexOfScholarship].scholarshipId
+        this.passPayload.reasonOfRequest = this.reason
+        this.passPayload.activities = this.activitieShow
+        let count = 1
+        this.passPayload.activities.forEach(el => {
+          el.index = count
+          count++
+        })
+        console.log(this.passPayload)
 
+        let jwtToken = sessionStorage.getItem('jwt');
+        axios({
+          method: 'post',
+          url: `https://chai-test-backend.herokuapp.com/api/scholarships/requests`,
+          data: { 
+            payload: this.passPayload },
+          headers: {
+            Authorization: `bearer ${jwtToken}`
+          }
+      })
+       .then(res => {
+          console.log(res)
+          this.dialog.dialogSubmit = false
+          this.cancel()
+          this.snackbar.snackbarPass = true
+       }).catch(err => {
+          console.error(err);
+          this.dialog.dialogSubmit = false
+          this.snackbar.snackbarFail = true
+       });
+    },
     cancel(){
       this.activitieShow = []
-      this.act.detail = ""
+      this.act.name = ""
       this.act.type = ""
       this.reason = ""
       this.dialog.dialogDetails = false
@@ -327,9 +372,9 @@ export default {
 
     addActivities(){
       this.activitieShow.push({
-        detail: this.act.detail,
+        detail: this.act.name,
         type: this.act.type})
-      this.act.detail = ""
+      this.act.name = ""
       this.act.type = ""
     },
 
@@ -348,7 +393,7 @@ export default {
          }
       })
        .then(res => {
-        //console.log(res)
+        console.log(res)
         res.data.payload.forEach(el => {
           this.detailOfScholarship.push(el.details)
             delete el.details

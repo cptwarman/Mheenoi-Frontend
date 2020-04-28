@@ -27,18 +27,18 @@
             <v-list-item-title class="subtitle-2 font-weight-medium">Information</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="enrollDetails()">
+          <v-list-item @click="enrollform()">
             <v-list-item-icon>
               <v-icon color="primary">description</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="subtitle-2 font-weight-medium">My Enrollment</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Enrollment From</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="enrollform()">
+          <v-list-item @click="activities()">
             <v-list-item-icon>
-              <v-icon color="primary">create</v-icon>
+              <v-icon color="primary">people_alt</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="subtitle-2 font-weight-medium">Enrollment From</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Activities</v-list-item-title>
           </v-list-item>
 
           <v-list-item @click="scholarship()">
@@ -93,8 +93,8 @@ export default {
       this.$router.push("/enrollment_from").catch(err => {})
     },
 
-    enrollDetails() {
-      this.$router.push("/enrollment_details").catch(err => {})
+    activities() {
+      this.$router.push("/activities").catch(err => {})
     },
 
     scholarship() {
