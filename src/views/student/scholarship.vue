@@ -4,7 +4,7 @@
       <v-col lg="9">
 
         <v-card>
-          <v-card-title>
+          <v-card-title class="blue--text">
             Scholarship Requestment
             <v-spacer/>
               <v-text-field

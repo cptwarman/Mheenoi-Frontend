@@ -57,14 +57,17 @@
 
           </v-row>
           <v-card-actions>
+            
             <v-spacer/>
               <v-btn outlined class="mr-2" @click.stop="dialog = true" @click="editInfo()">
                 <v-icon left>create</v-icon> edit
               </v-btn>
+
               <v-btn  color="blue" dark href = "/#/student">
                 <v-icon left>mdi-home</v-icon> home
-                </v-btn>
+              </v-btn>
             <v-spacer/>
+
           </v-card-actions>
 
           <v-dialog v-model="dialog" persistent max-width="1200" scrollable>
