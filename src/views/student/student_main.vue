@@ -50,18 +50,29 @@
                         <th class="text-center">Subject Name</th>
                         <th class="text-center">Section</th>
                         <th class="text-center">Lecturer</th>
+                        <th class="text-center">Grade</th>
                       </tr>
                     </thead>
-
-                     <div v-if="wait">
+                     
                       <tbody>
-                        <tr v-for="value in enrollment" :key="value.subjectId">
-                          <td v-for="data in value" :key="data.subjectId">
-                            {{data}}
+                        <tr v-for="(value,index) in enrollment" :key="index">
+                          <td>
+                            {{value.subjectId}}
+                          </td>
+                          <td>
+                            {{value.subjectName}}
+                          </td>
+                          <td>
+                            {{value.sectionId}}
+                          </td>
+                          <td>
+                            {{value.fullname}}
+                          </td>
+                          <td>
+                            {{value.grade}}
                           </td>
                         </tr>
                       </tbody>
-                    </div> 
                  
                   </v-simple-table>
 
@@ -256,14 +267,6 @@ export default {
       else
         return false
     },
-
-    wait() {
-      console.log(this.enrollment)
-      if(this.enrollment[this.enrollment.length-1])
-        return true
-      else
-        return false
-    }
   },
   
   created () {
@@ -288,7 +291,7 @@ export default {
               delete el.lastName
            })
 
-          //console.log(this.enrollment)
+          console.log(this.enrollment)
           //get only date
           this.info.dob = res.data.payload.info[0].dob.substr(0, 10);
           //Chage gender data
@@ -308,7 +311,6 @@ export default {
        .catch(err => {
           console.error(err);
        });
-       console.log(this.$store.getters.getLoader)
   }
 }
 </script>
