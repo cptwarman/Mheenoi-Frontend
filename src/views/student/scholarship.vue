@@ -393,7 +393,7 @@ export default {
          }
       })
        .then(res => {
-        console.log(res)
+        //console.log(res)
         res.data.payload.forEach(el => {
           this.detailOfScholarship.push(el.details)
             delete el.details

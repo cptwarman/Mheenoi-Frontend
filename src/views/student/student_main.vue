@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid v-if="!this.$store.getters.getLoader">
    <!-- primary row -->
    <v-row justify="center" >
       <v-col cols="12">
@@ -52,15 +52,19 @@
                         <th class="text-center">Lecturer</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr v-for="value in enrollment" v-bind:key="value.subjectId">
-                        <td v-for="data in value" v-bind:key="data.subjectId">
-                          {{data}}
-                        </td>
-                      </tr>
-                    </tbody>
+
+                     <div v-if="wait">
+                      <tbody>
+                        <tr v-for="value in enrollment" :key="value.subjectId">
+                          <td v-for="data in value" :key="data.subjectId">
+                            {{data}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </div> 
                  
                   </v-simple-table>
+
                 </v-card>
           
               </v-col>
@@ -88,7 +92,7 @@
                     <v-col cols="12" sm="5" :lg="changeColGpa" >
                       <v-card height="100%">
                          <div class="d-flex justify-center pa-2" style="background: #1565C0;">
-                              <b class="white--text">Grade Point Average</b>
+                            <b class="white--text">Grade Point Average</b>
                           </div>
                           <v-card-text class="text-center mt-3">
                             <b class="font-weight-bold blue--text" style="font-size: 1.2rem;">GPA</b>
@@ -252,6 +256,14 @@ export default {
       else
         return false
     },
+
+    wait() {
+      console.log(this.enrollment)
+      if(this.enrollment[this.enrollment.length-1])
+        return true
+      else
+        return false
+    }
   },
   
   created () {
@@ -264,18 +276,19 @@ export default {
          }
       })
        .then(res => {
-           console.log(res)
+          //console.log(res)
           //store all data from api
           this.info = res.data.payload.info[0]
           this.gpa = res.data.payload.gpa[0].gpa
           this.enrollment = res.data.payload.enrollment
-          this.enrollment.forEach(el => {
-            el.fullname = el.firstName + " " + el.lastName
-            delete el.firstName
-            delete el.lastName
-          })
 
-          console.log(this.enrollment)
+          this.enrollment.forEach(el => {
+              el.fullname = el.firstName + " " + el.lastName
+              delete el.firstName
+              delete el.lastName
+           })
+
+          //console.log(this.enrollment)
           //get only date
           this.info.dob = res.data.payload.info[0].dob.substr(0, 10);
           //Chage gender data
@@ -293,8 +306,9 @@ export default {
 
        })
        .catch(err => {
-         console.error(err);
+          console.error(err);
        });
+       console.log(this.$store.getters.getLoader)
   }
 }
 </script>

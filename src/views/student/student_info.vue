@@ -18,8 +18,8 @@
         
         <v-card class="pa-5 card1 mt-5">
           <v-row justify="center">
-            <v-col lg="3" sm="4" cols="7">
-              <v-row justify="center">
+            <v-col lg="4" sm="4" cols="7">
+              <v-row justify="center" class="ml-2">
                 <div>
                   <p><b>ID Card Number</b>: {{payload.idCardNumber}}</p>
                   <p><b>Blood type</b>: {{payload.bloodType}}</p>
