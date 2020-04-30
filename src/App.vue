@@ -17,12 +17,13 @@
 import axios from 'axios'
 import Navbar from './components/Navbar'
 import timer from './components/timer'
+import reset from './views/reset'
 export default {
   
   name: 'App',
   components: {
     Navbar,
-    timer
+    timer,
   },
 
   data() {

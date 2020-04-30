@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LogIn from '../views/LogIn.vue'
+import reset from '../views/reset.vue'
 // student
 import student_main from '../views/student/student_main.vue'
 import student_info from '../views/student/student_info.vue'
@@ -19,6 +20,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'LogIn',
     component: LogIn,
+  },
+  {
+    path: '/reset',
+    name: 'reset',
+    component: reset,
   },
   {
     path: '/student',

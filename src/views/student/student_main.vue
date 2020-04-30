@@ -40,8 +40,70 @@
                 <v-card height="100%" class="px-6 py-5">
                   <v-row justify="space-between" align="center" class="px-5" >
                     <!-- header in card enroll -->
-                    <b class="blue--text title">My Enrollment</b>
+                      <b class="blue--text title">My Enrollment</b>
+                    <v-spacer/>
+                    <v-btn color="primary" small @click="dialog2 = true">more</v-btn>
                   </v-row>
+                  <p class="caption mt-1 ml-2">Academic year: {{maxYear}}, semester: {{maxSemester}}</p>
+                  <!-- more enrollment -->
+                  <v-dialog persistent v-model="dialog2" width="950">
+                    <v-card>
+                      <v-card-title>
+                        <v-row dense>
+                            <v-col>
+                              <b class="blue--text">My Enrollment</b>
+                            </v-col>
+
+                            <v-col cols="2" sm="1" order-sm="3">
+                              <v-btn dark class="ml-2" color="red" rounded small @click="cloesDialog2()" >
+                                <v-icon>close</v-icon>
+                              </v-btn>
+                            </v-col>
+                            
+                            <v-col cols="12" sm="3">
+                                <v-select 
+                                v-model="selecter.year"
+                                label="Academic year" 
+                                :items="academicYear"
+                                dense
+                                />
+                            </v-col>
+
+                            <v-col cols="12" sm="2">
+                                <v-select 
+                                  v-model="selecter.semester"
+                                  label="Semester" 
+                                  :items="semester"
+                                  dense
+                                />
+                            </v-col>
+
+                        </v-row>
+                      </v-card-title>
+
+                      <v-card-text>
+                        <v-data-table
+                          :headers="headers"
+                          :items="enrollment"
+                          :hide-default-footer="isSelect"
+                        >   
+
+                          <template v-if="isSelect" v-slot:body>
+                            <tbody>
+                              <tr v-for="value in enrollmentSelect" :key="value.subjectId">
+                                <td class="text-left">{{value.subjectId}}</td> 
+                                <td class="text-left">{{value.subjectName}}</td>
+                                <td class="text-left">{{value.sectionId}}</td>
+                                <td class="text-left">{{value.fullname}}</td>
+                                <td class="text-left">{{value.grade}}</td>
+                              </tr>
+                            </tbody>
+                          </template> 
+
+                        </v-data-table>
+                      </v-card-text>
+                    </v-card>
+                  </v-dialog>
                  
                   <v-simple-table height="250">  
                     <thead>
@@ -56,21 +118,11 @@
                      
                       <tbody>
                         <tr v-for="(value,index) in lastYearEnroll" :key="index">
-                          <td>
-                            {{value.subjectId}}
-                          </td>
-                          <td>
-                            {{value.subjectName}}
-                          </td>
-                          <td>
-                            {{value.sectionId}}
-                          </td>
-                          <td>
-                            {{value.fullname}}
-                          </td>
-                          <td>
-                            {{value.grade}}
-                          </td>
+                            <td> {{value.subjectId}} </td>
+                            <td> {{value.subjectName}} </td>
+                            <td> {{value.sectionId}} </td>
+                            <td> {{value.fullname}} </td>
+                            <td> {{value.grade}} </td>
                         </tr>
                       </tbody>
                  
@@ -224,16 +276,56 @@ export default {
         faculty: "",
       },
       enrollment: [],
+      enrollmentSelect: [],
       lastYearEnroll: [],
+      lastYearEnrolltemp: [],
       gpa: "",
       scholarship: "",
       dialog: false,
+      dialog2: false,
+      headers: [
+        {
+          text: "Subject ID",
+          value: "subjectId",
+        },
+        {
+          text: "Subject Name",
+          value: "subjectName",
+        },
+        {
+          text: "Section",
+          value: "sectionId",
+        },
+        {
+          text: "Lecturer",
+          value: "fullname",
+        },
+        {
+          text: "Grade",
+          value: "grade",
+        },
+      ],
+      maxYear: "",
+      maxSemester: "",
+      academicYear: [],
+      semester: [1,2],
+      selecter: {
+        year: "",
+        semester: "",
+      },
+      enabled: ""
     }
   },
 
   methods: {
    gotoEnroll() {
      this.$router.push("/enrollment_details");
+   },
+
+   cloesDialog2() {
+     this.dialog2 = false
+     this.selecter.year= ""
+     this.selecter.semester= ""
    },
   },
 
@@ -268,6 +360,20 @@ export default {
       else
         return false
     },
+
+    isSelect() {
+      if(this.selecter.year != "" && this.selecter.semester != "") {
+           this.enrollmentSelect = []
+          _.filter(this.enrollment, (el) => {
+            if(el.year == this.selecter.year && el.semester == this.selecter.semester) {
+                this.enrollmentSelect.push(el);
+              }
+          })
+        return true
+      }
+      else
+        return false
+    },
   },
   
   created () {
@@ -286,16 +392,29 @@ export default {
           this.gpa = res.data.payload.gpa[0].gpa
           this.enrollment = res.data.payload.enrollment
 
+          this.maxYear = _.maxBy(this.enrollment, 'year').year
            _.filter(this.enrollment, (el) => { 
-              el.fullname = el.firstName + " " + el.lastName
+            if(el.grade == null)
+              el.grade = "-"
+
+            // filter academic year
+             if(!this.academicYear.includes(el.year)) 
+                this.academicYear.push(el.year);
+
+             el.fullname = el.firstName + " " + el.lastName
               delete el.firstName
               delete el.lastName
+              if(el.year == this.maxYear)
+                this.lastYearEnrolltemp.push(el)
+          });
 
-              if(el.year == 2020 && el.semester == 2) 
+          this.maxSemester = _.maxBy( this.lastYearEnrolltemp, 'semester').semester
+          _.filter(this.lastYearEnrolltemp, (el) => { 
+              if(el.semester ==  this.maxSemester)
                 this.lastYearEnroll.push(el)
           });
 
-          console.log(this.lastYearEnroll)
+          //console.log( this.academicYear)
           //get only date
           this.info.dob = res.data.payload.info[0].dob.substr(0, 10);
           //Chage gender data
