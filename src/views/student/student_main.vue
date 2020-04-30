@@ -55,7 +55,7 @@
                     </thead>
                      
                       <tbody>
-                        <tr v-for="(value,index) in enrollment" :key="index">
+                        <tr v-for="(value,index) in lastYearEnroll" :key="index">
                           <td>
                             {{value.subjectId}}
                           </td>
@@ -224,6 +224,7 @@ export default {
         faculty: "",
       },
       enrollment: [],
+      lastYearEnroll: [],
       gpa: "",
       scholarship: "",
       dialog: false,
@@ -285,13 +286,16 @@ export default {
           this.gpa = res.data.payload.gpa[0].gpa
           this.enrollment = res.data.payload.enrollment
 
-          this.enrollment.forEach(el => {
+           _.filter(this.enrollment, (el) => { 
               el.fullname = el.firstName + " " + el.lastName
               delete el.firstName
               delete el.lastName
-           })
 
-          console.log(this.enrollment)
+              if(el.year == 2020 && el.semester == 2) 
+                this.lastYearEnroll.push(el)
+          });
+
+          console.log(this.lastYearEnroll)
           //get only date
           this.info.dob = res.data.payload.info[0].dob.substr(0, 10);
           //Chage gender data

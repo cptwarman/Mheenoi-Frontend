@@ -18,9 +18,10 @@
         
         <v-card class="pa-5 card1 mt-5">
           <v-row justify="center">
-            <v-col lg="4" sm="4" cols="7">
-              <v-row justify="center" class="ml-2">
+            <v-col lg="4" sm="4" cols="8">
+              <v-row :justify="justifyClass" :class="marginClass">
                 <div>
+                  <h3 class="blue--text mb-4">Student</h3>
                   <p><b>ID Card Number</b>: {{payload.idCardNumber}}</p>
                   <p><b>Blood type</b>: {{payload.bloodType}}</p>
                   <p><b>Phone</b>: {{payload.phoneNo}}</p>
@@ -30,27 +31,29 @@
             </v-col>
             
             <v-col lg="4" sm="4" cols="8">
-              <v-row justify="center">
+              <v-row :justify="justifyClass">
                 <div>
-                  <p><b>Guardian1 Full Name</b>: {{payload.parent1FirstName}}  {{payload.parent1LastName}}</p>
-                  <p><b>Guardian1 Career</b>: {{payload.parent1Career}}</p>
-                  <p><b>Guardian1 Income</b>: {{payload.parent1Income}} Bath</p>
-                  <p><b>Guardian1 Phone</b>: {{payload.parent1Tel}}</p>
-                  <p><b>Guardian1 Relation<br> 
-                  with student</b>: {{payload.parent1Relation}}</p>
+                  <h3 class="blue--text mb-4">Guardian 1</h3>
+                  <p><b>First Name</b>: {{payload.parent1FirstName}}</p>
+                  <p><b>Last Name</b>: {{payload.parent1LastName}}</p>
+                  <p><b>Career</b>: {{payload.parent1Career}}</p>
+                  <p><b>Income</b>: {{payload.parent1Income}} Bath</p>
+                  <p><b>Phone</b>: {{payload.parent1Tel}}</p>
+                  <p><b>Relation with student</b>: {{payload.parent1Relation}}</p>
                 </div>
               </v-row>
             </v-col>
           
             <v-col lg="4" sm="4" cols="8">
-              <v-row justify="center">
+              <v-row :justify="justifyClass">
                 <div>
-                  <p><b>Guardian2 Full Name</b>: {{payload.parent2FirstName}}  {{payload.parent2LastName}}</p>
-                  <p><b>Guardian2 Career</b>: {{payload.parent2Career}}</p>
-                  <p><b>Guardian2 Income</b>: {{payload.parent2Income}} Bath</p>
-                  <p><b>Guardian2 Phone</b>: {{payload.parent2Tel}}</p>
-                  <p><b>Guardian2 Relation<br> 
-                  with student</b>: {{payload.parent2Relation}}</p>
+                  <h3 class="blue--text mb-4">Guardian 2</h3>
+                  <p><b>First Name</b>: {{payload.parent2FirstName}}</p>
+                  <p><b>Last Name</b>: {{payload.parent2LastName}}</p>
+                  <p><b>Career</b>: {{payload.parent2Career}}</p>
+                  <p><b>Income</b>: {{payload.parent2Income}} Bath</p>
+                  <p><b>Phone</b>: {{payload.parent2Tel}}</p>
+                  <p><b>Relation with student</b>: {{payload.parent2Relation}}</p>
                 </div>
               </v-row>
             </v-col>
@@ -612,8 +615,20 @@ export default {
           console.error(err);
        });
    },
+ },
 
+ computed: {
+   marginClass() {
+     if(this.$vuetify.breakpoint.smAndUp)
+        return "ml-4"
+  },
 
+  justifyClass() {
+    if(this.$vuetify.breakpoint.smAndUp)
+        return "center"
+    else 
+        return "start"
+  }
  },
 
  created() {

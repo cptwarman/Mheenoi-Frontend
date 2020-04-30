@@ -5,7 +5,7 @@
       
       <!-- Picture -->
     
-        <v-col lg="2" md="3" sm="4" cols="12"> 
+        <v-col md="3" sm="4" cols="10"> 
           <v-row justify="center">     
             <div class="profile">
               <img src="../assets/nick.jpg" alt="Yodsanick" max-width="250"/>
@@ -15,28 +15,28 @@
         
       <!-- info 1st col -->
         
-        <v-col lg="4" md="4" sm="4" cols="12" >
-          <v-row justify="center" class="px-3">
+        <v-col lg="4" md="4" sm="4" cols="8" >
+          <v-row justify="" class="px-3">
             <div>
               <p><b>Student ID: </b>{{info.studentId}}</p>
-              <p><b>Full Name: </b>{{info.title}} {{info.firstName}} {{info.lastName}}</p>
+              <p><b>First Name: </b>{{info.firstName}}</p>
+              <p><b>Last Name: </b>{{info.lastName}}</p>
               <p><b>Gender: </b>{{info.fullGender}}</p>
               <p><b>Degree: </b>{{info.degree}}</p>
-              <p><b>Year: </b> {{info.year}}</p>
             </div>
           </v-row>
         </v-col>
         
       <!-- info 2nd col -->
            
-        <v-col lg="4" md="4" sm="4" cols="12"> 
-          <v-row justify="center" class="px-3"> 
+        <v-col lg="4" md="4" sm="4" cols="8"> 
+          <v-row justify="" class="px-3"> 
             <div>
               <p><b>Department: </b>{{info.depName}}</p>
               <p><b>Faculty: </b>{{info.faculty}}</p>
               <p><b>Program: </b>{{info.program}}</p>
               <p><b>E-mail: </b>{{info.email}}</p>
-              <p><b>Date of birth: </b> {{info.dob}}</p>
+              <p><b>Birthday: </b> {{info.dob}}</p>
             </div>
           </v-row>
         </v-col>
