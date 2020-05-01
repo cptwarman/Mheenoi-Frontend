@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid fill-height v-if="!this.$store.getters.getLoader">
     <v-row justify="center">
       <v-col lg="9">
 

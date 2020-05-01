@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid v-if="!this.$store.getters.getLoader">
     <v-row justify="center">
       <v-col cols="12" lg="9" sm="11">
         <v-col lg="12">
@@ -626,7 +626,7 @@ export default {
        .then(res => {
           this.snackbar.pass = true
           setTimeout(() => location.reload(), 2500)
-          
+
        }).catch(err => {
           console.error(err.respons)
           this.snackbar.fail = true
