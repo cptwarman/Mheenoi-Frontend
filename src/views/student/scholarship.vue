@@ -136,8 +136,8 @@
 
                     </v-col>
                     <v-card-actions>
-                      <v-btn outlined @click="dialog.dialogCancel = true" color="primary">cancel</v-btn>
-                      <v-btn @click="dialog.dialogSubmit = true" :disabled="$v.reason.$invalid" color="primary" class="ml-5">submit</v-btn>
+                      <v-btn outlined @click.stop="dialog.dialogCancel = true" color="primary">cancel</v-btn>
+                      <v-btn @click.stop="dialog.dialogSubmit = true" :disabled="$v.reason.$invalid" color="primary" class="ml-5">submit</v-btn>
                     </v-card-actions>
  
                     <!-- pop up submit -->
@@ -149,7 +149,7 @@
                           </v-card-text>
                           <v-card-actions>
                             <v-spacer/>
-                              <v-btn @click.stop="dialog.dialogSubmit = false" color="success" outlined> no </v-btn>
+                              <v-btn @click="dialog.dialogSubmit = false" color="success" outlined> no </v-btn>
                               <v-btn @click="submit()" color="success" class="ml-6" outlined> yes </v-btn>
                             <v-spacer/>
                           </v-card-actions>

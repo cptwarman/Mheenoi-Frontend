@@ -1,13 +1,13 @@
 <template>
     <v-container fill-height fluid>
-        <h1>Lecturer Main</h1>
+        <h1>Staff information</h1>
     </v-container>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-    name: "lecturer_main",
+    name: "personnel_management",
 
     data() {
       return {

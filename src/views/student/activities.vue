@@ -35,7 +35,7 @@
                                     ACTIVITY DETAIL
 
                                     <v-spacer/>
-                                    <v-btn dark class="mx-2" fab color="red" x-small @click.stop="dialog.details = false" >
+                                    <v-btn dark class="mx-2" fab color="red" x-small @click="dialog.details = false" >
                                         <v-icon>close</v-icon>
                                     </v-btn>
                                 </v-card-title>
@@ -117,7 +117,7 @@
 
                 <!-- new buttton -->
                 <v-row justify="center" class="mt-5">
-                    <v-btn color="primary" @click="dialog.new = true">new activity</v-btn>
+                    <v-btn color="primary" @click.stop="dialog.new = true">new activity</v-btn>
                 </v-row>
 
                 <v-dialog v-model="dialog.new" persistent max-width="950" scrollable>
@@ -380,9 +380,9 @@
 
                        <v-card-actions class="py-3">
                            <v-spacer/>
-                                <v-btn outlined color="error" @click="dialog.dialogCancel = true">
+                                <v-btn outlined color="error" @click.stop="dialog.dialogCancel = true">
                                     <v-icon left>close</v-icon> cancel</v-btn>      
-                                <v-btn class="ml-5" color="success" :disabled="$v.passPayload.$invalid" @click="dialog.dialogSubmit = true">
+                                <v-btn class="ml-5" color="success" :disabled="$v.passPayload.$invalid" @click.stop="dialog.dialogSubmit = true">
                                     <v-icon left>check</v-icon> submit</v-btn>
                            <v-spacer/>
                        </v-card-actions>

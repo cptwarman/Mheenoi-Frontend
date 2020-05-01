@@ -1,13 +1,12 @@
 <template>
     <v-container fill-height fluid>
-        <h1>Lecturer Main</h1>
+        <h1>Lecturer grade</h1>
     </v-container>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
-    name: "lecturer_main",
+    name: "grade_assignment",
 
     data() {
       return {
@@ -24,7 +23,7 @@ export default {
     },
 
     created() {
-        
+
     }
 }
 </script>

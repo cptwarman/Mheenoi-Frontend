@@ -17,22 +17,21 @@
         <infoStudent :info = "payload" />
         
         <v-card class="pa-5 card1 mt-5">
+          <v-card-text>
           <v-row justify="center">
-            <v-col lg="4" sm="4" cols="8">
-              <v-row :justify="justifyClass" :class="marginClass">
-                <div>
+            <v-col sm="4" cols="8">
+              <div :class="marginClass">
                   <h3 class="blue--text mb-4">Student</h3>
-                  <p><b>ID Card Number</b>: {{payload.idCardNumber}}</p>
+                  <p style="word-wrap: break-word;"><b>ID Card Number</b>: {{payload.idCardNumber}}</p>
                   <p><b>Blood type</b>: {{payload.bloodType}}</p>
                   <p><b>Phone</b>: {{payload.phoneNo}}</p>
                   <p><b>Address</b>: {{payload.address}}</p>           
-                </div>
-              </v-row>
+              </div>
             </v-col>
             
-            <v-col lg="4" sm="4" cols="8">
-              <v-row :justify="justifyClass">
-                <div>
+            <v-col sm="4" cols="8">
+
+                <div class="d-flex justify-center flex-column">
                   <h3 class="blue--text mb-4">Guardian 1</h3>
                   <p><b>First Name</b>: {{payload.parent1FirstName}}</p>
                   <p><b>Last Name</b>: {{payload.parent1LastName}}</p>
@@ -41,12 +40,11 @@
                   <p><b>Phone</b>: {{payload.parent1Tel}}</p>
                   <p><b>Relation with student</b>: {{payload.parent1Relation}}</p>
                 </div>
-              </v-row>
+ 
             </v-col>
           
-            <v-col lg="4" sm="4" cols="8">
-              <v-row :justify="justifyClass">
-                <div>
+            <v-col sm="4" cols="8">
+                <div class="d-flex justify-center flex-column">
                   <h3 class="blue--text mb-4">Guardian 2</h3>
                   <p><b>First Name</b>: {{payload.parent2FirstName}}</p>
                   <p><b>Last Name</b>: {{payload.parent2LastName}}</p>
@@ -55,7 +53,6 @@
                   <p><b>Phone</b>: {{payload.parent2Tel}}</p>
                   <p><b>Relation with student</b>: {{payload.parent2Relation}}</p>
                 </div>
-              </v-row>
             </v-col>
 
           </v-row>
@@ -110,7 +107,7 @@
                             v-model="passPayload.email"
                             :rules="Rules.emailRules"
                             :counter="32"
-                            label="Email"
+                            label="E-mail"
                             required
                             class="mt-5"
                           ></v-text-field>                        
@@ -160,7 +157,7 @@
                           <v-select
                             v-model="passPayload.bloodType"
                             :items = "bloodTypeSelect"
-                            label="blood Type"
+                            label="Blood Type"
                             required
                             class="mt-5"
                           ></v-select>
@@ -178,7 +175,7 @@
                               <template v-slot:activator="{ on }">
                                 <v-text-field
                                   v-model="passPayload.dob"
-                                  label="Date of Birth"
+                                  label="Birthday"
                                   class="mt-5"
                                   readonly
                                   v-on="on"
@@ -334,7 +331,7 @@
               <v-card-actions class="pb-5">
                 <!-- Buttons -->
                 <v-spacer/>
-                  <v-btn outlined color="error" class="mr-2" @click="dialogCancel = true">
+                  <v-btn outlined color="error" class="mr-2" @click.stop="dialogCancel = true">
                     <v-icon left>close</v-icon> cancel
                   </v-btn>
                    <!-- pop up cancel -->
@@ -355,7 +352,7 @@
                   <!-- end of pop up cancel -->
 
                   <!-- submit button -->
-                  <v-btn @click="dialogSubmit = true" :disabled="$v.passPayload.$invalid" color="success" class="ml-6">
+                  <v-btn @click.stop="dialogSubmit = true" :disabled="$v.passPayload.$invalid" color="success" class="ml-6">
                     <v-icon left>check</v-icon> submit
                   </v-btn>
 
@@ -382,16 +379,16 @@
             </v-card>
 
           </v-dialog>
-
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
         <v-snackbar v-model="snackbar.pass" color="success">
-            Edit Successfully
+            Edit Successful
             <v-btn color="white" text @click="snackbar.pass = false"> Close </v-btn>
         </v-snackbar>
 
-        <v-snackbar top v-model="snackbar.fail" color="error">
+        <v-snackbar v-model="snackbar.fail" color="error">
             Something went wrong
             <v-btn color="white" text @click="snackbar.fail = false"> Close </v-btn>
         </v-snackbar>
@@ -421,7 +418,7 @@ export default {
      dialogSubmit: false,
      dialogCancel: false,
      bloodTypeSelect: ["A","B","O","AB"],
-     genderSelect: ["Men", "Women"],
+     genderSelect: ["Male", "Female"],
      RelationSelect: ["Brother", "Father", "Uncle", "Grandfather", "Sister", "Mother", "Aunt", "Grandmother"],
      Rules: {
         nameRules: [
@@ -601,18 +598,17 @@ export default {
 
    infoSubmit() {
      this.$store.dispatch("syncfirstName",this.passPayload.firstName)
-     if(this.passPayload.fullGender === "Men") {
+     if(this.passPayload.fullGender === "Male") {
        this.passPayload.title = "Mr."
        this.passPayload.gender = "M"
      }
      else {
        this.passPayload.title = "Ms."
-       this.passPayload.gender = "W"
+       this.passPayload.gender = "F"
      }   
-     this.dialog = false;
      
     delete this.passPayload.fullGender
-
+      console.log(this.passPayload)
      let jwtToken = sessionStorage.getItem('jwt')
      axios({
           method: 'put',
@@ -625,11 +621,13 @@ export default {
        })
        .then(res => {
           this.snackbar.pass = true
-          setTimeout(() => location.reload(), 2500)
+          //setTimeout(() => location.reload(), 2500)
+          this.dialog = false;
 
        }).catch(err => {
           console.error(err.respons)
           this.snackbar.fail = true
+          this.dialog = false;
        });
    },
  },
@@ -637,7 +635,9 @@ export default {
  computed: {
    marginClass() {
      if(this.$vuetify.breakpoint.smAndUp)
-        return "ml-4"
+        return "ml-4 d-flex justify-center flex-column"
+     else
+        return "d-flex justify-center flex-column"
   },
 
   justifyClass() {
@@ -663,9 +663,9 @@ export default {
         this.payload.dob = res.data.payload[0].dob.substr(0, 10);
         //Chage gender data
         if (res.data.payload[0].gender === "M")
-          this.payload.fullGender = "Men";
-        else if (res.data.payload[0].gender === "W")
-          this.payload.fullGender = "Women";
+          this.payload.fullGender = "Male";
+        else if (res.data.payload[0].gender === "F")
+          this.payload.fullGender = "Female";
        }).catch(err => {
          console.error(err);
        });
@@ -677,5 +677,9 @@ export default {
 <style scope>
 .card1 p:not(:last-child) {
   margin-bottom: 35px;
+}
+
+p {
+    word-wrap: break-word;
 }
 </style>

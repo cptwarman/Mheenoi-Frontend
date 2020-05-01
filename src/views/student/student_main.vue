@@ -42,7 +42,7 @@
                     <!-- header in card enroll -->
                       <b class="blue--text title">My Enrollment</b>
                     <v-spacer/>
-                    <v-btn color="primary" small @click="dialog2 = true">more</v-btn>
+                    <v-btn color="primary" small @click.stop ="dialog2 = true">more</v-btn>
                   </v-row>
                   <p class="caption mt-1 ml-2">Academic year: {{maxYear}}, semester: {{maxSemester}}</p>
                   <!-- more enrollment -->
@@ -425,9 +425,9 @@ export default {
           this.info.dob = res.data.payload.info[0].dob.substr(0, 10);
           //Chage gender data
           if (res.data.payload.info[0].gender === "M")
-            this.info.fullGender = "Men";
-          else if (res.data.payload.info[0].gender === "W")
-            this.info.fullGender = "Women";
+            this.info.fullGender = "Male";
+          else if (res.data.payload.info[0].gender === "F")
+            this.info.fullGender = "Female";
           // Pass studentId to info page
           this.$store.dispatch("syncStudentId",res.data.payload.info[0].studentId)
           // Pass data to Navbar
@@ -438,7 +438,7 @@ export default {
 
        })
        .catch(err => {
-          console.error(err);
+          console.error(err.respones);
        });
   }
 }

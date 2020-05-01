@@ -1,22 +1,31 @@
 <template>
-    <div>
-        <h1>Staff Main</h1>
-    </div>
+    <v-container fill-height fluid>
+        <h1>Staff main</h1>
+    </v-container>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-data() {
-    return {
+    name: "staff_main",
 
+    data() {
+      return {
+
+      }
+    },
+
+    methods: {
+
+    },
+
+    computed: {
+
+    },
+
+    created() {
+        
     }
-},
-methods: {
-    
-}
 }
 </script>
 
-<style>
-
-</style>
