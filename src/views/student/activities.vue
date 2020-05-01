@@ -436,7 +436,7 @@
                     <v-btn color="white" text @click="snackbar.pass = false"> Close </v-btn>
                 </v-snackbar>
 
-                <v-snackbar v-model="snackbar.fail" color="error">
+                <v-snackbar top v-model="snackbar.fail" color="error">
                     Something went wrong
                     <v-btn color="white" text @click="snackbar.fail = false"> Close </v-btn>
                 </v-snackbar>
@@ -609,8 +609,8 @@ methods: {
         .then(res => {
             console.log(res)
             this.dialog.dialogSubmit = false
-            location.reload();
             this.snackbar.pass = true
+            setTimeout(() => location.reload() , 2000)
         })
         .catch(err => {
             console.error(err);

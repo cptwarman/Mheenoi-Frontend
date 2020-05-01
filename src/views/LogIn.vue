@@ -47,6 +47,10 @@
           <v-alert v-if="showText" type="error" dense>
             Wrong ID or Password
           </v-alert>
+
+          <v-alert v-if="showReset" type="warning" dense>
+            Your password is not secure.
+          </v-alert>
           
           <div class="text-center mt-7">
             <v-btn
@@ -58,8 +62,12 @@
           </v-btn>
           </div>
         </v-col>
-          
+
       </v-row>
+        <v-snackbar v-model="snackbarReset" color="secondary" :timeout="timeout">
+            Reset your password
+            <v-btn color="white" text @click="resetPass()"> go </v-btn>
+        </v-snackbar>
     </v-container>
 </template>
 
@@ -72,6 +80,9 @@ export default {
         user: "",
         pass: "",
         showText: false,
+        showReset: false,
+        snackbarReset: false,
+        timeout: 0,
      }
   },
   methods: {
@@ -107,10 +118,24 @@ export default {
          }
        })
        .catch(err => {
-         this.showText = true;
-         console.error(err);
+         console.error(err.response);
+         this.showText = false
+         this.showReset = false
+
+         if(err.response.status == 426) {
+            this.showReset = true
+            this.snackbarReset = true
+            this.$store.dispatch("syncStudentId",this.user)
+         }
+         else
+            this.showText = true
        });
     },
+
+    resetPass() {
+      this.snackbarReset = false
+      this.$router.replace("/reset")
+    }
   },
 
   created() {

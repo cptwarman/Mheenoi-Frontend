@@ -386,34 +386,40 @@ export default {
          }
       })
        .then(res => {
-          //console.log(res)
+          console.log(res)
           //store all data from api
           this.info = res.data.payload.info[0]
-          this.gpa = res.data.payload.gpa[0].gpa
           this.enrollment = res.data.payload.enrollment
+          
+          if(res.data.payload.gpa[0].gpa === null)
+            this.gpa = "-"
+          else
+            this.gpa = res.data.payload.gpa[0].gpa
+          
+          if(res.data.payload.enrollment.length != 0) {
+            this.maxYear = _.maxBy(this.enrollment, 'year').year
+             _.filter(this.enrollment, (el) => { 
+              if(el.grade == null)
+                el.grade = "-"
+  
+              // filter academic year
+               if(!this.academicYear.includes(el.year)) 
+                  this.academicYear.push(el.year);
+  
+               el.fullname = el.firstName + " " + el.lastName
+                delete el.firstName
+                delete el.lastName
+                if(el.year == this.maxYear)
+                  this.lastYearEnrolltemp.push(el)
+            });
 
-          this.maxYear = _.maxBy(this.enrollment, 'year').year
-           _.filter(this.enrollment, (el) => { 
-            if(el.grade == null)
-              el.grade = "-"
-
-            // filter academic year
-             if(!this.academicYear.includes(el.year)) 
-                this.academicYear.push(el.year);
-
-             el.fullname = el.firstName + " " + el.lastName
-              delete el.firstName
-              delete el.lastName
-              if(el.year == this.maxYear)
-                this.lastYearEnrolltemp.push(el)
-          });
-
-          this.maxSemester = _.maxBy( this.lastYearEnrolltemp, 'semester').semester
-          _.filter(this.lastYearEnrolltemp, (el) => { 
+            this.maxSemester = _.maxBy( this.lastYearEnrolltemp, 'semester').semester
+            _.filter(this.lastYearEnrolltemp, (el) => { 
               if(el.semester ==  this.maxSemester)
-                this.lastYearEnroll.push(el)
-          });
+                  this.lastYearEnroll.push(el)
+            });
 
+          }
           //console.log( this.academicYear)
           //get only date
           this.info.dob = res.data.payload.info[0].dob.substr(0, 10);

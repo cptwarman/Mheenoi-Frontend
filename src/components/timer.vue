@@ -22,7 +22,7 @@
       </v-btn>
     </v-snackbar>
 
-    <v-snackbar v-model="snackbar5Min" color="error" :timeout="timeout">
+    <v-snackbar top v-model="snackbar5Min" color="error" :timeout="timeout">
         <v-flex>
             <v-icon dark class="mr-2">warning</v-icon>
             You have <b>5</b> minutes left!!
@@ -32,7 +32,7 @@
       </v-btn>
     </v-snackbar>
 
-    <v-snackbar v-model="snackbar1Min" color="error" :timeout="timeout">
+    <v-snackbar top v-model="snackbar1Min" color="error" :timeout="timeout">
         <v-flex>
             <v-icon dark class="mr-2">warning</v-icon>
             You have <b>1</b> minutes left!!

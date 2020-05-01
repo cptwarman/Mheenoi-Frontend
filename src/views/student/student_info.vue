@@ -386,6 +386,15 @@
         </v-card>
       </v-col>
     </v-row>
+        <v-snackbar v-model="snackbar.pass" color="success">
+            Edit Successfully
+            <v-btn color="white" text @click="snackbar.pass = false"> Close </v-btn>
+        </v-snackbar>
+
+        <v-snackbar top v-model="snackbar.fail" color="error">
+            Something went wrong
+            <v-btn color="white" text @click="snackbar.fail = false"> Close </v-btn>
+        </v-snackbar>
   </v-container>
 </template>
 
@@ -402,6 +411,11 @@ export default {
 
  data() {
    return {
+     snackbar: {
+       pass: false,
+       fail: false,
+     },
+
      menu: false,
      dialog: false,
      dialogSubmit: false,
@@ -610,9 +624,12 @@ export default {
           }
        })
        .then(res => {
-          location.reload();
+          this.snackbar.pass = true
+          setTimeout(() => location.reload(), 2500)
+          
        }).catch(err => {
-          console.error(err);
+          console.error(err.respons)
+          this.snackbar.fail = true
        });
    },
  },
