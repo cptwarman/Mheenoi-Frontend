@@ -174,7 +174,8 @@ router.beforeEach((to,from,next) => {
   // protect from manual direct to login pahe without logout
   else if(to.name == "LogIn" && sessionStorage.getItem('jwt') !== null)
       next(false)
-  else if(from.meta.type != to.meta.type && (from.name != "LogIn" && from.name != "reset" && to.name != "LogIn"))
+  // protect from permission
+  else if(from.meta.type != to.meta.type && (from.name != "LogIn" && from.name != "reset" && to.name != "LogIn") && from.name != null)
       next(false)
   else
       next()

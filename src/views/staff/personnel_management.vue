@@ -14,7 +14,7 @@
             <v-row justify="center">
                 <v-card>
                     <v-card-title>
-                        <v-btn color="primary" @click="gerStudents" :disabled="btn.students">
+                        <v-btn color="primary" @click="getStudents" :disabled="btn.students">
                             <v-icon left>school</v-icon> students</v-btn>
                         <v-btn color="primary" @click="getLecturers" :disabled="btn.lecturers" class="ml-3">
                             <v-icon left>record_voice_over</v-icon> lecturers</v-btn>
@@ -29,7 +29,6 @@
                     </v-card-title>
 
                     <v-card-text class="pb-0">
-
                         <v-data-table
                             :headers="swapHeader"
                             :items="swapData"
@@ -43,11 +42,14 @@
 
                         </v-data-table>
                     </v-card-text>
+
                     <v-card-actions class="pb-3 pt-0 pl-3">                       
                         <v-btn v-if="btn.students" color="success">
                             <v-icon left>person_add</v-icon> add student</v-btn>
-                        <v-btn v-if="btn.lecturers"  color="success">add lecturer</v-btn>                   
+                        <v-btn v-if="btn.lecturers"  color="success">
+                            <v-icon left>person_add</v-icon> add lecturer</v-btn>                   
                     </v-card-actions>
+
                 </v-card>
             </v-row>
         </v-col>
@@ -62,6 +64,8 @@ export default {
     data() {
         return {
             search: "",
+            indexOfInfo: "",
+
             btn: {
                 students: true,
                 lecturers: false,
@@ -122,6 +126,16 @@ export default {
                 students: [],
                 lecturers: [],
             },
+            dialog: {
+                detail: false,
+                add: false,
+                submit: false,
+                cancel: false,
+            },
+            sncakbar: {
+                pass: false,
+                fail: false,
+            },
         }
     },
 
@@ -144,10 +158,9 @@ export default {
 
                 _.filter(this.payload.lecturers, el => {
                     // concatnate  name
-                    el.fullname = el.title + " " + el.firstName + " " + el.lastName
+                    el.fullname = el.firstName + " " + el.lastName
                     delete el.firstName
                     delete el.lastName
-                    delete el.title
                     //change dob foramt
                     el.dob = el.dob.substr(0, 10);
                     //change gebder format
@@ -163,9 +176,19 @@ export default {
             });
         },
 
-        gerStudents() {
+        getStudents() {
             this.btn.lecturers = false
             this.btn.students = true
+        },
+
+        showDetails(item) {
+            // get student info by index
+            if(this.btn.students)
+                this.indexOfInfo = this.payload.students.indexOf(item)
+            // get lecturer info by index
+            else if(this.btn.lecturers)
+                this.indexOfInfo = this.payload.lecturers.indexOf(item)
+            this.dialog.detail = true
         },
     },
 
@@ -201,10 +224,9 @@ export default {
 
             _.filter(this.payload.students, el => {
                 // concatnate name
-                el.fullname = el.title + " " + el.firstName + " " + el.lastName
+                el.fullname =  el.firstName + " " + el.lastName
                 delete el.firstName
                 delete el.lastName
-                delete el.title
                 //change dob foramt
                 el.dob = el.dob.substr(0, 10);
                 //change gebder format
