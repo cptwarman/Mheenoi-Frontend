@@ -23,7 +23,7 @@
                             <v-col cols="12" sm="5">
                                 <v-row :justify="changePosition">
                                     <div :class="changeMargin">
-                                        <p> <b>Employee ID</b>: {{payload.employeeId}}</p>
+                                        <p><b>Employee ID</b>: {{payload.employeeId}}</p>
                                         <p><b>Position</b>: {{payload.position}}</p>
                                         <p><b>First Name</b>: {{payload.firstName}}</p>
                                         <p><b>Last Name</b>: {{payload.lastName}}</p>
