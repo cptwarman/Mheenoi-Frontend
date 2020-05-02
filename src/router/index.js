@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/index';
 import LogIn from '../views/LogIn.vue'
 import reset from '../views/reset.vue'
+
 // student
 import student_main from '../views/student/student_main.vue'
 import student_info from '../views/student/student_info.vue'
@@ -38,27 +40,42 @@ Vue.use(VueRouter)
     name: 'student',
     component: student_main,
     props: true,
+    meta: {
+      type: 1
+    }
   },
   {
     path: '/student_info',
     name: 'student_info',
     component: student_info,
     props: true,
+    meta: {
+      type: 1
+    }
   },
   {
     path: '/enrollment_from',
     name: 'enrollment_from',
-    component: enrollment_from
+    component: enrollment_from,
+    meta: {
+      type: 1
+    }
   },
   {
     path: '/activities',
     name: 'activities',
-    component: activities
+    component: activities,
+    meta: {
+      type: 1
+    }
   },
   {
     path: '/scholarship',
     name: 'scholarship',
-    component: scholarship
+    component: scholarship,
+    meta: {
+      type: 1
+    }
   },
 
   // Lecturer
@@ -66,22 +83,34 @@ Vue.use(VueRouter)
   {
     path: '/lecturer',
     name: 'lecturer',
-    component: lecturer_main
+    component: lecturer_main,
+    meta: {
+      type: 2
+    },
   },
   {
     path: '/lecturer_info',
     name: 'lecturer_info',
-    component: lecturer_info
+    component: lecturer_info,
+    meta: {
+      type: 2
+    },
   },
   {
     path: '/grade',
     name: 'grade',
-    component: grade_assignment
+    component: grade_assignment,
+    meta: {
+      type: 2
+    },
   },
   {
     path: '/subject',
     name: 'subject_management',
-    component: subject_management
+    component: subject_management,
+    meta: {
+      type: 2
+    },
   },
 
 
@@ -90,27 +119,42 @@ Vue.use(VueRouter)
   {
     path: '/staff',
     name: 'staff',
-    component: staff_main
+    component: staff_main,
+    meta: {
+      type: 3
+    },
   },
   {
     path: '/staff_info',
     name: 'staff_info',
-    component: staff_info
+    component: staff_info,
+    meta: {
+      type: 3
+    },
   },
   {
     path: '/staff_subject',
     name: 'staff_subject',
-    component: staff_subject
+    component: staff_subject,
+    meta: {
+      type: 3
+    },
   },
   {
     path: '/scholarship_editor',
     name: 'scholarship_editor',
-    component: scholarship_editor
+    component: scholarship_editor,
+    meta: {
+      type: 3
+    },
   },
   {
     path: '/personnel',
     name: 'personnel',
-    component: personnel_management
+    component: personnel_management,
+    meta: {
+      type: 3
+    },
   },
 ]
 
@@ -121,9 +165,16 @@ const router = new VueRouter({
 export default router
 
 router.beforeEach((to,from,next) => {
+  // protect from manual direct to another page without login
   if(to.name !== "LogIn" && to.name !== "reset"  && sessionStorage.getItem('jwt') === null)
       next('/')
+  // protect from manual direct to reset page 
+  else if(store.getters.getStatusCode !== 426 && to.name == "reset")
+      next(false)
+  // protect from manual direct to login pahe without logout
   else if(to.name == "LogIn" && sessionStorage.getItem('jwt') !== null)
+      next(false)
+  else if(from.meta.type != to.meta.type && (from.name != "LogIn" && from.name != "reset" && to.name != "LogIn"))
       next(false)
   else
       next()

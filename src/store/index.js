@@ -9,17 +9,24 @@ export default new Vuex.Store({
     studentIdBuff: "",
     first_name: "",
     loader: false,
+    statusCode: "",
   },
 
   mutations: {
     setStudentId(state, value) {
       state.studentIdBuff = value
     },
+
     setFirtName(state, value) {
       state.first_name = value
     },
+
     setLoader(state, value) {
       state.loader = value
+    },
+
+    setStatusCode(state, value) {
+      state.statusCode = value
     }
   },
 
@@ -34,6 +41,10 @@ export default new Vuex.Store({
 
     getLoader(state) {
       return state.loader
+    },
+
+    getStatusCode(state) {
+      return state.statusCode
     },
   },
 

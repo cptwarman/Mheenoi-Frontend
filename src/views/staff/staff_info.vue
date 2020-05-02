@@ -1,7 +1,7 @@
 <template>
     <v-container fill-height fluid>
         <v-row justify="center">
-            <v-col sm="8">
+            <v-col sm="8" lg="7">
                 <v-row justify="center" class="mb-3">
                     <v-card class="py-3 px-5" shaped>
                         <span

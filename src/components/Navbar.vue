@@ -134,7 +134,7 @@
             <v-list-item-title class="subtitle-2 font-weight-medium">Home</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="infoS()">
+          <v-list-item @click="infoStaff()">
             <v-list-item-icon>
               <v-icon color="primary">mdi-account</v-icon>
             </v-list-item-icon>
@@ -259,7 +259,7 @@ export default {
     mainS() {
       this.$router.push("/staff").catch(err => {})
     },
-    infoS() {
+    infoStaff() {
       this.$router.push("/staff_info").catch(err => {})
     },
     subjectS() {

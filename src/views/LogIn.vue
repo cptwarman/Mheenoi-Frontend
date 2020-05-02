@@ -126,6 +126,7 @@ export default {
             this.showReset = true
             this.snackbarReset = true
             this.$store.dispatch("syncStudentId",this.user)
+            this.$store.commit("setStatusCode",426)
          }
          else
             this.showText = true
