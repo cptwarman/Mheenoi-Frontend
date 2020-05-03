@@ -608,7 +608,8 @@ export default {
      }   
      
     delete this.passPayload.fullGender
-      console.log(this.passPayload)
+    console.log(this.passPayload)
+
      let jwtToken = sessionStorage.getItem('jwt')
      axios({
           method: 'put',

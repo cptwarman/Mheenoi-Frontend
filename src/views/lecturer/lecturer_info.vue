@@ -20,7 +20,7 @@
                         </v-row>
                         <!-- infomation -->
                         <v-row justify="center" class="mt-5">
-                            <v-col cols="12" sm="5">
+                            <v-col cols="11" sm="5">
                                 <v-row :justify="changePosition">
                                     <div :class="changeMargin">
                                         <p><b>Employee ID</b>: {{payload.employeeId}}</p>
@@ -32,7 +32,7 @@
                                     </div>
                                 </v-row>
                             </v-col>
-                            <v-col cols="12" sm="5">
+                            <v-col cols="11" sm="5">
                                 <v-row :justify="changePosition2">
                                     <div :class="changeMargin2">
                                         <p><b>Faculty</b>: {{payload.faculty}}</p>
