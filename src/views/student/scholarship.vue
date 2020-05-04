@@ -348,7 +348,8 @@ export default {
           method: 'post',
           url: `https://chai-test-backend.herokuapp.com/api/scholarships/requests`,
           data: { 
-            payload: this.passPayload },
+            payload: this.passPayload 
+          },
           headers: {
             Authorization: `bearer ${jwtToken}`
           }

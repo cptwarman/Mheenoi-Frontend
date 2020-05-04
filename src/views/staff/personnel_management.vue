@@ -3,11 +3,7 @@
         <v-col>
             <v-row justify="center" class="mb-7">
                 <v-card class="py-3 px-5" shaped>
-                    <span
-                        class="blue--text 
-                        font-weight-bold
-                        title"
-                    > PERSONNEL MANAGEMENT</span>
+                    <span :class="calFont"> PERSONNEL MANAGEMENT</span>
                 </v-card>
             </v-row>
 
@@ -162,7 +158,7 @@
                                                 :items = "degree"
                                                 label="Degree"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-select>
                                             
                                             <v-select
@@ -170,7 +166,7 @@
                                                 :items = "program"
                                                 label="Program"
                                                 required
-                                                 class="mt-5"
+                                                class="mt-10"
                                             ></v-select> 
 
                                             <v-select
@@ -178,7 +174,7 @@
                                                 :items = "genderSelect"
                                                 label="Gender"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-select>
                                         </v-col>
 
@@ -198,7 +194,7 @@
                                                 :counter="32"
                                                 label="Last name"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-text-field
@@ -207,7 +203,7 @@
                                                 :counter="32"
                                                 label="E-mail"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>                       
 
                                             <v-text-field
@@ -216,7 +212,7 @@
                                                 :counter="13"
                                                 label="ID Card Number"
                                                 required 
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>
                                         </v-col>
 
@@ -237,7 +233,7 @@
                                                 :counter="128"
                                                 label="Address"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-select
@@ -245,12 +241,12 @@
                                                 :items = "bloodTypeSelect"
                                                 label="Blood Type"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-select>
 
                                             <v-menu
                                                 ref="menu"
-                                                v-model="menuS"
+                                                v-model="menuSAdd"
                                                 :close-on-content-click="false"
                                                 :return-value.sync="passPayload.students.dob"
                                                 transition="scale-transition"
@@ -262,14 +258,14 @@
                                                     <v-text-field
                                                     v-model="passPayload.students.dob"
                                                     label="Birthday"
-                                                    class="mt-5"
+                                                    class="mt-10"
                                                     readonly
                                                     v-on="on"
                                                     ></v-text-field>
                                                 </template>
                                                 <v-date-picker v-model="passPayload.students.dob" no-title scrollable>
                                                     <v-spacer></v-spacer>
-                                                    <v-btn text color="primary" @click="menuS = false">Cancel</v-btn>
+                                                    <v-btn text color="primary" @click="menuSAdd = false">Cancel</v-btn>
                                                     <v-btn text color="primary" @click="$refs.menu.save(passPayload.students.dob)">OK</v-btn>
                                                 </v-date-picker>
                                             </v-menu>
@@ -279,7 +275,7 @@
 
                                     <!-- Row About Family -->
                                     <!-- Header -->
-                                    <v-row no-gutters class="mt-5">
+                                    <v-row no-gutters class="mt-10">
                                         <span class="blue--text subtitle-1">
                                         About Family
                                         </span>
@@ -302,7 +298,7 @@
                                                 :counter="32"
                                                 label="Guardian1 Last name"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-text-field
@@ -312,7 +308,7 @@
                                                 label="Guardian1 Career"
                                                 required
                                                 hint="If your guardian doesn' have a career, you can enter - "
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>
                                             
                                             <v-text-field
@@ -321,7 +317,7 @@
                                                 label="Guardian1 Income"
                                                 required
                                                 hint="if your guardian doesn't have income, you can enter 0"
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>           
                                         </v-col>
 
@@ -341,7 +337,7 @@
                                                 :items = "RelationSelect"
                                                 label="Guardian1 Relation with Student"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-select>
 
                                             <v-text-field
@@ -350,7 +346,7 @@
                                                 :counter="32"
                                                 label="Guardian2 First name"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>
                                             
                                             <v-text-field
@@ -359,7 +355,7 @@
                                                 :counter="32"
                                                 label="Guardian2 Last name"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>         
                                         </v-col>
 
@@ -380,7 +376,7 @@
                                                 label="Guardian2 Income"
                                                 required
                                                 hint="if your guardian doesn't have income, you can enter 0"
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>
                                             
                                             <v-text-field
@@ -390,14 +386,14 @@
                                                 hint="You can use the home number instead phone number"
                                                 label="Guardian2 Phone"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-text-field>  
 
                                             <v-select
                                                 v-model="passPayload.students.parent2Relation"
                                                 :items = "RelationSelect"
                                                 label="Guardian2 Relation with Student"
-                                                class="mt-5"
+                                                class="mt-10"
                                             ></v-select>
                                         </v-col>
                                     </v-row>
@@ -501,7 +497,7 @@
                                             :items="position"
                                             label="Position"
                                             required
-                                            class="mt-5"
+                                            class="mt-10"
                                         />
 
                                         <v-text-field
@@ -510,7 +506,7 @@
                                             :counter="32"
                                             label="First name"
                                             required
-                                             class="mt-5"
+                                             class="mt-10"
                                         />
                                         <v-text-field
                                             v-model="passPayload.lecturers.lastName"
@@ -518,7 +514,7 @@
                                             :counter="32"
                                             label="Last name"
                                             required
-                                            class="mt-5"
+                                            class="mt-10"
                                         />
                                         <v-text-field
                                             v-model="passPayload.lecturers.email"
@@ -526,7 +522,7 @@
                                             :counter="32"
                                             label="E-mail"
                                             required
-                                            class="mt-5"
+                                            class="mt-10"
                                         />
                                         <v-text-field
                                             v-model="passPayload.lecturers.idCardNumber"
@@ -534,7 +530,7 @@
                                             :counter="13"
                                             label="ID Card Number"
                                             required
-                                            class="mt-5"
+                                            class="mt-10"
                                         />
                                        
                                     </v-col>
@@ -552,7 +548,7 @@
                                             :items="select.gender"
                                             label="Gender"
                                             required
-                                            class="mt-5"
+                                            class="mt-10"
                                         />
 
                                         <v-text-field
@@ -561,7 +557,7 @@
                                             :counter="10"
                                             label="Phone"
                                             required
-                                            class="mt-5"
+                                            class="mt-10"
                                         />
 
                                         <v-menu
@@ -578,7 +574,7 @@
                                                     <v-text-field
                                                     v-model="passPayload.lecturers.dob"
                                                     label="Birthday"
-                                                    class="mt-5"
+                                                    class="mt-10"
                                                     readonly
                                                     v-on="on"
                                                     />
@@ -596,7 +592,7 @@
                                             :counter="128"
                                             label="Address"
                                             required
-                                            class="mt-5"
+                                            class="mt-10"
                                         />
                                     </v-col>
                                 </v-row>
@@ -789,7 +785,7 @@
                                                                         :counter="32"
                                                                         label="Last name"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-text-field
@@ -798,7 +794,7 @@
                                                                         :counter="32"
                                                                         label="E-mail"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>                        
                                                                 </v-col>
 
@@ -820,7 +816,7 @@
                                                                         label="Phone"
                                                                         hint="You can use the home number instead phone number"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-text-field
@@ -829,7 +825,7 @@
                                                                         :counter="128"
                                                                         label="Address"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>
                                                                 </v-col>
 
@@ -847,7 +843,7 @@
                                                                         :items = "bloodTypeSelect"
                                                                         label="Blood Type"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-select>
 
                                                                     <v-menu
@@ -864,7 +860,7 @@
                                                                             <v-text-field
                                                                             v-model="passPayload.students.dob"
                                                                             label="Birthday"
-                                                                            class="mt-5"
+                                                                            class="mt-10"
                                                                             readonly
                                                                             v-on="on"
                                                                             ></v-text-field>
@@ -881,7 +877,7 @@
 
                                                             <!-- Row About Family -->
                                                             <!-- Header -->
-                                                            <v-row no-gutters class="mt-5">
+                                                            <v-row no-gutters class="mt-10">
                                                                 <span class="blue--text subtitle-1">
                                                                 About Family
                                                                 </span>
@@ -904,7 +900,7 @@
                                                                         :counter="32"
                                                                         label="Guardian1 Last name"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-text-field
@@ -914,7 +910,7 @@
                                                                         label="Guardian1 Career"
                                                                         required
                                                                         hint="If your guardian doesn' have a career, you can enter - "
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>
                                                                     
                                                                     <v-text-field
@@ -923,7 +919,7 @@
                                                                         label="Guardian1 Income"
                                                                         required
                                                                         hint="if your guardian doesn't have income, you can enter 0"
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>           
                                                                 </v-col>
 
@@ -943,7 +939,7 @@
                                                                         :items = "RelationSelect"
                                                                         label="Guardian1 Relation with Student"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-select>
 
                                                                     <v-text-field
@@ -952,7 +948,7 @@
                                                                         :counter="32"
                                                                         label="Guardian2 First name"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>
                                                                     
                                                                     <v-text-field
@@ -961,7 +957,7 @@
                                                                         :counter="32"
                                                                         label="Guardian2 Last name"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>         
                                                                 </v-col>
 
@@ -982,7 +978,7 @@
                                                                         label="Guardian2 Income"
                                                                         required
                                                                         hint="if your guardian doesn't have income, you can enter 0"
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>
                                                                     
                                                                     <v-text-field
@@ -992,14 +988,14 @@
                                                                         hint="You can use the home number instead phone number"
                                                                         label="Guardian2 Phone"
                                                                         required
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-text-field>  
 
                                                                     <v-select
                                                                         v-model="passPayload.students.parent2Relation"
                                                                         :items = "RelationSelect"
                                                                         label="Guardian2 Relation with Student"
-                                                                        class="mt-5"
+                                                                        class="mt-10"
                                                                     ></v-select>
                                                                 </v-col>
                                                             </v-row>
@@ -1120,7 +1116,7 @@
                                         <img src="../../assets/profile/lecturer.png" alt="lecturer" width="180" height="180">
                                     </v-row>
                                     <!-- infomation -->
-                                    <v-row justify="center" class="mt-5">
+                                    <v-row justify="center" class="mt-10">
                                         <v-col cols="11" sm="5">
                                             <v-row :justify="changePosition">
                                                 <div :class="changeMargin">
@@ -1187,7 +1183,7 @@
                                                             :counter="32"
                                                             label="Last name"
                                                             required
-                                                            class="mt-5"
+                                                            class="mt-10"
                                                         />
                                                         <v-text-field
                                                             v-model="passPayload.lecturers.email"
@@ -1195,7 +1191,7 @@
                                                             :counter="32"
                                                             label="E-mail"
                                                             required
-                                                            class="mt-5"
+                                                            class="mt-10"
                                                         />
                                                         <v-text-field
                                                             v-model="passPayload.lecturers.idCardNumber"
@@ -1203,7 +1199,7 @@
                                                             :counter="13"
                                                             label="ID Card Number"
                                                             required
-                                                            class="mt-5"
+                                                            class="mt-10"
                                                         />
                                                         <v-text-field
                                                             v-model="passPayload.lecturers.address"
@@ -1211,7 +1207,7 @@
                                                             :counter="128"
                                                             label="Address"
                                                             required
-                                                            class="mt-5"
+                                                            class="mt-10"
                                                         />
                                                     </v-col>
                                                     <!-- col 2nd -->
@@ -1228,14 +1224,14 @@
                                                             :items="select.gender"
                                                             label="Gender"
                                                             required
-                                                            class="mt-5"
+                                                            class="mt-10"
                                                         />
                                                         <v-select
                                                             v-model="passPayload.lecturers.bloodType"
                                                             :items="select.bloodType"
                                                             label="Blood Type"
                                                             required
-                                                            class="mt-5"
+                                                            class="mt-10"
                                                         />
                                                         <v-menu
                                                             ref="menuL"
@@ -1251,7 +1247,7 @@
                                                                     <v-text-field
                                                                     v-model="passPayload.lecturers.dob"
                                                                     label="Birthday"
-                                                                    class="mt-5"
+                                                                    class="mt-10"
                                                                     readonly
                                                                     v-on="on"
                                                                     />
@@ -1368,7 +1364,7 @@
                                         <img src="../../assets/profile/lecturer.png" alt="lecturer" width="180" height="180">
                                     </v-row>
                                     <!-- infomation -->
-                                    <v-row justify="center" class="mt-5">
+                                    <v-row justify="center" class="mt-10">
                                         <v-col cols="11" sm="5">
                                             <v-row :justify="changePosition">
                                                 <div :class="changeMargin">
@@ -1546,6 +1542,7 @@ export default {
             //? from info student
 
                 menuS: false,
+                menuSAdd: false,
                 dialogS: {
                     dialog: false,
                     dialogSubmit: false,
@@ -2207,6 +2204,13 @@ export default {
                 return this.headerStudent
             else if(this.btn.lecturers || this.btn.staffs)
                 return this.headerEmployees
+        },
+
+        calFont() {
+            if(this.$vuetify.breakpoint.xs)
+                return "blue--text font-weight-bold subtitle-1"
+            else
+                return "blue--text font-weight-bold title"
         },
 
 

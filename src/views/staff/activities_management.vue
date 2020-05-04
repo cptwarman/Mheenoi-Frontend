@@ -2,8 +2,16 @@
   <v-container fluid fill-height>
       <v-row justify="center">
             <v-col cols="10">
+
+                <v-row justify="center" class="mb-7">
+                    <v-card class="py-3 px-5" shaped>
+                        <span :class="calFont">  ACTIVITIES MANAGEMENT </span>
+                    </v-card>
+                </v-row>
+
                 <v-row justify="center">
                      <v-card width="1000" >
+
                         <v-card-title class="blue--text">
                                 Activities
                             <v-spacer/>
@@ -17,9 +25,9 @@
                         </v-card-title>
 
                         <v-data-table
-                        :headers="table.headers"
-                        :items="payload"
-                        :search="search"
+                            :headers="table.headers"
+                            :items="payload"
+                            :search="search"
                         >
                             <template v-slot:item.actions="{ item }">
                                 <v-btn x-small color="primary" fab @click="showDetails(item)">
@@ -318,6 +326,13 @@ computed: {
             return "12"
         else
             return "5"
+    },
+
+    calFont() {
+        if(this.$vuetify.breakpoint.xs)
+            return "blue--text font-weight-bold subtitle-1"
+        else
+            return "blue--text font-weight-bold title"
     }
 },
 
