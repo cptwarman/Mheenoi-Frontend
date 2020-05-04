@@ -111,14 +111,6 @@
                                     </v-container>
                                 </v-card-text>
 
-                                <!-- delete button -->
-                                <v-card-actions>
-                                    <v-spacer/>
-                                        <v-btn color="error" @click="deleteActivity()">
-                                            <v-icon left>delete_outline</v-icon> delete
-                                        </v-btn>
-                                    <v-spacer/>
-                                </v-card-actions>
                             </v-card>
                         </v-dialog>
                     </v-card>
@@ -449,23 +441,11 @@
                     <v-btn color="white" text @click="snackbar.pass = false"> Close </v-btn>
                 </v-snackbar>
                 
-                <!-- delete Successful -->
-                <v-snackbar v-model="snackbar.passDel" color="success">
-                    Delete Successful
-                    <v-btn color="white" text @click="snackbar.passDel = false"> Close </v-btn>
-                </v-snackbar>
-
                 <!-- add fail -->
                 <v-snackbar v-model="snackbar.fail" color="error">
-                    Something went wrong
+                    Student ID not found
                     <v-btn color="white" text @click="snackbar.fail = false"> Close </v-btn>
-                </v-snackbar>'
-                
-                <!-- delete fail -->
-                <v-snackbar v-model="snackbar.failDel" color="error">
-                    Delete Failed
-                    <v-btn color="white" text @click="snackbar.failDel = false"> Close </v-btn>
-                </v-snackbar>'
+                </v-snackbar>
                 
             </v-col>
       </v-row>
@@ -538,6 +518,8 @@ data() {
             location: "",
             staffs: [],
         },
+
+        passPayloadBuff: {},
 
         staffBuff: {
             studentId: "",
@@ -616,40 +598,22 @@ methods: {
         this.passPayload.staffs.splice(index,1)
     },
 
-    deleteActivity() {
-        console.log(this.payload[this.indexOfActivity].activityId)
-        let jwtToken = sessionStorage.getItem('jwt')
-        axios({
-            method: 'del',
-            url: `https://chai-test-backend.herokuapp.com/api/activities/${this.payload[this.indexOfActivity].activityId}`,
-            headers: {
-                Authorization: `bearer ${jwtToken}`
-            }
-        })
-        .then(res => {
-            console.log(res)
-            this.snackbar.passDel = true
-        })
-        .catch(err => {
-            console.error(err.respons);
-            this.snackbar.failDel = true
-        });
-    },
-
     submit() {
         //! POST TO SERVER
-        this.passPayload.startTime = this.passPayload.startDate + " " + this.passPayload.startTime + ":00"
-        this.passPayload.endTime = this.passPayload.endDate + " " + this.passPayload.endTime + ":00"
-        delete this.passPayload.startDate
-        delete this.passPayload.endDate
-        console.log(this.passPayload)
+        this.passPayloadBuff = _.cloneDeep(this.passPayload)
+        this.passPayloadBuff.startTime = this.passPayloadBuff.startDate + " " + this.passPayloadBuff.startTime + ":00"
+        this.passPayloadBuff.endTime = this.passPayloadBuff.endDate + " " + this.passPayloadBuff.endTime + ":00"
+        delete this.passPayloadBuff.startDate
+        delete this.passPayloadBuff.endDate
+
+        console.log(this.passPayloadBuff)
 
         let jwtToken = sessionStorage.getItem('jwt');
         axios({
             method: 'post',
             url: `https://chai-test-backend.herokuapp.com/api/activities`,
             data: { 
-                payload: this.passPayload },
+                payload: this.passPayloadBuff },
             headers: {
                 Authorization: `bearer ${jwtToken}`
             }
@@ -747,13 +711,13 @@ created() {
             }
         })
         .then(res => {
-            //console.log(res)
-            this.payload = res.data.payload
+            console.log(res.data.payload)
+            this.payload = _.cloneDeep(res.data.payload) 
             this.payload.forEach(el => {
-                el.startDate = el.startTime.split("T")[0]
-                el.startTime = el.startTime.split("T")[1].split("Z")[0]
-                el.endDate = el.endTime.split("T")[0]
-                el.endTime = el.endTime.split("T")[1].split("Z")[0]
+                el.startDate = el.startTime.substr(0, 10)
+                el.startTime = el.startTime.substr(11, 12)
+                el.endDate = el.endTime.substr(0, 10)
+                el.endTime = el.endTime.substr(11, 12)
             });
             console.log(this.payload)
         })

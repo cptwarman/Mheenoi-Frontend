@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height v-if="!this.$store.getters.getLoader">
+  <v-container fluid fill-height >
     <v-row justify="center">
       <v-col lg="9">
 
@@ -196,8 +196,8 @@
                <v-btn color="white" text @click="snackbar.snackbarPass = false"> Close </v-btn>
             </v-snackbar>
 
-            <v-snackbar v-model="snackbar.snackbarFail" color="error">
-                Request Fail
+            <v-snackbar v-model="snackbar.snackbarFail" color="warning">
+                You have already requested
                <v-btn color="white" text @click="snackbar.snackbarFail = false"> Close </v-btn>
             </v-snackbar>
 
@@ -226,7 +226,8 @@ export default {
       search: "",
       payload: {},
       scholar: [],
-      headers: [{
+      headers: [
+        {
           text: "Scholarship ID",
           value: "scholarshipId",
           align: "center"
@@ -245,9 +246,10 @@ export default {
           value: 'actions',
           align: "center",
           sortable: false 
-        }],
+        }
+      ],
         
-        rules: {
+      rules: {
           reason: [
             v => v.length <= 256 || 'Max 256 characters',
             v => !!v || "Reason is required for scholarship requesting"
@@ -262,7 +264,7 @@ export default {
             v =>  v.length <= 32 || 'Max 32 characters',
             v => !!v || "This field is required"
           ],
-        },
+      },
         reason: "",
         indexOfScholarship: "",
         nameOfScholarship: "",
@@ -357,11 +359,14 @@ export default {
           this.cancel()
           this.snackbar.snackbarPass = true
        }).catch(err => {
-          console.error(err);
+          console.error(err.respones);
           this.dialog.dialogSubmit = false
+          this.dialog.dialogDetails = false
           this.snackbar.snackbarFail = true
+          this.cancel()
        });
     },
+
     cancel(){
       this.activitieShow = []
       this.act.name = ""

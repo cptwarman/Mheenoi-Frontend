@@ -148,6 +148,13 @@
             <v-list-item-title class="subtitle-2 font-weight-medium">Subject Management</v-list-item-title>
           </v-list-item>
 
+          <v-list-item @click="activitieS()">
+            <v-list-item-icon>
+              <v-icon color="primary">people_alt</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Activities Management</v-list-item-title>
+          </v-list-item>
+
           <v-list-item @click="scholarS()">
             <v-list-item-icon>
               <v-icon color="primary">school</v-icon>
@@ -157,7 +164,7 @@
 
           <v-list-item @click="personnelS()">
             <v-list-item-icon>
-              <v-icon color="primary">people_alt</v-icon>
+              <v-icon color="primary">group_add</v-icon>
             </v-list-item-icon>
             <v-list-item-title class="subtitle-2 font-weight-medium">Personnel Management</v-list-item-title>
           </v-list-item>
@@ -271,6 +278,9 @@ export default {
     personnelS() {
       this.$router.push("/personnel").catch(err => {})
     },
+    activitieS() {
+      this.$router.push("/activities_management").catch(err => {})
+    }
   },
 };
 </script>
