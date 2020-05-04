@@ -54,7 +54,7 @@
                                 <v-icon left>create</v-icon> edit
                             </v-btn>
 
-                            <v-btn  color="blue" dark href="/#/lecturer">
+                            <v-btn  color="blue" dark @click="goToHome()">
                                 <v-icon left>mdi-home</v-icon> home
                             </v-btn>
                         <v-spacer/>
@@ -362,13 +362,17 @@ export default {
             })
             .then(res => {
                 this.snackbar.pass = true
-                setTimeout(() => location.reload(), 2500)
+                setTimeout(() => location.reload(), 2000)
 
             }).catch(err => {
                 console.error(err.respons)
                 this.snackbar.fail = true
             });
         },
+
+        goToHome() {
+            this.$router.push("/lecturer")
+        }
         
     },
 

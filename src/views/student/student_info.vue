@@ -63,7 +63,7 @@
                 <v-icon left>create</v-icon> edit
               </v-btn>
 
-              <v-btn  color="blue" dark href = "/#/student">
+              <v-btn  color="blue" dark @click="goToHome()">
                 <v-icon left>mdi-home</v-icon> home
               </v-btn>
             <v-spacer/>
@@ -148,7 +148,7 @@
                         <!-- column 3 -->
                         <v-col cols="12" md="4">
                           <v-select
-                            v-model="passPayload.fullGender"
+                            v-model="passPayload.gender"
                             :items = "genderSelect"
                             label="Gender"
                             required
@@ -463,7 +463,6 @@ export default {
         firstName: "",
         lastName: "",
         gender: "",
-        fullGender: "",
         picturePath: "",
         program: "",
         studentId: "",
@@ -596,9 +595,13 @@ export default {
      this.passPayload = {...this.payload}
    },
 
+   goToHome() {
+     this.$router.push("/student")
+   },
+
    infoSubmit() {
      this.$store.dispatch("syncfirstName",this.passPayload.firstName)
-     if(this.passPayload.fullGender === "Male") {
+     if(this.passPayload.gender === "Male") {
        this.passPayload.title = "Mr."
        this.passPayload.gender = "M"
      }
@@ -622,7 +625,7 @@ export default {
        })
        .then(res => {
           this.snackbar.pass = true
-          //setTimeout(() => location.reload(), 2500)
+          setTimeout(() => location.reload(), 2000)
           this.dialog = false;
 
        }).catch(err => {
@@ -664,9 +667,9 @@ export default {
         this.payload.dob = res.data.payload[0].dob.substr(0, 10);
         //Chage gender data
         if (res.data.payload[0].gender === "M")
-          this.payload.fullGender = "Male";
+          this.payload.gender = "Male";
         else if (res.data.payload[0].gender === "F")
-          this.payload.fullGender = "Female";
+          this.payload.gender = "Female";
        }).catch(err => {
          console.error(err);
        });

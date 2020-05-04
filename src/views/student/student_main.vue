@@ -266,7 +266,6 @@ export default {
         firstName: "",
         lastName: "",
         gender: "",
-        fullGender: "",
         picturePath: "",
         program: "",
         studentId: "",
@@ -318,9 +317,6 @@ export default {
   },
 
   methods: {
-   gotoEnroll() {
-     this.$router.push("/enrollment_details");
-   },
 
    cloesDialog2() {
      this.dialog2 = false
@@ -425,9 +421,9 @@ export default {
           this.info.dob = res.data.payload.info[0].dob.substr(0, 10);
           //Chage gender data
           if (res.data.payload.info[0].gender === "M")
-            this.info.fullGender = "Male";
+            this.info.gender = "Male";
           else if (res.data.payload.info[0].gender === "F")
-            this.info.fullGender = "Female";
+            this.info.gender = "Female";
           // Pass studentId to info page
           this.$store.dispatch("syncStudentId",res.data.payload.info[0].studentId)
           // Pass data to Navbar

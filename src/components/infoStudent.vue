@@ -21,7 +21,7 @@
                 <p><b>Student ID: </b>{{info.studentId}}</p>
                 <p><b>First Name: </b>{{info.firstName}}</p>
                 <p><b>Last Name: </b>{{info.lastName}}</p>
-                <p><b>Gender: </b>{{info.fullGender}}</p>
+                <p><b>Gender: </b>{{info.gender}}</p>
                 <p><b>Degree: </b>{{info.degree}}</p>
               </div>
         

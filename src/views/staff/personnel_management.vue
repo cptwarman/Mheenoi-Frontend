@@ -129,6 +129,11 @@
 
              <v-dialog v-model="dialog.addS" persistent max-width="1200" scrollable>
                 <v-card>
+                    <v-card-title class="blue--text title">
+                        ADD STUDENT
+                        <v-spacer/>
+                        <v-btn color="error" small rounded @click="clearPassStudent()">clear</v-btn>
+                    </v-card-title>
                 <!-- Input fields -->
                     <v-card-text class="pb-0">
                         <v-form>
@@ -169,7 +174,7 @@
                                             ></v-select> 
 
                                             <v-select
-                                                v-model="passPayload.students.fullGender"
+                                                v-model="passPayload.students.gender"
                                                 :items = "genderSelect"
                                                 label="Gender"
                                                 required
@@ -466,10 +471,16 @@
             <!-- End Student Add -->
             <!-- End Student Add -->
 
-            <v-dialog v-model="dialogL.edit" persistent max-width="800" scrollable>
+            <!-- Employee Add -->
+            <!-- Employee Add -->
+            <!-- Employee Add -->
+
+            <v-dialog v-model="dialog.addL" persistent max-width="800" scrollable>
                 <v-card>
                     <v-card-title class="blue--text title">
-                        EDIT INFORMATION
+                        ADD EMPLOYEE 
+                        <v-spacer/>
+                        <v-btn color="error" small rounded @click="clearPassEmployee()">clear</v-btn>
                     </v-card-title>
 
                     <v-card-text>
@@ -478,12 +489,28 @@
                                 <v-row justify="center">
 
                                     <v-col cols="12" sm="6">
+                                        <v-select
+                                            v-model="passPayload.lecturers.depName"
+                                            :items="department"
+                                            label="Department"
+                                            required
+                                        />
+
+                                        <v-select
+                                            v-model="passPayload.lecturers.position"
+                                            :items="position"
+                                            label="Position"
+                                            required
+                                            class="mt-5"
+                                        />
+
                                         <v-text-field
                                             v-model="passPayload.lecturers.firstName"
                                             :rules="rules.name"
                                             :counter="32"
                                             label="First name"
                                             required
+                                             class="mt-5"
                                         />
                                         <v-text-field
                                             v-model="passPayload.lecturers.lastName"
@@ -509,38 +536,34 @@
                                             required
                                             class="mt-5"
                                         />
-                                        <v-text-field
-                                            v-model="passPayload.lecturers.address"
-                                            :rules="rules.address"
-                                            :counter="128"
-                                            label="Address"
-                                            required
-                                            class="mt-5"
-                                        />
+                                       
                                     </v-col>
                                     <!-- col 2nd -->
                                     <v-col cols="12" sm="6">
+                                        <v-select
+                                            v-model="passPayload.lecturers.bloodType"
+                                            :items="select.bloodType"
+                                            label="Blood Type"
+                                            required                                           
+                                        />
+
+                                        <v-select
+                                            v-model="passPayload.lecturers.gender"
+                                            :items="select.gender"
+                                            label="Gender"
+                                            required
+                                            class="mt-5"
+                                        />
+
                                         <v-text-field
                                             v-model="passPayload.lecturers.phoneNo"
                                             :rules="rules.phone"
                                             :counter="10"
                                             label="Phone"
                                             required
-                                        />
-                                        <v-select
-                                            v-model="passPayload.lecturers.fullGender"
-                                            :items="select.gender"
-                                            label="Gender"
-                                            required
                                             class="mt-5"
                                         />
-                                        <v-select
-                                            v-model="passPayload.lecturers.bloodType"
-                                            :items="select.bloodType"
-                                            label="Blood Type"
-                                            required
-                                            class="mt-5"
-                                        />
+
                                         <v-menu
                                             ref="menuL"
                                             v-model="menuL"
@@ -566,6 +589,15 @@
                                                     <v-btn text color="primary" @click="$refs.menuL.save(passPayload.lecturers.dob)">OK</v-btn>
                                                 </v-date-picker>
                                         </v-menu>
+
+                                         <v-text-field
+                                            v-model="passPayload.lecturers.address"
+                                            :rules="rules.address"
+                                            :counter="128"
+                                            label="Address"
+                                            required
+                                            class="mt-5"
+                                        />
                                     </v-col>
                                 </v-row>
                             </v-container>
@@ -594,7 +626,7 @@
                                 <v-card-actions>
                                 <v-spacer/>
                                     <v-btn @click.stop="dialogL.cancel = false" color="error" outlined> no </v-btn>
-                                    <v-btn @click.stop="dialogL.edit = false" color="error" class="ml-6" outlined> yes </v-btn>
+                                    <v-btn @click.stop="dialog.addL = false" color="error" class="ml-6" outlined> yes </v-btn>
                                 <v-spacer/>
                                 </v-card-actions>
                             </v-card>
@@ -610,8 +642,8 @@
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer/>
-                                <v-btn @click.stop="dialogL.submit = false" color="success" outlined> no </v-btn>
-                                <v-btn @click="infoSubmitLecturer()" color="success" class="ml-6" outlined> yes </v-btn>
+                                    <v-btn @click.stop="dialogL.submit = false" color="success" outlined> no </v-btn>
+                                    <v-btn @click="postNewEmployee()" color="success" class="ml-6" outlined> yes </v-btn>
                                 <v-spacer/>
                             </v-card-actions>
                             </v-card>
@@ -623,6 +655,10 @@
                     </v-card-actions>
                 </v-card>
             </v-dialog>
+
+            <!-- End of Employee Add -->
+            <!-- End of Employee Add -->
+            <!-- End of Employee Add -->
 
             <v-snackbar v-model="snackbar.pass" color="success">
                 Add person Successful
@@ -800,7 +836,7 @@
                                                                 <!-- column 3 -->
                                                                 <v-col cols="12" md="4">
                                                                     <v-select
-                                                                        v-model="passPayload.students.fullGender"
+                                                                        v-model="passPayload.students.gender"
                                                                         :items = "genderSelect"
                                                                         label="Gender"
                                                                         required
@@ -1103,7 +1139,7 @@
                                                     <p><b>Faculty</b>: {{RealPassPayload.lecturers[indexOfInfo].faculty}}</p>
                                                     <p><b>Department</b>: {{RealPassPayload.lecturers[indexOfInfo].depName}}</p>
                                                     <p><b>Blood type</b>: {{RealPassPayload.lecturers[indexOfInfo].bloodType}}</p>
-                                                    <p><b>Gender</b>: {{RealPassPayload.lecturers[indexOfInfo].fullGender}}</p>
+                                                    <p><b>Gender</b>: {{RealPassPayload.lecturers[indexOfInfo].gender}}</p>
                                                     <p><b>Phone</b>: {{RealPassPayload.lecturers[indexOfInfo].phoneNo}}</p>
                                                     <p><b>E-mail</b>: {{RealPassPayload.lecturers[indexOfInfo].email}}</p>
                                                     <p><b>Birthday</b>: {{RealPassPayload.lecturers[indexOfInfo].dob}}</p>
@@ -1188,7 +1224,7 @@
                                                             required
                                                         />
                                                         <v-select
-                                                            v-model="passPayload.lecturers.fullGender"
+                                                            v-model="passPayload.lecturers.gender"
                                                             :items="select.gender"
                                                             label="Gender"
                                                             required
@@ -1352,7 +1388,7 @@
                                                     <p><b>Faculty</b>: {{RealPassPayload.staffs[indexOfInfo].faculty}}</p>
                                                     <p><b>Department</b>: {{RealPassPayload.staffs[indexOfInfo].depName}}</p>
                                                     <p><b>Blood type</b>: {{RealPassPayload.staffs[indexOfInfo].bloodType}}</p>
-                                                    <p><b>Gender</b>: {{RealPassPayload.staffs[indexOfInfo].fullGender}}</p>
+                                                    <p><b>Gender</b>: {{RealPassPayload.staffs[indexOfInfo].gender}}</p>
                                                     <p><b>Phone</b>: {{RealPassPayload.staffs[indexOfInfo].phoneNo}}</p>
                                                     <p><b>E-mail</b>: {{RealPassPayload.staffs[indexOfInfo].email}}</p>
                                                     <p><b>Birthday</b>: {{RealPassPayload.staffs[indexOfInfo].dob}}</p>
@@ -1491,6 +1527,8 @@ export default {
                     pass: false,
                     fail: false,
                 },
+
+                position: ["Lecturer","Staff"],
 
                 department: [
                     "Computer Engineering", 
@@ -1739,6 +1777,22 @@ export default {
                 },
             },
             lecturers: {
+                depName: {
+                    required
+                },
+
+                bloodType: {
+                    required
+                },
+
+                dob: {
+                    required
+                },
+
+                position: {
+                    required
+                },
+
                 email: {
                     required,
                     email
@@ -1785,7 +1839,7 @@ export default {
             postNewStudent() {
                 this.dialog.addS = false;
                 //this.$store.dispatch("syncfirstName",this.passPayload.firstName)
-                if(this.passPayload.students.fullGender === "Male") {
+                if(this.passPayload.students.gender === "Male") {
                     this.passPayload.students.title = "Mr."
                     this.passPayload.students.gender = "M"
                 }
@@ -1811,7 +1865,6 @@ export default {
                 let jwtToken = sessionStorage.getItem('jwt')
                 axios({
                     method: 'post',
-                    //! อย่าลืมแก้ ID !!!
                     url: `https://chai-test-backend.herokuapp.com/api/students`,
                     data: { 
                         payload: this.passPayload.students
@@ -1822,7 +1875,53 @@ export default {
                 })
                 .then(res => {
                     this.snackbar.pass = true
-                    setTimeout(() => location.reload(), 2500)
+                    setTimeout(() => location.reload(), 2000)
+
+                }).catch(err => {
+                    console.error(err.respons)
+                    this.snackbar.fail = true
+                });
+            },
+
+            postNewEmployee() {
+                this.dialog.addL = false;
+                //this.$store.dispatch("syncfirstName",this.passPayload.firstName)
+                if(this.passPayload.lecturers.gender === "Male") {
+                    this.passPayload.lecturers.title = "Mr."
+                    this.passPayload.lecturers.gender = "M"
+                }
+                else {
+                    this.passPayload.lecturers.title = "Ms."
+                    this.passPayload.lecturers.gender = "F"
+                }
+                delete this.passPayload.lecturers.fullGender
+
+                if(this.passPayload.lecturers.depName == "Computer Engineering")
+                    this.passPayload.lecturers.departmentId = 1
+                else if(this.passPayload.lecturers.depName == "Chemical Engineering")
+                    this.passPayload.lecturers.departmentId = 2
+                else if(this.passPayload.lecturers.depName == "Electrical Engineering")
+                    this.passPayload.lecturers.departmentId = 3
+                else if(this.passPayload.lecturers.depName == "Electrical Technology Education")
+                    this.passPayload.lecturers.departmentId = 4
+                else if(this.passPayload.lecturers.depName == "School of Information Technology")
+                    this.passPayload.lecturers.departmentId = 5
+                
+                console.log(this.passPayload.lecturers)
+                let jwtToken = sessionStorage.getItem('jwt')
+                axios({
+                    method: 'post',
+                    url: `https://chai-test-backend.herokuapp.com/api/employees`,
+                    data: { 
+                        payload: this.passPayload.lecturers
+                    },
+                    headers: {
+                        Authorization: `bearer ${jwtToken}`
+                    }
+                })
+                .then(res => {
+                    this.snackbar.pass = true
+                    setTimeout(() => location.reload(), 2000)
 
                 }).catch(err => {
                     console.error(err.respons)
@@ -1854,9 +1953,9 @@ export default {
                         el.dob = el.dob.substr(0, 10);
                         //change gebder format
                         if(el.gender === "M")
-                            el.fullGender = "Male"
+                            el.gender = "Male"
                         else if(el.gender === "F")
-                            el.fullGender = "Female"
+                            el.gender = "Female"
                     })
 
                     _.filter(this.payload.lecturers, el => {
@@ -1902,9 +2001,9 @@ export default {
                         el.dob = el.dob.substr(0, 10);
                         //change gebder format
                         if(el.gender === "M")
-                            el.fullGender = "Male"
+                            el.gender = "Male"
                         else if(el.gender === "F")
-                            el.fullGender = "Female"
+                            el.gender = "Female"
                     })
 
                     _.filter(this.payload.staffs, el => {
@@ -1954,7 +2053,8 @@ export default {
             },
 
             clearPassStudent() {
-                this.passPayload.students = this.RealPassPayload.students[0] 
+                
+                this.passPayload.students = _.cloneDeep(this.RealPassPayload.students[0]) 
                 for(let key in this.passPayload.students) {
                     this.passPayload.students[key] = ""
                 }
@@ -1963,9 +2063,43 @@ export default {
             },
 
             clearPassEmployee() {
-                this.passPayload.lecturers = []
-                this.dialog.addL = true
-                this.dialog.add = false
+                //? user did not open the lecturer page
+                console.log(this.RealPassPayload.lecturers.length)
+               
+                    let jwtToken = sessionStorage.getItem('jwt')
+                    axios({
+                        method: 'get',
+                        url: 'https://chai-test-backend.herokuapp.com/api/lecturers',
+                        headers: {
+                            Authorization: `bearer ${jwtToken}`
+                        }
+                    })
+                    .then(res => {
+                        //console.log(res)
+                        this.RealPassPayload.lecturers = _.cloneDeep(res.data.payload)
+                        console.log(this.RealPassPayload.lecturers)
+
+                        _.filter(this.RealPassPayload.lecturers, el => {
+                            //change dob foramt
+                            el.dob = el.dob.substr(0, 10);
+                            //change gebder format
+                            if(el.gender === "M")
+                                el.gender = "Male"
+                            else if(el.gender === "F")
+                                el.gender = "Female"
+                        })
+                        //console.log(this.RealPassPayload.lecturers)
+                        this.passPayload.lecturers = _.cloneDeep(this.RealPassPayload.lecturers[0])  
+
+                        for(let key in this.passPayload.lecturers) {
+                            this.passPayload.lecturers[key] = ""
+                        }  
+                        this.dialog.addL = true
+                        this.dialog.add = false
+                    })
+                    .catch(err => {
+                        console.error(err.respones);
+                    });
             },
 
         //! own
@@ -1977,7 +2111,7 @@ export default {
 
             infoSubmitStudent() {
                 //this.$store.dispatch("syncfirstName",this.passPayload.firstName)
-                    if(this.passPayload.students.fullGender === "Male") {
+                    if(this.passPayload.students.gender === "Male") {
                         this.passPayload.students.title = "Mr."
                         this.passPayload.students.gender = "M"
                     }
@@ -2001,10 +2135,9 @@ export default {
                     }
                 })
                 .then(res => {
-                    this.snackbarS.pass = true
-                    
-                    setTimeout(() => location.reload(), 2500)
                     this.dialogS.dialog = false; 
+                    this.snackbarS.pass = true
+                    setTimeout(() => location.reload(), 2000)
 
                 }).catch(err => {
                     console.error(err.respons)
@@ -2022,7 +2155,7 @@ export default {
             infoSubmitLecturer() {
                 this.dialogL.edit = false;
                 //this.$store.dispatch("syncfirstName",this.passPayload.firstName)
-                if(this.passPayload.lecturers.fullGender === "Male") {
+                if(this.passPayload.lecturers.gender === "Male") {
                     this.passPayload.lecturers.title = "Mr."
                     this.passPayload.lecturers.gender = "M"
                 }
@@ -2046,7 +2179,7 @@ export default {
                 })
                 .then(res => {
                     this.snackbarL.pass = true
-                    setTimeout(() => location.reload(), 2500)
+                    setTimeout(() => location.reload(), 2000)
 
                 }).catch(err => {
                     console.error(err.respons)
@@ -2137,7 +2270,7 @@ export default {
             }
         })
         .then(res => {
-            console.log(res)
+            //console.log(res)
             this.payload.students = _.cloneDeep(res.data.payload)
             this.RealPassPayload.students = _.cloneDeep(this.payload.students)
             
@@ -2146,9 +2279,9 @@ export default {
                 el.dob = el.dob.substr(0, 10);
                 //change gebder format
                 if(el.gender === "M")
-                    el.fullGender = "Male"
+                    el.gender = "Male"
                 else if(el.gender === "F")
-                    el.fullGender = "Female"
+                    el.gender = "Female"
             })
 
             _.filter(this.payload.students, el => {
@@ -2164,7 +2297,7 @@ export default {
                 else if(el.gender === "F")
                     el.gender = "Female"
             })
-            console.log(this.RealPassPayload.students)
+            //console.log(this.RealPassPayload.students)
         })
         .catch(err => {
             console.error(err.respones);

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height v-if="!this.$store.getters.getLoader">
+  <v-container fluid fill-height>
       <v-row justify="center">
             <v-col cols="10">
                 <v-row justify="center">
@@ -110,6 +110,15 @@
                                         </v-col>
                                     </v-container>
                                 </v-card-text>
+
+                                <!-- delete button -->
+                                <v-card-actions>
+                                    <v-spacer/>
+                                        <v-btn color="error" @click="deleteActivity()">
+                                            <v-icon left>delete_outline</v-icon> delete
+                                        </v-btn>
+                                    <v-spacer/>
+                                </v-card-actions>
                             </v-card>
                         </v-dialog>
                     </v-card>
@@ -120,6 +129,9 @@
                     <v-btn color="primary" @click.stop="dialog.new = true">new activity</v-btn>
                 </v-row>
 
+                <!-- add activities -->
+                <!-- add activities -->
+                <!-- add activities -->
                 <v-dialog v-model="dialog.new" persistent max-width="950" scrollable>
                    <v-card>
                        <v-card-title class="blue--text ml-5 py-4 font-weight-bold">
@@ -431,15 +443,29 @@
                   <!-- end of pop up cancel -->
                 </v-dialog>
 
+                <!-- add Successful -->
                 <v-snackbar v-model="snackbar.pass" color="success">
                     Add activity Successful
                     <v-btn color="white" text @click="snackbar.pass = false"> Close </v-btn>
                 </v-snackbar>
+                
+                <!-- delete Successful -->
+                <v-snackbar v-model="snackbar.passDel" color="success">
+                    Delete Successful
+                    <v-btn color="white" text @click="snackbar.passDel = false"> Close </v-btn>
+                </v-snackbar>
 
-                <v-snackbar top v-model="snackbar.fail" color="error">
+                <!-- add fail -->
+                <v-snackbar v-model="snackbar.fail" color="error">
                     Something went wrong
                     <v-btn color="white" text @click="snackbar.fail = false"> Close </v-btn>
-                </v-snackbar>
+                </v-snackbar>'
+                
+                <!-- delete fail -->
+                <v-snackbar v-model="snackbar.failDel" color="error">
+                    Delete Failed
+                    <v-btn color="white" text @click="snackbar.failDel = false"> Close </v-btn>
+                </v-snackbar>'
                 
             </v-col>
       </v-row>
@@ -460,6 +486,8 @@ data() {
         snackbar: {
             pass: false,
             fail: false,
+            passDel: false,
+            failDel: false,
         },
 
         dialog: {
@@ -550,7 +578,7 @@ data() {
 methods: {
     showDetails(item) {
 
-        //? get all staff
+        //? get all details from staff
 
         let jwtToken = sessionStorage.getItem('jwt')
         axios({
@@ -588,6 +616,26 @@ methods: {
         this.passPayload.staffs.splice(index,1)
     },
 
+    deleteActivity() {
+        console.log(this.payload[this.indexOfActivity].activityId)
+        let jwtToken = sessionStorage.getItem('jwt')
+        axios({
+            method: 'del',
+            url: `https://chai-test-backend.herokuapp.com/api/activities/${this.payload[this.indexOfActivity].activityId}`,
+            headers: {
+                Authorization: `bearer ${jwtToken}`
+            }
+        })
+        .then(res => {
+            console.log(res)
+            this.snackbar.passDel = true
+        })
+        .catch(err => {
+            console.error(err.respons);
+            this.snackbar.failDel = true
+        });
+    },
+
     submit() {
         //! POST TO SERVER
         this.passPayload.startTime = this.passPayload.startDate + " " + this.passPayload.startTime + ":00"
@@ -608,7 +656,7 @@ methods: {
         })
         .then(res => {
             console.log(res)
-            this.dialog.dialogSubmit = false
+            this.dialog.new = false
             this.snackbar.pass = true
             setTimeout(() => location.reload() , 2000)
         })
