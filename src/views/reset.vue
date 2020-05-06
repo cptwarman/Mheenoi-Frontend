@@ -91,7 +91,7 @@ export default {
             },
 
             passPayload: {
-                userId: this.$store.getters.getStudentId,
+                userId: this.$store.getters.getId,
                 oldPassword: "",
                 newPassword: "",
             },

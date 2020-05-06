@@ -185,7 +185,8 @@ export default {
                 },
                 {
                     text: "Detail",
-                    value: "details"
+                    value: "details",
+                    sortable: false,
                 },
             ],
         

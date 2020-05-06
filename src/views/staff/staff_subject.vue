@@ -708,19 +708,22 @@ data() {
             subjects: [
                 {
                     text: "Subject ID", 
-                    value: "subjectId"
+                    value: "subjectId",
+                    width: "13%"
                 },
                 {
                     text: "Subject Name", 
-                    value: "subjectName"
+                    value: "subjectName",
                 },
                 {
                     text: "Credit", 
-                    value: "credit"
+                    value: "credit",
+                    sortable: false 
                 },
                 {
                     text: "Description",
-                    value: "description"
+                    value: "description",
+                    sortable: false 
                 },
                 {
                     value: "actions",
@@ -913,7 +916,7 @@ methods: {
              this.payload.students.push({studentId: "-", fullName: "-"})
         else
             this.payload.students = res.data.payload
-            
+
         this.payload.sectionsSelect = []
         this.dialog.detail = true
 

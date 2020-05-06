@@ -13,7 +13,6 @@ import scholarship from '../views/student/scholarship.vue'
 // lectuere
 import lecturer_main from '../views/lecturer/lecturer_main.vue'
 import lecturer_info from '../views/lecturer/lecturer_info.vue'
-import grade_assignment from '../views/lecturer/grade_assignment.vue'
 import subject_management from '../views/lecturer/subject_management.vue'
 // staff
 import staff_main from '../views/staff/staff_main.vue'
@@ -93,14 +92,6 @@ Vue.use(VueRouter)
     path: '/lecturer_info',
     name: 'lecturer_info',
     component: lecturer_info,
-    meta: {
-      type: 2
-    },
-  },
-  {
-    path: '/grade',
-    name: 'grade',
-    component: grade_assignment,
     meta: {
       type: 2
     },

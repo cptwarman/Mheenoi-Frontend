@@ -125,7 +125,7 @@ export default {
          if(err.response.status == 426) {
             this.showReset = true
             this.snackbarReset = true
-            this.$store.dispatch("syncStudentId",this.user)
+            this.$store.dispatch("syncId",this.user)
             this.$store.commit("setStatusCode",426)
          }
          else

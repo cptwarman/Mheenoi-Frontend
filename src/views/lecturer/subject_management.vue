@@ -5,7 +5,7 @@
 
                  <v-row justify="center" class="mb-7">
                     <v-card class="py-3 px-5" shaped>
-                        <span class="blue--text font-weight-bold title">  MY SUBJECT </span>
+                        <span :class="calFont">  SUBJECTS MANAGEMENT </span>
                     </v-card>
                 </v-row>
 
@@ -35,6 +35,7 @@
                                 :headers="changeHeader"
                                 :items="changeItem"
                                 :search="search"
+                                class="table"
                                 >
 
                                 <template v-slot:item.actions="{ item }">
@@ -150,19 +151,22 @@ export default {
                 subjects: [
                     {
                         text: "Subject ID", 
-                        value: "subjectId"
+                        value: "subjectId",
+                        width: "13%"
                     },
                     {
                         text: "Subject Name", 
-                        value: "subjectName"
+                        value: "subjectName",
                     },
                     {
                         text: "Credit", 
-                        value: "credit"
+                        value: "credit",
+                        sortable: false 
                     },
                     {
                         text: "Description",
-                        value: "description"
+                        value: "description",
+                        sortable: false 
                     },
                     {
                         value: "actions",
@@ -220,7 +224,7 @@ export default {
             let jwtToken = sessionStorage.getItem('jwt')
             axios({
                 method: 'get',
-                url: `https://chai-test-backend.herokuapp.com/api/subjects/${item.subjectId}/details`,
+                url: `https://chai-test-backend.herokuapp.com/api/subjects/${this.$store.getters.getId}/${item.subjectId}/details`,
                 headers: {
                     Authorization: `bearer ${jwtToken}`
                 }
@@ -255,24 +259,47 @@ export default {
         async showDetails(item) {
             let jwtToken = sessionStorage.getItem('jwt')
             //console.log(this.payload.sections)
-            let res  =  await axios({
-                                        method: 'get',
-                                        url: `https://chai-test-backend.herokuapp.com/api/subjects/${item.subjectId}/students`,
-                                        headers: { Authorization: `bearer ${jwtToken}`}
-                                    })
-            this.payload.students = []                        
-            if(res.data.payload.length == 0)
-                this.payload.students.push({studentId: "-", fullName: "-"})
-            else
-                this.payload.students = res.data.payload
+            try {
+                let res  =  await axios({
+                                            method: 'get',
+                                            url: `https://chai-test-backend.herokuapp.com/api/subjects/${item.subjectId}/students`,
+                                            headers: { Authorization: `bearer ${jwtToken}`}
+                                        })
 
-            this.payload.sectionsSelect = []
-            this.dialog.detail = true
+                this.payload.sectionsSelect = []
+                this.payload.students = []    
+                this.dialog.detail = true
 
-            _.filter(this.payload.sections, el => {
-                if(el.sectionId == item.sectionId)
-                    this.payload.sectionsSelect.push(el)
-            })
+                if(res.data.payload.length == 0)
+                    this.payload.students.push({studentId: "-", fullName: "-"})
+                else
+                    this.payload.students = res.data.payload
+
+               
+
+                _.filter(this.payload.sections, el => {
+                    if(el.sectionId == item.sectionId)
+                        this.payload.sectionsSelect.push(el)
+                })
+                    
+            } catch(err) {
+                console.log(err.respones)
+            }
+
+
+            try {
+                console.log(item.subjectId)
+                console.log(item.sectionId)
+                let res2  =  await axios({
+                                            method: 'get',
+                                            url: `https://chai-test-backend.herokuapp.com/api/grades/${item.subjectId}/${item.sectionId}`,
+                                            headers: { Authorization: `bearer ${jwtToken}`}
+                                        })
+                console.log(res2)
+            } catch(err) {
+                console.log(err.respones)
+            }
+
             //console.log(this.payload.students)
         },
 
@@ -310,6 +337,13 @@ export default {
             else 
                 return false
         },
+
+        calFont() {
+            if(this.$vuetify.breakpoint.xs)
+                return "blue--text font-weight-bold subtitle-1"
+            else
+                return "blue--text font-weight-bold title"
+        },
     },
 
     created() {
@@ -332,3 +366,8 @@ export default {
 }
 </script>
 
+<style>
+    .table {
+        table-layout : fixed;
+    }
+</style>
