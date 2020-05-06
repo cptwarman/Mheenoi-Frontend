@@ -90,7 +90,7 @@
                                     <v-icon left>clear</v-icon>  close
                                 </v-btn>
 
-                                <v-btn color="success" class="ml-4" :disabled="$v.addScholar.$invalid" @click.stop="dialog.submit = true">
+                $v                <v-btn color="success" class="ml-4" :disabled="$v.addScholar.$invalid" @click.stop="dialog.submit = true">
                                     <v-icon left>check</v-icon>  submit
                                 </v-btn>
 
@@ -268,77 +268,77 @@ export default {
     },
 
     methods: {
-        // showDetails(item) {
-        //   let jwtToken = sessionStorage.getItem('jwt');
-        //    axios({
-        //      method: 'get',
-        //      url: `https://chai-test-backend.herokuapp.com/api/students/${this.$store.getters.getStudentId}/info`,
-        //      headers: {
-        //       Authorization: `bearer ${jwtToken}`
-        //      }
-        //   })
-        //    .then(res => {
-        //     //console.log(res)
-        //     this.payload = res.data.payload[0]
-        //     this.payload.dob = res.data.payload[0].dob.substr(0, 10);
-        //     //Chage gender data
-        //     if (res.data.payload[0].gender === "M")
-        //       this.payload.fullGender = "Men";
-        //     else if (res.data.payload[0].gender === "W")
-        //       this.payload.fullGender = "Women";
+        showDetails(item) {
+          let jwtToken = sessionStorage.getItem('jwt');
+           axios({
+             method: 'get',
+             url: `https://chai-test-backend.herokuapp.com/api/students/${this.$store.getters.getStudentId}/info`,
+             headers: {
+              Authorization: `bearer ${jwtToken}`
+             }
+          })
+           .then(res => {
+            //console.log(res)
+            this.payload = res.data.payload[0]
+            this.payload.dob = res.data.payload[0].dob.substr(0, 10);
+            //Chage gender data
+            if (res.data.payload[0].gender === "M")
+              this.payload.fullGender = "Men";
+            else if (res.data.payload[0].gender === "W")
+              this.payload.fullGender = "Women";
 
-        //     this.nameOfScholarship = item.scholarshipName
-        //     this.indexOfScholarship = this.scholar.indexOf(item)
-        //     this.dialog.dialogDetails = true
-        //    }).catch(err => {
-        //      console.error(err);
-        //    });
+            this.nameOfScholarship = item.scholarshipName
+            this.indexOfScholarship = this.scholar.indexOf(item)
+            this.dialog.dialogDetails = true
+           }).catch(err => {
+             console.error(err);
+           });
         
-        // },
+        },
 
-        // submit() {
-        //     this.passPayload.studentId = this.$store.getters.getStudentId
-        //     this.passPayload.scholarshipId = this.scholar[this.indexOfScholarship].scholarshipId
-        //     this.passPayload.reasonOfRequest = this.reason
-        //     this.passPayload.activities = this.activitieShow
-        //     let count = 1
-        //     this.passPayload.activities.forEach(el => {
-        //       el.index = count
-        //       count++
-        //     })
-        //     console.log(this.passPayload)
+        submit() {
+            this.passPayload.studentId = this.$store.getters.getStudentId
+            this.passPayload.scholarshipId = this.scholar[this.indexOfScholarship].scholarshipId
+            this.passPayload.reasonOfRequest = this.reason
+            this.passPayload.activities = this.activitieShow
+            let count = 1
+            this.passPayload.activities.forEach(el => {
+              el.index = count
+              count++
+            })
+            console.log(this.passPayload)
 
-        //     let jwtToken = sessionStorage.getItem('jwt');
-        //     axios({
-        //       method: 'post',
-        //       url: `https://chai-test-backend.herokuapp.com/api/scholarships/requests`,
-        //       data: { 
-        //         payload: this.passPayload },
-        //       headers: {
-        //         Authorization: `bearer ${jwtToken}`
-        //       }
-        //   })
-        //    .then(res => {
-        //       console.log(res)
-        //       this.dialog.dialogSubmit = false
-        //       this.cancel()
-        //       this.snackbar.snackbarPass = true
-        //    }).catch(err => {
-        //       console.error(err.respones);
-        //       this.dialog.dialogSubmit = false
-        //       this.dialog.dialogDetails = false
-        //       this.snackbar.snackbarFail = true
-        //       this.cancel()
-        //    });
-        // },
+            let jwtToken = sessionStorage.getItem('jwt');
+            axios({
+              method: 'post',
+              url: `https://chai-test-backend.herokuapp.com/api/scholarships/requests`,
+              data: { 
+                payload: this.passPayload },
+              headers: {
+                Authorization: `bearer ${jwtToken}`
+              }
+          })
+           .then(res => {
+              console.log(res)
+              this.dialog.dialogSubmit = false
+              this.cancel()
+              this.snackbar.snackbarPass = true
+           }).catch(err => {
+              console.error(err.respones);
+              this.dialog.dialogSubmit = false
+              this.dialog.dialogDetails = false
+              this.snackbar.snackbarFail = true
+              this.cancel()
+           });
+        },
 
-        // cancel(){
-        //     this.activitieShow = []
-        //     this.act.name = ""
-        //     this.act.type = ""
-        //     this.reason = ""
-        //     this.dialog.dialogDetails = false
-        // },
+        cancel(){
+            this.activitieShow = []
+            this.act.name = ""
+            this.act.type = ""
+            this.reason = ""
+            this.dialog.dialogDetails = false
+        },
 
         clearInput(e) {
             if(e)

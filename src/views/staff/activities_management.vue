@@ -13,7 +13,7 @@
                      <v-card width="1000" >
 
                         <v-card-title class="blue--text">
-                                Activities
+                                Activities List
                             <v-spacer/>
                             <v-text-field
                                 v-model="search"
@@ -321,13 +321,6 @@ methods: {
 },
 
 computed: {
-    changeCol() {
-        if(this.$vuetify.breakpoint.xsOnly)
-            return "12"
-        else
-            return "5"
-    },
-
     calFont() {
         if(this.$vuetify.breakpoint.xs)
             return "blue--text font-weight-bold subtitle-1"
