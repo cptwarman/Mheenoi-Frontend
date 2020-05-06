@@ -425,7 +425,7 @@ export default {
           else if (res.data.payload.info[0].gender === "F")
             this.info.gender = "Female";
           // Pass studentId to info page
-          this.$store.dispatch("syncStudentId",res.data.payload.info[0].studentId)
+          this.$store.dispatch("syncId",res.data.payload.info[0].studentId)
           // Pass data to Navbar
           this.$store.dispatch("syncfirstName",res.data.payload.info[0].firstName)
           //Check scholarship

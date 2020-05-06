@@ -411,8 +411,7 @@ export default {
         let jwtToken = sessionStorage.getItem('jwt')
         axios({
             method: 'get',
-            //! อย่าลืมแก้ ID !!!
-            url: 'https://chai-test-backend.herokuapp.com/api/staffs/39999999999/info',
+            url: `https://chai-test-backend.herokuapp.com/api/staffs/${this.$store.getters.getId}/info`,
             headers: {
                 Authorization: `bearer ${jwtToken}`
             }

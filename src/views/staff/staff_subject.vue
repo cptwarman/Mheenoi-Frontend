@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid fill-height>
-      <v-row justify="center">
+    <v-container fluid fill-height>
+        <v-row justify="center">
             <v-col cols="10">
 
                 <v-row justify="center" class="mb-7">
@@ -10,7 +10,7 @@
                 </v-row>
 
                 <v-row justify="center">
-                     <v-card width="1000" >
+                    <v-card width="1000" >
 
                         <v-card-title class="blue--text ml-3">
                                 <span v-if="!btn.back">Subjects List</span>
@@ -78,7 +78,7 @@
                             <v-container>
                                 <div class="blue--text">
                                     <span>lecturer List</span>
-                                     <v-simple-table>
+                                    <v-simple-table>
                                         <template v-slot:default>
                                             <thead>
                                                 <tr>
@@ -124,7 +124,7 @@
                                         </template>
                                     </v-simple-table>
                                 </div>
-                           
+                        
                             </v-container>
                             
                         </v-card-text>
@@ -439,7 +439,7 @@
                                             </v-menu>
 
                                             <!-- week day select -->
-                                             <div class="d-flex mt-4" v-if="$vuetify.breakpoint.smAndUp">
+                                            <div class="d-flex mt-4" v-if="$vuetify.breakpoint.smAndUp">
                                                 <v-col :cols="changeCol">
                                                     <v-select
                                                         label="Weekday"
@@ -543,7 +543,7 @@
                                             <v-row justify="center" :class="calMargin1">
                                                 <v-col cols="12" sm="4">
                                                     <p>
-                                                       <b>Section:</b> {{item.sectionId}}
+                                                    <b>Section:</b> {{item.sectionId}}
                                                     </p>  
                                                 </v-col>
 
@@ -555,7 +555,7 @@
 
                                                 <v-col cols="12" sm="4">
                                                     <p>
-                                                       <b>Credit:</b>  {{passPayload.credit}}
+                                                    <b>Credit:</b>  {{passPayload.credit}}
                                                     </p>  
                                                 </v-col>
                                             </v-row>
@@ -621,7 +621,7 @@
                 <!-- dialog confirm submit and cancel -->
                 <!-- dialog confirm submit and cancel -->
 
-                 <!-- pop up cancel -->
+                <!-- pop up cancel -->
                 <v-dialog v-model="dialog.cancel" max-width="450">
                     <v-card class="pa-5">   
                         <v-card-text class="text-center">
@@ -672,8 +672,8 @@
                 </v-snackbar>
                 
             </v-col>
-      </v-row>
-  </v-container>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -913,6 +913,7 @@ methods: {
              this.payload.students.push({studentId: "-", fullName: "-"})
         else
             this.payload.students = res.data.payload
+            
         this.payload.sectionsSelect = []
         this.dialog.detail = true
 

@@ -101,7 +101,7 @@
             <v-list-item-icon>
               <v-icon color="primary">description</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="subtitle-2 font-weight-medium">Subject Management</v-list-item-title>
+            <v-list-item-title class="subtitle-2 font-weight-medium">My Subject</v-list-item-title>
           </v-list-item>
 
           <v-container class="mt-3 d-sm-none">

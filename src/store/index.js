@@ -6,15 +6,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    studentIdBuff: "",
+    id: "",
     first_name: "",
     loader: false,
     statusCode: "",
   },
 
   mutations: {
-    setStudentId(state, value) {
-      state.studentIdBuff = value
+    setId(state, value) {
+      state.id = value
     },
 
     setFirtName(state, value) {
@@ -31,8 +31,8 @@ export default new Vuex.Store({
   },
 
   getters: {
-    getStudentId(state) {
-      return state.studentIdBuff
+    getId(state) {
+      return state.id
     },
 
     getFirtName(state) {
@@ -49,8 +49,8 @@ export default new Vuex.Store({
   },
 
   actions: {
-    syncStudentId(context, data) {
-      context.commit("setStudentId", data)
+    syncId(context, data) {
+      context.commit("setId", data)
     },
 
     syncfirstName(context, data) {
