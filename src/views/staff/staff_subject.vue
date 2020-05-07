@@ -1054,7 +1054,7 @@ methods: {
             setTimeout(() => location.reload() , 2000)
         })
         .catch(err => {
-            console.error(err);
+            console.error(err.respones);
             this.dialog.submit = false
             this.snackbar.fail = true
         });
