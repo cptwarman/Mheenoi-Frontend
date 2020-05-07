@@ -21,6 +21,7 @@ import staff_subject from '../views/staff/staff_subject.vue'
 import scholarship_editor from '../views/staff/scholarship_editor.vue'
 import personnel_management from '../views/staff/personnel_management.vue'
 import activities_management from '../views/staff/activities_management.vue'
+import analysis_report from '../views/staff/analysis_report.vue'
 
 Vue.use(VueRouter)
 
@@ -152,6 +153,14 @@ Vue.use(VueRouter)
     path: '/activities_management',
     name: 'activities_management',
     component: activities_management,
+    meta: {
+      type: 3
+    },
+  },
+  {
+    path: '/analysis',
+    name: 'analysis_report',
+    component: analysis_report,
     meta: {
       type: 3
     },

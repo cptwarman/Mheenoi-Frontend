@@ -423,7 +423,7 @@ export default {
                 this.payload.fullGender = "Male";
             else if (res.data.payload[0].gender === "F")
                 this.payload.fullGender = "Female";
-            console.log(this.payload)
+            //console.log(this.payload)
         })
         .catch(err => {
             console.error(err.respones);

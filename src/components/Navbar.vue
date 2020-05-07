@@ -162,6 +162,13 @@
             <v-list-item-title class="subtitle-2 font-weight-medium">Personnel Management</v-list-item-title>
           </v-list-item>
 
+          <v-list-item @click="analysis()">
+            <v-list-item-icon>
+              <v-icon color="primary">insert_chart_outlined</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title class="subtitle-2 font-weight-medium">Analysis Report</v-list-item-title>
+          </v-list-item>
+
           <v-container class="mt-3 d-sm-none">
             <v-divider/>
             <v-row justify="center" class="mt-4">
@@ -270,6 +277,9 @@ export default {
     },
     activitieS() {
       this.$router.push("/activities_management").catch(err => {})
+    },
+    analysis() {
+      this.$router.push("/analysis").catch(err => {})
     }
   },
 };
