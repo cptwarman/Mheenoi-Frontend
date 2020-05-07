@@ -16,10 +16,10 @@
                 <v-col>
                     <v-row>
 
-                        <v-col sm="12" md="4">
+                        <v-col cols="12" md="4">
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on }">
-                                    <v-card hover v-on="on" @click="goToInfo()">
+                                    <v-card hover height="100%" v-on="on" @click="goToInfo()">
                                         <v-card-text class="text-center">
                                             <img src="../../assets/information.png" class="mt-3">
                                             <p class="mt-2">Information</p>
@@ -31,10 +31,10 @@
                             </v-tooltip>
                         </v-col>
 
-                        <v-col sm="12" md="4">
+                        <v-col cols="12" md="4">
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on }">
-                                    <v-card hover  v-on="on" @click="goToSubject()">
+                                    <v-card hover height="100%" v-on="on" @click="goToSubject()">
                                         <v-card-text class="text-center">
                                             <img src="../../assets/subject.png" class="mt-3">
                                             <p class="mt-2 text-no-wrap">Subject Management</p>
@@ -46,7 +46,7 @@
                             </v-tooltip>
                         </v-col>
 
-                        <v-col sm="12" md="4">
+                        <v-col cols="12" md="4">
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on }">
                                     <v-card hover height="100%" v-on="on" @click="goToActivities()">
@@ -65,7 +65,7 @@
 
                     <v-row>
 
-                        <v-col sm="12" md="4">
+                        <v-col cols="12" md="4">
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on }">
                                     <v-card hover height="100%" v-on="on" @click="goToScholarship()">
@@ -80,7 +80,7 @@
                             </v-tooltip>
                         </v-col>
 
-                        <v-col sm="12" md="4">
+                        <v-col cols="12" md="4">
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on }">
                                     <v-card hover height="100%" v-on="on" @click="goToPersonal()">
@@ -95,7 +95,7 @@
                             </v-tooltip>
                         </v-col>
 
-                        <v-col sm="12" md="4">
+                        <v-col cols="12" md="4">
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on }">
                                     <v-card hover height="100%" v-on="on" @click="goToReport()">

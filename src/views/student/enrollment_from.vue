@@ -1,15 +1,41 @@
 <template>
-   <v-app>
-     <v-btn></v-btn>
-  </v-app>
+
+    <v-container fill-height fluid>
+        <v-row justify="center">
+            <v-col>
+
+            </v-col>
+        </v-row>
+    </v-container>
+
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+    name: 'enrollment',
+
+    data() {
+      return {
+
+      }
+    },
+
+    methods: {
+      
+    },
+
+    computed: {
+
+    },
+
+    created() {
+
+    },
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
