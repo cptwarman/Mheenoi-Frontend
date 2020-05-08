@@ -6,10 +6,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    id: "",
-    first_name: "",
-    loader: false,
-    statusCode: "",
+      id: "",
+      first_name: "",
+      loader: false,
+      statusCode: "",
+      enroll: {
+          year: null,
+          semester: null,
+          status: null, 
+      },
+
+      scholarship: false
   },
 
   mutations: {
@@ -27,6 +34,16 @@ export default new Vuex.Store({
 
     setStatusCode(state, value) {
       state.statusCode = value
+    },
+
+    setScholarship(state, value) {
+      state.scholarship = value
+    },
+
+    setEnroll(state, value) {
+      state.enroll.year = value.year
+      state.enroll.semester = value.semester
+      state.enroll.status = value.status
     }
   },
 
@@ -45,6 +62,14 @@ export default new Vuex.Store({
 
     getStatusCode(state) {
       return state.statusCode
+    },
+
+    getIsEnroll(state) {
+      return state.enroll
+    },
+
+    getScholarship(state) {
+      return state.scholarship
     },
   },
 

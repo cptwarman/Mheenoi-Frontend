@@ -90,7 +90,7 @@
 
                           <template v-if="isSelect" v-slot:body>
                             <tbody>
-                              <tr v-for="value in enrollmentSelect" :key="value.subjectId">
+                              <tr v-for="(value,index) in enrollmentSelect" :key="index">
                                 <td class="text-left">{{value.subjectId}}</td> 
                                 <td class="text-left">{{value.subjectName}}</td>
                                 <td class="text-left">{{value.sectionId}}</td>
@@ -312,7 +312,13 @@ export default {
         year: "",
         semester: "",
       },
-      enabled: ""
+      enabled: "",
+      
+      enroll: {
+          year: null,
+          semester: null,
+          status: null, 
+      }
     }
   },
 
@@ -392,11 +398,44 @@ export default {
           else
             this.gpa = res.data.payload.gpa[0].gpa
           
+          // remove status pending and set status
+
+          for(var i = this.enrollment.length -1; i >= 0 ; i--){
+              if(this.enrollment[i].status == "pending" || this.enrollment[i].status == "enrolled") {
+                this.enroll.status = this.enrollment[i].status
+                this.enrollment.splice(i, 1)
+              }
+              else
+                this.enroll.status = this.enrollment[i].status
+          }
+
+          this.enroll.year = res.data.payload.globalConst.enrollYear
+          this.enroll.semester = res.data.payload.globalConst.enrollSemester
+
+          this.$store.commit("setEnroll",this.enroll)
+
           if(res.data.payload.enrollment.length != 0) {
             this.maxYear = _.maxBy(this.enrollment, 'year').year
              _.filter(this.enrollment, (el) => { 
+
               if(el.grade == null)
                 el.grade = "-"
+              else if(el.grade == 4)
+                el.grade = "A"
+              else if(el.grade == 3.5)
+                el.grade = "B+"
+              else if(el.grade == 3)
+                el.grade = "B"
+              else if(el.grade == 2.5)
+                el.grade = "C+"
+              else if(el.grade == 2)
+                el.grade = "C"
+              else if(el.grade == 1.5)
+                el.grade = "D+"
+              else if(el.grade == 1)
+                el.grade = "D"
+              else if(el.grade == 0)
+                el.grade = "F"
   
               // filter academic year
                if(!this.academicYear.includes(el.year)) 
@@ -429,8 +468,10 @@ export default {
           // Pass data to Navbar
           this.$store.dispatch("syncfirstName",res.data.payload.info[0].firstName)
           //Check scholarship
-          if(res.data.payload.scholarship.length == 1)
+          if(res.data.payload.scholarship.length != 0) {
             this.scholarship = res.data.payload.scholarship[0].scholarshipName
+            this.$store.commit("setScholarship",true)
+          }
 
        })
        .catch(err => {

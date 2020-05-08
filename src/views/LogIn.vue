@@ -141,6 +141,7 @@ export default {
 
   created() {
     this.$emit('status',false)
+    this.$store.commit("setEnroll",false)
   }
 };
 </script>

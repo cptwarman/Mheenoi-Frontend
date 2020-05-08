@@ -187,8 +187,9 @@
              
             >
               <template v-slot:item.actions="{ item }">
-                <v-btn small color="primary" rounded @click="showDetails(item)"> apply</v-btn>
+                <v-btn v-if="haveScholar" small color="primary" rounded @click="showDetails(item)"> apply</v-btn>
               </template>
+
             </v-data-table>
 
             <v-snackbar v-model="snackbar.snackbarPass" color="success">
@@ -278,6 +279,8 @@ export default {
           snackbarFail: false,
           snackbarPass: false,
         },
+
+        haveScholar: !this.$store.getters.getScholarship,
     }
   },
 
