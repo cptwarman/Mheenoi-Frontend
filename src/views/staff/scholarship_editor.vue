@@ -90,7 +90,7 @@
                                     <v-icon left>clear</v-icon>  close
                                 </v-btn>
 
-                $v                <v-btn color="success" class="ml-4" :disabled="$v.addScholar.$invalid" @click.stop="dialog.submit = true">
+                                <v-btn color="success" class="ml-4" :disabled="$v.addScholar.$invalid" @click.stop="dialog.submit = true">
                                     <v-icon left>check</v-icon>  submit
                                 </v-btn>
 
