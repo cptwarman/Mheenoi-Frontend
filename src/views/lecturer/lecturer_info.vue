@@ -79,6 +79,7 @@
                                                 :counter="32"
                                                 label="First name"
                                                 required
+                                                class="mt-10"
                                             />
                                             <v-text-field
                                                 v-model="passPayload.lastName"
@@ -86,7 +87,7 @@
                                                 :counter="32"
                                                 label="Last name"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             />
                                             <v-text-field
                                                 v-model="passPayload.email"
@@ -94,7 +95,7 @@
                                                 :counter="32"
                                                 label="E-mail"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             />
                                             <v-text-field
                                                 v-model="passPayload.idCardNumber"
@@ -102,7 +103,7 @@
                                                 :counter="13"
                                                 label="ID Card Number"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             />
                                             <v-text-field
                                                 v-model="passPayload.address"
@@ -110,7 +111,7 @@
                                                 :counter="128"
                                                 label="Address"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             />
                                         </v-col>
                                         <!-- col 2nd -->
@@ -121,20 +122,21 @@
                                                 :counter="10"
                                                 label="Phone"
                                                 required
+                                                class="mt-10"
                                             />
                                             <v-select
                                                 v-model="passPayload.fullGender"
                                                 :items="select.gender"
                                                 label="Gender"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             />
                                             <v-select
                                                 v-model="passPayload.bloodType"
                                                 :items="select.bloodType"
                                                 label="Blood Type"
                                                 required
-                                                class="mt-5"
+                                                class="mt-10"
                                             />
                                             <v-menu
                                                 ref="menu"
@@ -150,7 +152,7 @@
                                                         <v-text-field
                                                         v-model="passPayload.dob"
                                                         label="Birthday"
-                                                        class="mt-5"
+                                                        class="mt-10"
                                                         readonly
                                                         v-on="on"
                                                         />

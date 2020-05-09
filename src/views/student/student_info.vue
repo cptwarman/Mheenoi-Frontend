@@ -92,6 +92,7 @@
                             :counter="32"
                             label="First name"
                             required
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-text-field
@@ -100,7 +101,7 @@
                             :counter="32"
                             label="Last name"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-text-field
@@ -109,7 +110,7 @@
                             :counter="32"
                             label="E-mail"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>                        
                         </v-col>
 
@@ -121,7 +122,7 @@
                             :counter="13"
                             label="ID Card Number"
                             required
-                            
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-text-field
@@ -131,7 +132,7 @@
                             label="Phone"
                             hint="You can use the home number instead phone number"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-text-field
@@ -140,7 +141,7 @@
                             :counter="128"
                             label="Address"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
 
                         </v-col>
@@ -152,6 +153,7 @@
                             :items = "genderSelect"
                             label="Gender"
                             required
+                            class="mt-10"
                           ></v-select>
 
                           <v-select
@@ -159,7 +161,7 @@
                             :items = "bloodTypeSelect"
                             label="Blood Type"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-select>
 
                           <v-menu
@@ -176,7 +178,7 @@
                                 <v-text-field
                                   v-model="passPayload.dob"
                                   label="Birthday"
-                                  class="mt-5"
+                                  class="mt-10"
                                   readonly
                                   v-on="on"
                                 ></v-text-field>
@@ -211,6 +213,7 @@
                             :counter="32"
                             label="Guardian1 First name"
                             required
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-text-field
@@ -219,7 +222,7 @@
                             :counter="32"
                             label="Guardian1 Last name"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-text-field
@@ -229,7 +232,7 @@
                             label="Guardian1 Career"
                             required
                             hint="If your guardian doesn' have a career, you can enter - "
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
                           
                           <v-text-field
@@ -238,7 +241,7 @@
                             label="Guardian1 Income"
                             required
                             hint="if your guardian doesn't have income, you can enter 0"
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
                                         
                         </v-col>
@@ -253,6 +256,7 @@
                             label="Guardian1 Phone"
                             hint="You can use the home number instead phone number"
                             required
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-select
@@ -260,7 +264,7 @@
                             :items = "RelationSelect"
                             label="Guardian1 Relation with Student"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-select>
 
                           <v-text-field
@@ -269,7 +273,7 @@
                             :counter="32"
                             label="Guardian2 First name"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
                           
                           <v-text-field
@@ -278,7 +282,7 @@
                             :counter="32"
                             label="Guardian2 Last name"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>         
                         </v-col>
 
@@ -292,6 +296,7 @@
                             label="Guardian2 Career"
                             hint="If your guardian doesn't have a career, you can enter - "
                             required
+                            class="mt-10"
                           ></v-text-field>
 
                           <v-text-field
@@ -300,7 +305,7 @@
                             label="Guardian2 Income"
                             required
                             hint="if your guardian doesn't have income, you can enter 0"
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>
                           
                           <v-text-field
@@ -310,14 +315,14 @@
                             hint="You can use the home number instead phone number"
                             label="Guardian2 Phone"
                             required
-                            class="mt-5"
+                            class="mt-10"
                           ></v-text-field>  
 
                           <v-select
                             v-model="passPayload.parent2Relation"
                             :items = "RelationSelect"
                             label="Guardian2 Relation with Student"
-                            class="mt-5"
+                            class="mt-10"
                           ></v-select>
                         </v-col>
                       </v-row>

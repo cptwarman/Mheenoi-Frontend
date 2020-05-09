@@ -151,6 +151,7 @@
                                                 :items="department"
                                                 label="Department"
                                                 required
+                                                class="mt-10"
                                             ></v-select>
 
                                             <v-select
@@ -186,6 +187,7 @@
                                                 :counter="32"
                                                 label="First name"
                                                 required
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-text-field
@@ -225,6 +227,7 @@
                                                 label="Phone"
                                                 hint="You can use the home number instead phone number"
                                                 required
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-text-field
@@ -290,6 +293,7 @@
                                                 :counter="32"
                                                 label="Guardian1 First name"
                                                 required
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-text-field
@@ -330,6 +334,7 @@
                                                 label="Guardian1 Phone"
                                                 hint="You can use the home number instead phone number"
                                                 required
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-select
@@ -368,6 +373,7 @@
                                                 label="Guardian2 Career"
                                                 hint="If your guardian doesn't have a career, you can enter - "
                                                 required
+                                                class="mt-10"
                                             ></v-text-field>
 
                                             <v-text-field
@@ -490,6 +496,7 @@
                                             :items="department"
                                             label="Department"
                                             required
+                                            class="mt-10"
                                         />
 
                                         <v-select
@@ -540,7 +547,8 @@
                                             v-model="passPayload.lecturers.bloodType"
                                             :items="select.bloodType"
                                             label="Blood Type"
-                                            required                                           
+                                            required      
+                                            class="mt-10"                                     
                                         />
 
                                         <v-select
@@ -777,6 +785,7 @@
                                                                         :counter="32"
                                                                         label="First name"
                                                                         required
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-text-field
@@ -806,7 +815,7 @@
                                                                         :counter="13"
                                                                         label="ID Card Number"
                                                                         required
-                                                                        
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-text-field
@@ -836,6 +845,7 @@
                                                                         :items = "genderSelect"
                                                                         label="Gender"
                                                                         required
+                                                                        class="mt-10"
                                                                     ></v-select>
 
                                                                     <v-select
@@ -892,6 +902,7 @@
                                                                         :counter="32"
                                                                         label="Guardian1 First name"
                                                                         required
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-text-field
@@ -932,6 +943,7 @@
                                                                         label="Guardian1 Phone"
                                                                         hint="You can use the home number instead phone number"
                                                                         required
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-select
@@ -970,6 +982,7 @@
                                                                         label="Guardian2 Career"
                                                                         hint="If your guardian doesn't have a career, you can enter - "
                                                                         required
+                                                                        class="mt-10"
                                                                     ></v-text-field>
 
                                                                     <v-text-field
@@ -1176,6 +1189,7 @@
                                                             :counter="32"
                                                             label="First name"
                                                             required
+                                                            class="mt-10"
                                                         />
                                                         <v-text-field
                                                             v-model="passPayload.lecturers.lastName"
@@ -1218,6 +1232,7 @@
                                                             :counter="10"
                                                             label="Phone"
                                                             required
+                                                            class="mt-10"
                                                         />
                                                         <v-select
                                                             v-model="passPayload.lecturers.gender"
