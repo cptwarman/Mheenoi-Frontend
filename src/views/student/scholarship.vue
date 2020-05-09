@@ -335,7 +335,7 @@ export default {
     },
 
     submit() {
-        this.passPayload.studentId = this.$store.getters.getStudentId
+        this.passPayload.studentId = this.$store.getters.getId
         this.passPayload.scholarshipId = this.scholar[this.indexOfScholarship].scholarshipId
         this.passPayload.reasonOfRequest = this.reason
         this.passPayload.activities = this.activitieShow
@@ -345,7 +345,6 @@ export default {
           count++
         })
         console.log(this.passPayload)
-
         let jwtToken = sessionStorage.getItem('jwt');
         axios({
           method: 'post',
