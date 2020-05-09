@@ -154,8 +154,9 @@ export default {
                             },
                         }],
                         yAxes: [{
-                            gridLines: { 
-
+                            ticks: {
+                                precision: 0,
+                                beginAtZero: true                           
                             }
                         }]
                     }
@@ -198,8 +199,9 @@ export default {
                             },
                         }],
                         yAxes: [{
-                            gridLines: { 
-
+                            ticks: {
+                                precision: 0,
+                                beginAtZero: true,
                             }
                         }]
                     }
@@ -243,8 +245,9 @@ export default {
                             },
                         }],
                         yAxes: [{
-                            gridLines: { 
-
+                            ticks: {
+                                precision: 0,
+                                beginAtZero: true
                             }
                         }]
                     }
@@ -288,8 +291,9 @@ export default {
                             },
                         }],
                         yAxes: [{
-                            gridLines: { 
-
+                            ticks: {
+                                precision: 0,
+                                beginAtZero: true
                             }
                         }]
                     }
