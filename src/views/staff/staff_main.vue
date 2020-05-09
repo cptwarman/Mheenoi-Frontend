@@ -159,6 +159,10 @@ export default {
         goToReport() {
             this.$router.push("/analysis")
         },
+
+        goToPersonal() {
+            this.$router.push("/personnel")
+        }
     },
 
     computed: {
