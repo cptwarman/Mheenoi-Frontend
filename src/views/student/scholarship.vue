@@ -137,7 +137,7 @@
                     </v-col>
                     <v-card-actions>
                       <v-btn outlined @click.stop="dialog.dialogCancel = true" color="primary">cancel</v-btn>
-                      <v-btn @click.stop="dialog.dialogSubmit = true" :disabled="$v.reason.$invalid" color="primary" class="ml-5">submit</v-btn>
+                      <v-btn @click.stop="dialog.dialogSubmit = true" :disabled="checkSubmit" color="success" class="ml-5">submit</v-btn>
                     </v-card-actions>
  
                     <!-- pop up submit -->
@@ -345,6 +345,7 @@ export default {
           count++
         })
         console.log(this.passPayload)
+
         let jwtToken = sessionStorage.getItem('jwt');
         axios({
           method: 'post',
@@ -388,6 +389,15 @@ export default {
 
     deleteItem(index) {
       this.activitieShow.splice(index,1)
+    }
+  },
+
+  computed: {
+    checkSubmit() {
+      if(this.$v.reason.$invalid || this.activitieShow.length == 0)
+        return true
+      else
+        return false
     }
   },
 
