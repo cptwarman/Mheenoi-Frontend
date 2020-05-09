@@ -34,7 +34,7 @@
 
                         <v-card-actions class="pb-3 pt-0 pl-3">                       
                             <v-btn color="success" @click.stop="dialog.add = true">
-                            <v-icon left>post_add</v-icon> add scholarship</v-btn>                   
+                            <v-icon left>post_add</v-icon> create </v-btn>                   
                         </v-card-actions>
                     </v-card>
                 </v-row>
@@ -42,7 +42,7 @@
                 <v-dialog v-model="dialog.add" persistent scrollable width="600">
                     <v-card>
                         <v-card-title class="blue--text">
-                            ADD SCHOLARSHIP
+                            CREATE SCHOLARSHIP
                             <v-spacer/>
                             <v-btn rounded small color="error" @click="clearInput()">clear</v-btn>
                         </v-card-title>
